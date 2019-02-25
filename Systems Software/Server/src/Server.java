@@ -1,63 +1,55 @@
-// A Java program for a Server
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.*;
-import java.io.*;
 
-public class Server
+public class Server implements Runnable
+
 {
-    //initialize socket and input stream
-    private Socket		 socket = null;
-    private ServerSocket server = null;
-    private DataInputStream in	 = null;
+    ServerSocket serversocket;
+    BufferedReader br1, br2;
+    PrintWriter pr1;
+    Socket socket;
+    Thread t1, t2;
+    String in = "", out = "";
 
-    // constructor with port
-    public Server(int port)
-    {
-        // starts server and waits for a connection
-        try
-        {
+    public Server() {
+        try {
+            t1 = new Thread(this);
+            t2 = new Thread(this);
+            serversocket = new ServerSocket(5000);
+            System.out.println("Server is waiting. . . . ");
+            socket = serversocket.accept();
+            System.out.println("Client connected with Ip " + socket.getInetAddress().getHostAddress());
+            t1.start();
+            ;
+            t2.start();
 
-            server = new ServerSocket(port);
-            System.out.println("Server started");
-
-            System.out.println("Waiting for a client ...");
-
-            socket = server.accept();
-            System.out.println("Client accepted");
-
-            // takes input from the client socket
-            in = new DataInputStream(
-                    new BufferedInputStream(socket.getInputStream()));
-
-            String line = "";
-
-            // reads message from client until "Over" is sent
-            while (!line.equals("Over"))
-            {
-                try
-                {
-                    line = in.readUTF();
-                    System.out.println(line);
-
-                }
-                catch(IOException i)
-                {
-                    System.out.println(i);
-                }
-            }
-            System.out.println("Closing connection");
-
-            // close connection
-            socket.close();
-            in.close();
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
+        } catch (Exception e) {
         }
     }
 
-    public static void main(String args[])
-    {
-        Server server = new Server(5000);
+    public void run() {
+        try {
+            if (Thread.currentThread() == t1) {
+                do {
+                    br1 = new BufferedReader(new InputStreamReader(System.in));
+                    pr1 = new PrintWriter(socket.getOutputStream(), true);
+                    in = br1.readLine();
+                    pr1.println(in);
+                } while (!in.equals("END"));
+            } else {
+                do {
+                    br2 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    out = br2.readLine();
+                    System.out.println("Client says : : : " + out);
+                } while (!out.equals("END"));
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public static void main(String[] args) {
+        new Server();
     }
 }
