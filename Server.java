@@ -9,22 +9,31 @@ import javax.swing.JFrame;
 
 public class Server {
 
-    ServerSocket weatherSocket, userSocket;
-    ArrayList userList, weatherList;
+    static ServerSocket weatherSocket, userSocket;
+    static ArrayList<Socket> userList = new ArrayList<Socket>();
+    static ArrayList<Socket> weatherList = new ArrayList<Socket>();
+    static ArrayList<Thread> threadList = new ArrayList<Thread>();
+    static GraphicsConfiguration gc;
+
     // BufferedReader ServerInput, ServerOutput;
     // PrintWriter OutputToClient;
-    Socket socket;
-    Thread recieveingThread, sendingThread;
+    // Socket socket;
+    // Thread recieveingThread, sendingThread, listenThread;
     // String in = "", out = "";
-    static GraphicsConfiguration gc;
+    
 
     public Server() {
         try {
 
-            recieveingThread = new Thread(new WeatherClient());
-            sendingThread = new Thread(new UserClient());
+            // recieveingThread = new Thread(new WeatherClient());
+            // sendingThread = new Thread(new UserClient());
             weatherSocket = new ServerSocket(50000);
             userSocket = new ServerSocket(50001);
+
+            threadList.add(new Thread(new Listen()));
+
+            threadList[0].start();
+            
 
             // System.out.println("Client connected with Ip " +
             // socket.getInetAddress().getHostAddress());
@@ -41,18 +50,26 @@ public class Server {
 
     }
 
-    public void setUserList(Socket input) {
+    public static void setUserList(Socket input) {
         userList.add(input);
     }
 
     public ArrayList getWeatherList() {
 
         return weatherList;
-
     }
 
-    public void setWeatherList(Socket input) {
+    public static void setWeatherList(Socket input) {
         weatherList.add(input);
+    }
+
+    public ServerSocket getWeatherSocket()
+    {
+        return weatherSocket;
+    }
+    public void setWeatherSocket(ServerSocket input)
+    {
+        weatherSocket = input;
     }
 
     // public void run() {
@@ -88,7 +105,7 @@ class WeatherClient implements Runnable {
 
     public void run() {
 
-        Server.
+        
 
     }
 
@@ -111,6 +128,29 @@ class UserClient implements Runnable { // user could call function to pull data 
         // OutputToServer.println(in);
         // } while (!in.equals("END"));
 
+    }
+
+}
+
+class Listen implements Runnable{
+
+    public void start()
+    {
+
+    }
+
+    public void run()
+    {
+        while(true)
+        {
+            ServerSocket weathersocket = Server.weatherSocket;
+            Server.setWeatherList(weathersocket.accept());
+            Server.threadList.add(new Thread(new WeatherClient()));
+
+            ServerSocket usersocket = Server.userSocket;
+            Server.setUserList(usersocket.accept());
+            Server.threadList.add(new Thread(new UserClient()));
+        }
     }
 
 }
