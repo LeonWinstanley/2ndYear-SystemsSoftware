@@ -1,34 +1,38 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.*;
+import java.security.*;
+import java.security.spec.*;
 import java.util.*;
-// below are Jframe imports
-import java.awt.GraphicsConfiguration;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.crypto.*;
+import javax.crypto.spec.*;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+// below are Jframe imports
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+// PBKDF2 hashing used
 
 public class Login {
 	JLabel l1, l2, l3;
 	JTextField tf1;
 	JButton btn1;
 	JPasswordField p1;
+	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	String password;
 
 	Login() {
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
+		int widthMid = width / 2;
+		int heightMid = height / 2;
 		JFrame frame = new JFrame("Login Screen");
 		l1 = new JLabel("Login Form");
 		l1.setForeground(Color.blue);
 
-		l2 = new JLabel("Username");
-		l3 = new JLabel("Password");
+		l2 = new JLabel("Username :");
+		l3 = new JLabel("Password :");
 		tf1 = new JTextField();
 		p1 = new JPasswordField();
 		btn1 = new JButton("Login");
@@ -48,18 +52,39 @@ public class Login {
 		frame.add(btn1);
 
 		// leave at bottom
-		frame.setSize(700, 500);
+		frame.setSize(widthMid - 400, heightMid - 200);
+		frame.setLocation(widthMid - 400, heightMid - 200);
 		frame.setLayout(null);
+		frame.setResizable(false);
+		// frame layouts must be above
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// start hashing. password variable is all that needs
+		// to change to inputted password
+
 	}
 
-	// public void actionPerformed(ActionEvent ae) {
-	// String uName = tf1.getText();
-	// String pass = p1.gettext();
+	public void ReadingFromFile() {
+		FileReader fr = new FileReader("data\users.txt")
+	}
 
-	// }
+	public void actionPerformed(ActionEvent ae) {
+		String inputtedUserName = tf1.getText();
+		char[] inputtedPassword = p1.getPassword();
+
+		try {
+			SecureRandom random = new SecureRandom();
+			byte[] salt = new byte[16];
+			random.nextBytes(salt);
+			KeySpec spec = new PBEKeySpec(inputtedPassword, salt, 65536, 128);
+			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+			byte[] hash = factory.generateSecret(spec).getEncoded();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
 
 	public static void main(String[] args) {
 		new Login();
