@@ -32,7 +32,7 @@ public class Server {
 
             threadList.add(new Thread(new Listen()));
 
-            threadList[0].start();
+            threadList.get(0).start();
             
 
             // System.out.println("Client connected with Ip " +
@@ -97,12 +97,9 @@ public class Server {
     }
 }
 
-class WeatherClient implements Runnable {
+class WeatherClientThread implements Runnable {
 
-    public void start() {
-
-    }
-
+    @Override
     public void run() {
 
         
@@ -111,14 +108,11 @@ class WeatherClient implements Runnable {
 
 }
 
-class UserClient implements Runnable { // user could call function to pull data from server
+class UserClientThread implements Runnable { // user could call function to pull data from server
 
     Socket UserSocket;
 
-    public void start() {
-
-    }
-
+    @Override
     public void run() {
 
         // do {
@@ -134,22 +128,29 @@ class UserClient implements Runnable { // user could call function to pull data 
 
 class Listen implements Runnable{
 
-    public void start()
-    {
-
-    }
-
+    @Override
     public void run()
     {
         while(true)
         {
             ServerSocket weathersocket = Server.weatherSocket;
-            Server.setWeatherList(weathersocket.accept());
-            Server.threadList.add(new Thread(new WeatherClient()));
-
+            try {
+                Server.setWeatherList(weathersocket.accept());
+                Server.threadList.add(new Thread(new WeatherClientThread()));
+                
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            
             ServerSocket usersocket = Server.userSocket;
-            Server.setUserList(usersocket.accept());
-            Server.threadList.add(new Thread(new UserClient()));
+            try {
+                Server.setUserList(usersocket.accept());
+                Server.threadList.add(new Thread(new UserClientThread()));
+                
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            
         }
     }
 
