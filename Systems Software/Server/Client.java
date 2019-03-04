@@ -7,7 +7,7 @@ import java.net.*;
 import java.awt.GraphicsConfiguration;
 import javax.swing.JFrame;
 
-public class Client implements Runnable {
+public class Client{
 
     BufferedReader ClientInput, ClientOutput;
     PrintWriter OutputToServer;
@@ -55,6 +55,11 @@ public class Client implements Runnable {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame(gc);
+        frame.setSize(700, 500);
+
+        frame.setTitle("Client GUI");
+
+        
         frame.setVisible(true);
         new Client();
     }
