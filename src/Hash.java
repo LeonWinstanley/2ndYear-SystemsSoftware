@@ -24,7 +24,7 @@ public class Hash {
             KeySpec spec = new PBEKeySpec(input.toCharArray());
 
             byte[] salt = factory.generateSecret(spec).getEncoded();
-            System.out.println(hash);
+            System.out.println(salt);
 
         } catch (Exception e) {
             // TODO: handle exception
