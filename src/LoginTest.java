@@ -11,6 +11,8 @@ import javax.crypto.spec.*;
 import javax.swing.*;
 import javax.swing.GroupLayout.*;
 import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginTest extends JFrame {
 
@@ -123,7 +125,8 @@ public class LoginTest extends JFrame {
 
         String inputtedUserName = jTextField1.getText();
         char[] inputtedPassword = jPasswordField1.getPassword();
-        String testString;
+        String testString = "";
+        String afterHash = "";
         File userFile = new File("../data/users.txt");
 
         try {
@@ -134,6 +137,7 @@ public class LoginTest extends JFrame {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
             System.out.println(hash);
+            afterHash = new String(hash);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -146,10 +150,23 @@ public class LoginTest extends JFrame {
                 String fileUserName;
                 String filePassword;
 
-                fileUserName = testString.substring(0, 5);
-                filePassword = testString.substring(6, 11);
+                String findComma = ",";
+                Pattern word = Pattern.compile(findComma);
+                Matcher match = word.matcher(testString);
+                int commaLocation = 0;
 
-                if (inputtedUserName.equals(fileUserName) && inputtedPassword.equals(filePassword)) {
+                while (match.find()) {
+                    commaLocation = match.start();
+                }
+
+                fileUserName = testString.substring(0, commaLocation);
+                filePassword = testString.substring(commaLocation + 1, testString.length());
+
+                System.out.println(fileUserName);
+                System.out.println(filePassword);
+                // comma seperates the username and password
+
+                if (inputtedUserName.equals(fileUserName) && afterHash.equals(filePassword)) {
                     isErrorU = false;
                 }
             }
