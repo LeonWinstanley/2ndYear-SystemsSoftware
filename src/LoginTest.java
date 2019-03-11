@@ -126,23 +126,15 @@ public class LoginTest extends JFrame {
         String inputtedUserName = jTextField1.getText();
         char[] inputtedPassword = jPasswordField1.getPassword();
         String testString = "";
-        String afterHash = "";
         File userFile = new File("../data/users.txt");
-
-        try {
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-            KeySpec spec = new PBEKeySpec(inputtedPassword, salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            System.out.println(hash);
-            afterHash = new String(hash);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
         boolean isErrorU = true;
+
+        byte[] hashedPassword = null;
+        String hashToString = "";
+
+        Hash afterHash = new Hash(inputtedUserName, inputtedPassword);
+        afterHash.SetSalt();
+        hashedPassword = afterHash.HashPassword();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(userFile));
@@ -159,14 +151,15 @@ public class LoginTest extends JFrame {
                     commaLocation = match.start();
                 }
 
+                // comma seperates the username and password
+
                 fileUserName = testString.substring(0, commaLocation);
                 filePassword = testString.substring(commaLocation + 1, testString.length());
 
-                System.out.println(fileUserName);
-                System.out.println(filePassword);
-                // comma seperates the username and password
+                // System.out.println(fileUserName);
+                // System.out.println(filePassword);
 
-                if (inputtedUserName.equals(fileUserName) && afterHash.equals(filePassword)) {
+                if (inputtedUserName.equals(fileUserName) && hashToString.equals(filePassword)) {
                     isErrorU = false;
                 }
             }
