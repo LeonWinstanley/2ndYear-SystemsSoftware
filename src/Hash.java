@@ -31,7 +31,7 @@ public class Hash {
         }
     }
 
-    void HashPassword() {
+    byte[] HashPassword() {
 
         try {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -44,6 +44,7 @@ public class Hash {
             // SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
             System.out.println(hash);
+            return hash;
         } catch (Exception e) {
             System.out.println(e);
         }
