@@ -66,7 +66,7 @@ public class Login {
 	}
 
 	public void ReadingFromFile() {
-		FileReader fr = new FileReader("data\users.txt")
+
 	}
 
 	public void actionPerformed(ActionEvent ae) {

@@ -129,12 +129,12 @@ public class LoginTest extends JFrame {
         File userFile = new File("../data/users.txt");
         boolean isErrorU = true;
 
-        byte[] hashedPassword = null;
-        String hashToString = "";
+        String hashedPassword = null;
 
-        Hash afterHash = new Hash(inputtedUserName, inputtedPassword);
-        afterHash.SetSalt();
-        hashedPassword = afterHash.HashPassword();
+        Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
+        hashedPassword = hashFile.HashPassword();
+
+        System.out.println(hashedPassword);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(userFile));
@@ -156,10 +156,12 @@ public class LoginTest extends JFrame {
                 fileUserName = testString.substring(0, commaLocation);
                 filePassword = testString.substring(commaLocation + 1, testString.length());
 
+                hashFile.InputFileHash(filePassword, hashedPassword);
+
                 // System.out.println(fileUserName);
                 // System.out.println(filePassword);
 
-                if (inputtedUserName.equals(fileUserName) && hashToString.equals(filePassword)) {
+                if (inputtedUserName.equals(fileUserName) && hashedPassword.equals(filePassword)) {
                     isErrorU = false;
                 }
             }
