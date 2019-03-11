@@ -1,4 +1,5 @@
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 import java.security.*;
@@ -94,16 +95,16 @@ public class LoginTest extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(144, 144, 144));
         jButton2.setText("Log In");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(148, 175, 172));
         jButton3.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(144, 144, 144));
         jButton3.setText("Sign Up");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,19 +143,12 @@ public class LoginTest extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-
-    }// GEN-LAST:event_jButton3ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
-    public void actionPerformed(ActionEvent ae) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 
         String inputtedUserName = jTextField1.getText();
         char[] inputtedPassword = jPasswordField1.getPassword();
         String testString;
+        File userFile = new File("../data/users.txt");
 
         try {
             SecureRandom random = new SecureRandom();
@@ -163,27 +157,41 @@ public class LoginTest extends javax.swing.JFrame {
             KeySpec spec = new PBEKeySpec(inputtedPassword, salt, 65536, 128);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
+            System.out.println(hash);
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        File userFile = new File("../Data/users.txt");
+        boolean isErrorU = true;
 
-        BufferedReader br = new BufferedReader(new FileReader(userFile));
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(userFile));
+            while ((testString = br.readLine()) != null) {
+                String fileUserName;
+                String filePassword;
 
-        while ((testString = br.readLine()) != null) {
+                fileUserName = testString.substring(0, 5);
+                filePassword = testString.substring(6, 11);
 
+                if (inputtedUserName.equals(fileUserName) && inputtedPassword.equals(filePassword)) {
+                    isErrorU = false;
+                }
+            }
+
+            if (isErrorU = true) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Incorrect username or password", "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
+    }// GEN-LAST:event_jButton3ActionPerformed
 
-        if (inputtedUserName.equals(/* need to add read file uname here */)
-                && inputtedPassword.equals(/* need to add read file password here */)) {
+    // public void actionPerformed(java.awt.event.ActionEvent ae) {
 
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
+    /**
+     * @param args the command line arguments
+     */
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
