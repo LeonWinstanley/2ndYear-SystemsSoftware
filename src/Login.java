@@ -16,6 +16,15 @@ import java.util.regex.Pattern;
 
 public class Login extends JFrame {
 
+    private JButton jButton2;
+    private JButton jButton3;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JPanel jPanel1;
+    private JPasswordField jPasswordField1;
+    private JTextField jTextField1;
+
     public Login() {
         initComponents();
     }
@@ -134,12 +143,11 @@ public class Login extends JFrame {
         File userFile = new File("../data/users.txt");
         boolean isErrorU = true;
 
-        String hashedPassword = null;
-
         Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
-        hashedPassword = hashFile.HashPassword();
+        byte[] hashedBytes = hashFile.HashPassword();
+        String hashedString = new String(hashedBytes);
 
-        System.out.println(hashedPassword);
+        System.out.println(hashedString);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(userFile));
@@ -161,12 +169,12 @@ public class Login extends JFrame {
                 fileUserName = testString.substring(0, commaLocation);
                 filePassword = testString.substring(commaLocation + 1, testString.length());
 
-                hashFile.InputFileHash(filePassword, hashedPassword);
+                hashFile.InputFileHash(filePassword, hashedString);
 
                 // System.out.println(fileUserName);
                 // System.out.println(filePassword);
 
-                if (inputtedUserName.equals(fileUserName) && hashedPassword.equals(filePassword)) {
+                if (inputtedUserName.equals(fileUserName) && hashedString.equals(filePassword)) {
                     isErrorU = false;
                 }
             }
@@ -195,11 +203,12 @@ public class Login extends JFrame {
 
             // hash password
             Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
-            String hashedPassword = hashFile.HashPassword();
+            byte[] hashedBytes = hashFile.HashPassword();
+            String hashedString = new String(hashedBytes);
 
             // append to the file
 
-            br.write("\n" + inputtedUserName + "," + hashedPassword);
+            br.write("\n" + inputtedUserName + "," + hashedString);
             System.out.println("sucessful write to file");
 
             br.close();
@@ -235,14 +244,4 @@ public class Login extends JFrame {
             }
         });
     }
-
-    private JButton jButton2;
-    private JButton jButton3;
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-    private JPanel jPanel1;
-    private JPasswordField jPasswordField1;
-    private JTextField jTextField1;
-
 }

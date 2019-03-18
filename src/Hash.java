@@ -20,8 +20,9 @@ public class Hash {
 
     }
 
-    String HashPassword() {
+    byte[] HashPassword() {
         String hashed = "";
+        byte[] encodedBytes = null;
         try {
             Integer interations = 65565;
             byte[] salt = SetSalt();
@@ -29,11 +30,12 @@ public class Hash {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = skf.generateSecret(spec).getEncoded();
             hashed = interations + ":" + ToHex(salt) + ":" + ToHex(hash);
+            encodedBytes = Base64.getEncoder().encode(hashed.getBytes());
 
         } catch (Exception e) {
             System.out.println("HashPassword():" + e);
         }
-        return hashed;
+        return encodedBytes;
 
     }
 
