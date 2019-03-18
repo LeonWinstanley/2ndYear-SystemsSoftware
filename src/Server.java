@@ -18,7 +18,6 @@ public class Server {
     // Socket socket;
     // Thread recieveingThread, sendingThread, listenThread;
     // String in = "", out = "";
-    
 
     public Server() {
         try {
@@ -31,7 +30,6 @@ public class Server {
             threadList.add(new Thread(new Listen()));
 
             threadList.get(0).start();
-            
 
             // System.out.println("Client connected with Ip " +
             // socket.getInetAddress().getHostAddress());
@@ -60,12 +58,11 @@ public class Server {
         weatherList.add(input);
     }
 
-    public ServerSocket getWeatherSocket()
-    {
+    public ServerSocket getWeatherSocket() {
         return weatherSocket;
     }
-    public void setWeatherSocket(ServerSocket input)
-    {
+
+    public void setWeatherSocket(ServerSocket input) {
         weatherSocket = input;
     }
 
@@ -87,7 +84,7 @@ public class Server {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame(gc);
-        //frame.setVisable(true);
+        // frame.setVisable(true);
 
         new Server();
 
@@ -98,8 +95,6 @@ class WeatherClientThread implements Runnable {
 
     @Override
     public void run() {
-
-        
 
     }
 
@@ -123,31 +118,30 @@ class UserClientThread implements Runnable { // user could call function to pull
 
 }
 
-class Listen implements Runnable{
+class Listen implements Runnable {
 
     @Override
-    public void run()
-    {
-        while(true)
-        {
+    public void run() {
+        while (true) {
             ServerSocket weathersocket = Server.weatherSocket;
             try {
-                Server.setWeatherList(weathersocket.accept());
-                Server.threadList.add(new Thread(new WeatherClientThread("Weather" + Integer.toString(Server.weatherList.size()))));
-                
+                // Server.setWeatherList(weathersocket.accept());
+                // Server.threadList.add(new Thread(new WeatherClientThread("Weather" +
+                // Integer.toString(Server.weatherList.size()))));
+
             } catch (Exception e) {
-                //TODO: handle exception
+                // TODO: handle exception
             }
-            
+
             ServerSocket usersocket = Server.userSocket;
             try {
-                Server.setUserList(usersocket.accept());
-                Server.threadList.add(new Thread(new UserClientThread()));
-                
+                // Server.setUserList(usersocket.accept());
+                // Server.threadList.add(new Thread(new UserClientThread()));
+
             } catch (Exception e) {
-                //TODO: handle exception
+                // TODO: handle exception
             }
-            
+
         }
     }
 
