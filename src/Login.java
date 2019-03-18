@@ -24,6 +24,7 @@ public class Login extends JFrame {
     private JPanel jPanel1;
     private JPasswordField jPasswordField1;
     private JTextField jTextField1;
+    private static String secretKey = "boooooooooom!!!!";
 
     public Login() {
         initComponents();
@@ -138,16 +139,12 @@ public class Login extends JFrame {
     private void jButton2ActionPerformed(ActionEvent evt) {
 
         String inputtedUserName = jTextField1.getText();
-        char[] inputtedPassword = jPasswordField1.getPassword();
+        char[] inputtedPasswordChar = jPasswordField1.getPassword();
+        String inputtedPassword = new String(inputtedPasswordChar);
+
         String testString = "";
         File userFile = new File("../data/users.txt");
         boolean isErrorU = true;
-
-        Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
-        byte[] hashedBytes = hashFile.HashPassword();
-        String hashedString = new String(hashedBytes);
-
-        System.out.println(hashedString);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(userFile));
@@ -169,19 +166,22 @@ public class Login extends JFrame {
                 fileUserName = testString.substring(0, commaLocation);
                 filePassword = testString.substring(commaLocation + 1, testString.length());
 
-                hashFile.InputFileHash(filePassword, hashedString);
+                if (inputtedUserName.equals(fileUserName)) {
 
-                // System.out.println(fileUserName);
-                // System.out.println(filePassword);
+                    String decryptedString = PasswordUtils.decrypt(filePassword, secretKey);
 
-                if (inputtedUserName.equals(fileUserName) && hashedString.equals(filePassword)) {
-                    isErrorU = false;
+                    if (inputtedPassword.equals(decryptedString)) {
+                        isErrorU = false;
+                    }
                 }
             }
 
             if (isErrorU == true) {
                 JOptionPane.showMessageDialog(this, "Incorrect username or password", "Error",
                         JOptionPane.ERROR_MESSAGE);
+            }
+            if (isErrorU == false) {
+                JOptionPane.showMessageDialog(this, "correct username or password", "Error", JOptionPane.ERROR_MESSAGE);
             }
             br.close();
         } catch (Exception e) {
@@ -199,16 +199,15 @@ public class Login extends JFrame {
 
             // fetch username entered and password
             String inputtedUserName = jTextField1.getText();
-            char[] inputtedPassword = jPasswordField1.getPassword();
+            char[] inputtedPasswordChar = jPasswordField1.getPassword();
+            String inputtedPassword = new String(inputtedPasswordChar);
 
             // hash password
-            Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
-            byte[] hashedBytes = hashFile.HashPassword();
-            String hashedString = new String(hashedBytes);
 
+            String encryptString = PasswordUtils.encrypt(inputtedPassword, secretKey);
             // append to the file
 
-            br.write("\n" + inputtedUserName + "," + hashedString);
+            br.write(inputtedUserName + "," + encryptString + "\n");
             System.out.println("sucessful write to file");
 
             br.close();

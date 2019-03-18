@@ -34,6 +34,7 @@ public class PasswordUtils {
 
     public static String decrypt(String strToDecrypt, String secret) {
         try {
+
             byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             IvParameterSpec ivspec = new IvParameterSpec(iv);
 
