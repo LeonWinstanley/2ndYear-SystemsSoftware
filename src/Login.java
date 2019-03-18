@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.security.*;
@@ -5,88 +8,241 @@ import java.security.spec.*;
 import java.util.*;
 import javax.crypto.*;
 import javax.crypto.spec.*;
-
-// below are Jframe imports
-import java.awt.*;
-import java.awt.event.*;
-
 import javax.swing.*;
+import javax.swing.GroupLayout.*;
+import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-// PBKDF2 hashing used
+public class Login extends JFrame {
 
-public class Login {
-	JLabel l1, l2, l3;
-	JTextField tf1;
-	JButton btn1;
-	JPasswordField p1;
-	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	String password;
+    public Login() {
+        initComponents();
+    }
 
-	Login() {
-		int width = gd.getDisplayMode().getWidth();
-		int height = gd.getDisplayMode().getHeight();
-		int widthMid = width / 2;
-		int heightMid = height / 2;
-		JFrame frame = new JFrame("Login Screen");
-		l1 = new JLabel("Login Form");
-		l1.setForeground(Color.blue);
+    private void initComponents() {
 
-		l2 = new JLabel("Username :");
-		l3 = new JLabel("Password :");
-		tf1 = new JTextField();
-		p1 = new JPasswordField();
-		btn1 = new JButton("Login");
+        jPanel1 = new JPanel();
+        jLabel1 = new JLabel();
+        jTextField1 = new JTextField();
+        jLabel2 = new JLabel();
+        jPasswordField1 = new JPasswordField();
+        jLabel3 = new JLabel();
+        jButton2 = new JButton();
+        jButton3 = new JButton();
 
-		l1.setBounds(100, 30, 400, 30);
-		l2.setBounds(80, 70, 200, 30);
-		l3.setBounds(80, 110, 200, 30);
-		tf1.setBounds(300, 70, 200, 30);
-		p1.setBounds(300, 110, 200, 30);
-		btn1.setBounds(150, 160, 100, 30);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setBackground(new Color(61, 158, 226));
+        setResizable(false);
 
-		frame.add(l1);
-		frame.add(l2);
-		frame.add(tf1);
-		frame.add(l3);
-		frame.add(p1);
-		frame.add(btn1);
+        jPanel1.setBackground(new Color(162, 162, 162));
+        jPanel1.setForeground(new Color(195, 195, 195));
+        jPanel1.setToolTipText("");
 
-		// leave at bottom
-		frame.setSize(widthMid - 400, heightMid - 200);
-		frame.setLocation(widthMid - 400, heightMid - 200);
-		frame.setLayout(null);
-		frame.setResizable(false);
-		// frame layouts must be above
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jLabel1.setFont(new Font("URW Gothic L", 1, 18));
+        jLabel1.setForeground(new Color(254, 254, 254));
+        jLabel1.setText("Username :");
 
-		// start hashing. password variable is all that needs
-		// to change to inputted password
+        jLabel2.setFont(new Font("URW Gothic L", 1, 18));
+        jLabel2.setForeground(new Color(254, 254, 254));
+        jLabel2.setText("Password :");
 
-	}
+        jPasswordField1.setFont(new Font("URW Gothic L", 0, 18));
 
-	public void ReadingFromFile() {
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout
+                .setHorizontalGroup(
+                        jPanel1Layout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+                                jPanel1Layout.createSequentialGroup().addContainerGap()
+                                        .addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+                                                .addComponent(jPasswordField1).addComponent(jTextField1)
+                                                .addGroup(Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                        .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+                                                                .addComponent(jLabel1).addComponent(jLabel2))
+                                                        .addGap(0, 350, Short.MAX_VALUE)))
+                                        .addContainerGap()));
+        jPanel1Layout
+                .setVerticalGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+                        jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(jLabel1)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18).addComponent(jLabel2)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(jPasswordField1,
+                                        GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(30, Short.MAX_VALUE)));
 
-	}
+        jLabel3.setFont(new Font("URW Gothic L", 0, 48));
+        jLabel3.setForeground(new Color(254, 254, 254));
+        jLabel3.setText("Log in to your account");
 
-	public void actionPerformed(ActionEvent ae) {
-		String inputtedUserName = tf1.getText();
-		char[] inputtedPassword = p1.getPassword();
+        jButton2.setBackground(new Color(148, 175, 172));
+        jButton2.setFont(new Font("URW Gothic L", 0, 24));
+        jButton2.setForeground(new Color(144, 144, 144));
+        jButton2.setText("Log In");
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-		try {
-			SecureRandom random = new SecureRandom();
-			byte[] salt = new byte[16];
-			random.nextBytes(salt);
-			KeySpec spec = new PBEKeySpec(inputtedPassword, salt, 65536, 128);
-			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-			byte[] hash = factory.generateSecret(spec).getEncoded();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+        jButton3.setBackground(new Color(148, 175, 172));
+        jButton3.setFont(new Font("URW Gothic L", 0, 24));
+        jButton3.setForeground(new Color(144, 144, 144));
+        jButton3.setText("Sign Up");
+        jButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-	}
+        GroupLayout layout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(Alignment.TRAILING,
+                                layout.createSequentialGroup().addComponent(jLabel3).addGap(53, 53, 53))
+                        .addGroup(Alignment.TRAILING,
+                                layout.createSequentialGroup().addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 197,
+                                                GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 197,
+                                                GroupLayout.PREFERRED_SIZE))
+                                        .addGap(217, 217, 217))
+                        .addGroup(
+                                Alignment.TRAILING, layout
+                                        .createSequentialGroup().addComponent(jPanel1, GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(82, 82, 82)))));
+        layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34).addComponent(jLabel3).addGap(38, 38, 38)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18).addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE)));
 
-	public static void main(String[] args) {
-		new Login();
-	}
+        pack();
+    }
+
+    private void jButton2ActionPerformed(ActionEvent evt) {
+
+        String inputtedUserName = jTextField1.getText();
+        char[] inputtedPassword = jPasswordField1.getPassword();
+        String testString = "";
+        File userFile = new File("../data/users.txt");
+        boolean isErrorU = true;
+
+        String hashedPassword = null;
+
+        Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
+        hashedPassword = hashFile.HashPassword();
+
+        System.out.println(hashedPassword);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(userFile));
+            while ((testString = br.readLine()) != null) {
+                String fileUserName;
+                String filePassword;
+
+                String findComma = ",";
+                Pattern word = Pattern.compile(findComma);
+                Matcher match = word.matcher(testString);
+                int commaLocation = 0;
+
+                while (match.find()) {
+                    commaLocation = match.start();
+                }
+
+                // comma seperates the username and password
+
+                fileUserName = testString.substring(0, commaLocation);
+                filePassword = testString.substring(commaLocation + 1, testString.length());
+
+                hashFile.InputFileHash(filePassword, hashedPassword);
+
+                // System.out.println(fileUserName);
+                // System.out.println(filePassword);
+
+                if (inputtedUserName.equals(fileUserName) && hashedPassword.equals(filePassword)) {
+                    isErrorU = false;
+                }
+            }
+
+            if (isErrorU == true) {
+                JOptionPane.showMessageDialog(this, "Incorrect username or password", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void jButton3ActionPerformed(ActionEvent evt) {
+
+        try {
+
+            File userFile = new File("../data/users.txt");
+            FileWriter fr = new FileWriter(userFile, true);
+            BufferedWriter br = new BufferedWriter(fr);
+
+            // fetch username entered and password
+            String inputtedUserName = jTextField1.getText();
+            char[] inputtedPassword = jPasswordField1.getPassword();
+
+            // hash password
+            Hash hashFile = new Hash(inputtedUserName, inputtedPassword);
+            String hashedPassword = hashFile.HashPassword();
+
+            // append to the file
+
+            br.write("\n" + inputtedUserName + "," + hashedPassword);
+            System.out.println("sucessful write to file");
+
+            br.close();
+            fr.close();
+
+        } catch (Exception e) {
+            System.out.println("jButtion3ActionPerformed() :" + e);
+        }
+
+    }
+
+    public static void main(String args[]) {
+
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
+
+    private JButton jButton2;
+    private JButton jButton3;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JPanel jPanel1;
+    private JPasswordField jPasswordField1;
+    private JTextField jTextField1;
+
 }
