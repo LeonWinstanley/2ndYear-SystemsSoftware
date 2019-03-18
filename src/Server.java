@@ -51,7 +51,7 @@ public class Server {
 
     public static void setUserList(Socket input) {
         userList.add(input);
-    }
+    }Connected
 
     public ArrayList getWeatherList() {
 
@@ -66,7 +66,7 @@ public class Server {
         return weatherSocket;
     }
 
-    public void setWeatherSocket(ServerSocket input) {
+    public void setWeatherSocket(ServerSocket input) {Connected
         weatherSocket = input;
     }
 
