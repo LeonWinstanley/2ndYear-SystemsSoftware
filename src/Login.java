@@ -16,15 +16,14 @@ import java.util.regex.Pattern;
 
 public class Login extends JFrame {
 
-    private JButton btnLogin;
-    private JButton btnSignUp;
+    private JButton jButton2;
+    private JButton jButton3;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JPanel jPanel1;
     private JPasswordField jPasswordField1;
     private JTextField jTextField1;
-    private static String secretKey = "boooooooooom!!!!";
 
     public Login() {
         initComponents();
@@ -38,8 +37,8 @@ public class Login extends JFrame {
         jLabel2 = new JLabel();
         jPasswordField1 = new JPasswordField();
         jLabel3 = new JLabel();
-        btnLogin = new JButton();
-        btnSignUp = new JButton();
+        jButton2 = new JButton();
+        jButton3 = new JButton();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(new Color(61, 158, 226));
@@ -86,23 +85,23 @@ public class Login extends JFrame {
         jLabel3.setForeground(new Color(254, 254, 254));
         jLabel3.setText("Log in to your account");
 
-        btnLogin.setBackground(new Color(148, 175, 172));
-        btnLogin.setFont(new Font("URW Gothic L", 0, 24));
-        btnLogin.setForeground(new Color(144, 144, 144));
-        btnLogin.setText("Log In");
-        btnLogin.addActionListener(new ActionListener() {
+        jButton2.setBackground(new Color(148, 175, 172));
+        jButton2.setFont(new Font("URW Gothic L", 0, 24));
+        jButton2.setForeground(new Color(144, 144, 144));
+        jButton2.setText("Log In");
+        jButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        btnSignUp.setBackground(new Color(148, 175, 172));
-        btnSignUp.setFont(new Font("URW Gothic L", 0, 24));
-        btnSignUp.setForeground(new Color(144, 144, 144));
-        btnSignUp.setText("Sign Up");
-        btnSignUp.addActionListener(new ActionListener() {
+        jButton3.setBackground(new Color(148, 175, 172));
+        jButton3.setFont(new Font("URW Gothic L", 0, 24));
+        jButton3.setForeground(new Color(144, 144, 144));
+        jButton3.setText("Sign Up");
+        jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -115,9 +114,9 @@ public class Login extends JFrame {
                                 layout.createSequentialGroup().addComponent(jLabel3).addGap(53, 53, 53))
                         .addGroup(Alignment.TRAILING,
                                 layout.createSequentialGroup().addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(btnSignUp, GroupLayout.PREFERRED_SIZE, 197,
+                                        .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 197,
                                                 GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 197,
+                                        .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 197,
                                                 GroupLayout.PREFERRED_SIZE))
                                         .addGap(217, 217, 217))
                         .addGroup(
@@ -128,15 +127,15 @@ public class Login extends JFrame {
         layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34).addComponent(jLabel3).addGap(38, 38, 38)
                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18).addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18).addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSignUp, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE)));
 
         pack();
     }
 
-    private void btnLoginActionPerformed(ActionEvent evt) {
+    private void jButton2ActionPerformed(ActionEvent evt) {
 
         String inputtedUserName = jTextField1.getText();
         char[] inputtedPasswordChar = jPasswordField1.getPassword();
@@ -167,8 +166,10 @@ public class Login extends JFrame {
                 filePassword = testString.substring(commaLocation + 1, testString.length());
 
                 if (inputtedUserName.equals(fileUserName)) {
+                    String secretKey = inputtedUserName;
+                    String salt = inputtedUserName + inputtedPassword;
 
-                    String decryptedString = PasswordUtils.decrypt(filePassword, secretKey);
+                    String decryptedString = PasswordUtils.decrypt(filePassword, secretKey, salt);
 
                     if (inputtedPassword.equals(decryptedString)) {
                         isErrorU = false;
@@ -181,7 +182,9 @@ public class Login extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
             if (isErrorU == false) {
-                JOptionPane.showMessageDialog(this, "correct username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                ClientGUI Cli = new ClientGUI();
+                Cli.setVisible(true);
+                new Login().setVisible(false);
             }
             br.close();
         } catch (Exception e) {
@@ -189,7 +192,7 @@ public class Login extends JFrame {
         }
     }
 
-    private void btnSignUpActionPerformed(ActionEvent evt) {
+    private void jButton3ActionPerformed(ActionEvent evt) {
 
         try {
 
@@ -203,8 +206,9 @@ public class Login extends JFrame {
             String inputtedPassword = new String(inputtedPasswordChar);
 
             // hash password
-
-            String encryptString = PasswordUtils.encrypt(inputtedPassword, secretKey);
+            String secretKey = inputtedUserName;
+            String salt = inputtedUserName + inputtedPassword;
+            String encryptString = PasswordUtils.encrypt(inputtedPassword, secretKey, salt);
             // append to the file
 
             br.write(inputtedUserName + "," + encryptString + "\n");
