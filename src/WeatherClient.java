@@ -27,12 +27,17 @@ public class WeatherClient{
     }
 
     // Uses Lat Long System
-    public Double GPS() {
+    public double GPS() {
+
+        double GPSData;
         double minimum = -90;
         double maximum = 90;
         double randomDouble = new Random().nextDouble();
+        
         double result = minimum + (randomDouble * (maximum - minimum));
+
         GPSData = result;
+
         return GPSData;
     }
 
@@ -58,8 +63,6 @@ public class WeatherClient{
     public static void main(String[] args) {
         
         new WeatherClient();
-        //Pair <Double, Double> epic = new GPS();
-        //System.out.println(epic);
-        System.out.println("Test");
+
     }
 }
