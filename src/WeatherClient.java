@@ -62,8 +62,8 @@ public class WeatherClient {
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = latitude + longitude + humidity + temperature + windSpeed + windDirection + pressure
-                + chanceOfRain + uvIndex;
+        generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + "," + windDirection + "," + pressure
+                 + "," + chanceOfRain + "," + uvIndex;
 
         return generatedWeatherData;
     }
