@@ -28,52 +28,50 @@ public class WeatherClient {
 
     }
 
-    public double doubleGenerator(int min, int max) {
+    public String doubleGenerator(int min, int max) {
         int minimum = min;
         int maximum = max;
-        double generatedDouble;
+        String generatedDouble;
         double randomDouble = new Random().nextDouble();
         double result = minimum + (randomDouble * (maximum - minimum));
-        generatedDouble = result;
+        generatedDouble = Double.toString(result);
         return generatedDouble;
     }
 
-    public int intGenerator(int min, int max) {
+    public String intGenerator(int min, int max) {
         int minimum = min;
         int maximum = max;
-        int generatedInt;
+        String generatedInt;
         int result = r.nextInt(max - min) + min;
-        generatedInt = result;
+        generatedInt = Integer.toString(result);
         return generatedInt;
 
     }
     public String weatherData() {
         // latitude between -90 and 90
-        latitude = doubleGenerator(-90, 90);
+        String latitude = doubleGenerator(-90, 90);
         // long between -180 and 180
-        longitude = doubleGenerator(-180, 180);
+        String longitude = doubleGenerator(-180, 180);
         // humidity percentage
-        humidity = intGenerator(0, 100);
+        String humidity = intGenerator(0, 100);
         // temp in degrees centigrade
-        temperature = intGenerator(-5, 40);
+        String temperature = intGenerator(-5, 40);
         // windspeed in km/h as int
-        windSpeed = intGenerator(0, 60);
+        String windSpeed = intGenerator(0, 60);
         // wind direction in degrees 0 to 360
-        windDirection = intGenerator(0, 359);
+        String windDirection = intGenerator(0, 359);
         // pressure in hPa from 900 to 1100
-        pressure = intGenerator(900, 1100);
+        String pressure = intGenerator(900, 1100);
         // chance of rain percentage
-        chanceOfRain = intGenerator(0, 100);
+        String chanceOfRain = intGenerator(0, 100);
         // uv index from 0 to 10
-        uvIndex = intGenerator(0, 10);
+        String uvIndex = intGenerator(0, 10);
 
         // add all the data into a single string
-        
-    }
-
-    public void run() {
-        // Generate GPS, Humidity, Temperature and other data here using random
-        // functions.
+        String generatedWeatherData;
+        generatedWeatherData = latitude + longitude + humidity + temperature + windSpeed + windDirection + pressure + chanceOfRain + uvIndex;        
+    
+        return generatedWeatherData;
     }
 
     public static void main(String[] args) {
