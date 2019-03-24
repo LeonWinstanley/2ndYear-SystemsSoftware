@@ -28,39 +28,47 @@ public class WeatherClient {
 
     }
 
-    // Uses Lat Long System
-    public double GPS() {
-
-        double GPSData;
-        double min = -90;
-        double max = 90;
+    public double doubleGenerator(int min, int max) {
+        int minimum = min;
+        int maximum = max;
+        double generatedDouble;
         double randomDouble = new Random().nextDouble();
-        double result = min + (randomDouble * (max - min));
-
-        GPSData = result;
-
-        return GPSData;
+        double result = minimum + (randomDouble * (maximum - minimum));
+        generatedDouble = result;
+        return generatedDouble;
     }
 
-    public int Humidity() {
-        int HumidityData;
-        Random r = new Random();
-        int min = 1;
-        int max = 100;
+    public int intGenerator(int min, int max) {
+        int minimum = min;
+        int maximum = max;
+        int generatedInt;
         int result = r.nextInt(max - min) + min;
-        HumidityData = result;
-        return HumidityData;
-    }
+        generatedInt = result;
+        return generatedInt;
 
-    // Uses Degrees Centigrade
-    public int Temperature() {
-        int Temperature;
-        Random r = new Random();
-        int min = -5;
-        int max = 50;
-        int result = r.nextInt(max - min) + min;
-        Temperature = result;
-        return Temperature;
+    }
+    public String weatherData() {
+        // latitude between -90 and 90
+        latitude = doubleGenerator(-90, 90);
+        // long between -180 and 180
+        longitude = doubleGenerator(-180, 180);
+        // humidity percentage
+        humidity = intGenerator(0, 100);
+        // temp in degrees centigrade
+        temperature = intGenerator(-5, 40);
+        // windspeed in km/h as int
+        windSpeed = intGenerator(0, 60);
+        // wind direction in degrees 0 to 360
+        windDirection = intGenerator(0, 359);
+        // pressure in hPa from 900 to 1100
+        pressure = intGenerator(900, 1100);
+        // chance of rain percentage
+        chanceOfRain = intGenerator(0, 100);
+        // uv index from 0 to 10
+        uvIndex = intGenerator(0, 10);
+
+        // add all the data into a single string
+        
     }
 
     public void run() {
