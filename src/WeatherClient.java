@@ -29,24 +29,21 @@ public class WeatherClient {
     }
 
     public double doubleGenerator(int min, int max) {
-        int minimum = min;
-        int maximum = max;
         double generatedDouble;
         double randomDouble = new Random().nextDouble();
-        double result = minimum + (randomDouble * (maximum - minimum));
+        double result = min + (randomDouble * (max - min));
         generatedDouble = result;
         return generatedDouble;
     }
 
     public int intGenerator(int min, int max) {
-        int minimum = min;
-        int maximum = max;
         int generatedInt;
         int result = r.nextInt(max - min) + min;
         generatedInt = result;
         return generatedInt;
 
     }
+
     public String weatherData() {
         // latitude between -90 and 90
         latitude = doubleGenerator(-90, 90);
@@ -68,7 +65,7 @@ public class WeatherClient {
         uvIndex = intGenerator(0, 10);
 
         // add all the data into a single string
-        
+
     }
 
     public void run() {
@@ -79,6 +76,9 @@ public class WeatherClient {
     public static void main(String[] args) {
 
         new WeatherClient();
+
+        // genreate data here every couple of minutes
+        // send data to server
 
     }
 }
