@@ -77,6 +77,10 @@ public class WeatherClient {
 
         new WeatherClient();
 
+        while (1) {
+
+        }
+
         // genreate data here every couple of minutes
         // send data to server
 
