@@ -7,6 +7,7 @@ public class WeatherClient {
 
     PrintWriter OutputToServer;
     final static int ServerPort = 50000;
+    DataOutputStream dos;
 
     public WeatherClient() {
         try {
@@ -76,7 +77,7 @@ public class WeatherClient {
 
             // generate data here every couple of minutes
 
-            String Data = Client.WeatherData();
+            String Data = Client.weatherData();
 
             try {
                 // write on the output stream
