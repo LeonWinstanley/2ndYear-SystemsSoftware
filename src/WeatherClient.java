@@ -86,6 +86,8 @@ public class WeatherClient {
                 e.printStackTrace();
             }
 
+            Thread.sleep(30000);
+
             // send data to server
 
         }
