@@ -47,6 +47,7 @@ public class WeatherClient {
         return generatedInt;
 
     }
+
     public String weatherData() {
         // latitude between -90 and 90
         String latitude = doubleGenerator(-90, 90);
@@ -77,6 +78,13 @@ public class WeatherClient {
     public static void main(String[] args) {
 
         new WeatherClient();
+
+        while (1) {
+
+        }
+
+        // genreate data here every couple of minutes
+        // send data to server
 
     }
 }
