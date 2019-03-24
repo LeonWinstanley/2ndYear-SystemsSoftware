@@ -29,22 +29,14 @@ public class WeatherClient {
     }
 
     public String doubleGenerator(int min, int max) {
-        int minimum = min;
-        int maximum = max;
-        String generatedDouble;
         double randomDouble = new Random().nextDouble();
-        double result = minimum + (randomDouble * (maximum - minimum));
-        generatedDouble = Double.toString(result);
-        return generatedDouble;
+        double result = min + (randomDouble * (max - min));
+        return Double.toString(result);
     }
 
     public String intGenerator(int min, int max) {
-        int minimum = min;
-        int maximum = max;
-        String generatedInt;
         int result = r.nextInt(max - min) + min;
-        generatedInt = Integer.toString(result);
-        return generatedInt;
+        return Integer.toString(result);
 
     }
 
@@ -70,8 +62,9 @@ public class WeatherClient {
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = latitude + longitude + humidity + temperature + windSpeed + windDirection + pressure + chanceOfRain + uvIndex;        
-    
+        generatedWeatherData = latitude + longitude + humidity + temperature + windSpeed + windDirection + pressure
+                + chanceOfRain + uvIndex;
+
         return generatedWeatherData;
     }
 
