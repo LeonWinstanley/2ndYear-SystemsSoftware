@@ -34,7 +34,8 @@ public class WeatherClient {
     }
 
     public String intGenerator(int min, int max) {
-        int result = r.nextInt(max - min) + min;
+        int randomInt = new Random().nextInt();
+        int result = min + (randomInt * (max - min));
         return Integer.toString(result);
 
     }
@@ -61,8 +62,8 @@ public class WeatherClient {
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + "," + windDirection + "," + pressure
-                 + "," + chanceOfRain + "," + uvIndex;
+        generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + ","
+                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex;
 
         return generatedWeatherData;
     }
@@ -71,7 +72,7 @@ public class WeatherClient {
 
         WeatherClient Client = new WeatherClient();
 
-        while (1) {
+        while (true) {
 
             // generate data here every couple of minutes
 
