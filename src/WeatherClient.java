@@ -1,29 +1,31 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.Scanner;
 
-public class WeatherClient{
+public class WeatherClient {
 
     PrintWriter OutputToServer;
-    Socket socket;
-    Thread t1, t2;
-    String serverThread = "", clientThread = "";
+    final static int ServerPort = 1234;
 
     public WeatherClient() {
-        while (true) {
-            try {
+        try {
+            Scanner scn = new Scanner(System.in);
 
-                //t1 = new Thread(this, serverThread);
-                //t2 = new Thread(this, clientThread);
-                socket = new Socket("192.168.0.1", 50000);
-                t1.start();
-                t2.start();
+            // getting localhost ip
+            InetAddress ip = InetAddress.getByName("localhost");
 
-            } 
-            catch (Exception e) {
+            // establish the connection
+            Socket s = new Socket(ip, ServerPort);
 
-            }
+            // obtaining input and out streams
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 
     // Uses Lat Long System
@@ -40,13 +42,12 @@ public class WeatherClient{
         return GPSData;
     }
 
-
     public int Humidity() {
         int HumidityData;
         Random r = new Random();
         int min = 1;
         int max = 100;
-        int result = r.nextInt(max-min) + min;
+        int result = r.nextInt(max - min) + min;
         HumidityData = result;
         return HumidityData;
     }
@@ -57,17 +58,18 @@ public class WeatherClient{
         Random r = new Random();
         int min = -5;
         int max = 50;
-        int result = r.nextInt(max-min) + min;
+        int result = r.nextInt(max - min) + min;
         Temperature = result;
         return Temperature;
     }
 
     public void run() {
-        // Generate GPS, Humidity, Temperature and other data here using random functions.
+        // Generate GPS, Humidity, Temperature and other data here using random
+        // functions.
     }
 
     public static void main(String[] args) {
-        
+
         new WeatherClient();
 
     }
