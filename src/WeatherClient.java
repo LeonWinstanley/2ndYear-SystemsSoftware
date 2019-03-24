@@ -1,29 +1,28 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.Scanner;
 
-public class WeatherClient{
+public class WeatherClient {
 
     PrintWriter OutputToServer;
-    Socket socket;
-    Thread t1, t2;
     String serverThread = "", clientThread = "";
+    final static int ServerPort = 1234;
 
     public WeatherClient() {
-        while (true) {
-            try {
+        try {
+            Scanner scn = new Scanner(System.in);
 
-                //t1 = new Thread(this, serverThread);
-                //t2 = new Thread(this, clientThread);
-                socket = new Socket("192.168.0.1", 50000);
-                t1.start();
-                t2.start();
+            InetAddress ip = InetAddress.getByName("localhost");
 
-            } 
-            catch (Exception e) {
+            Socket s = new Socket(ip, ServerPort);
 
-            }
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 
     // Uses Lat Long System
@@ -33,14 +32,13 @@ public class WeatherClient{
         double minimum = -90;
         double maximum = 90;
         double randomDouble = new Random().nextDouble();
-        
+
         double result = minimum + (randomDouble * (maximum - minimum));
 
         GPSData = result;
 
         return GPSData;
     }
-
 
     public int Humidity() {
         int HumidityData;
@@ -56,12 +54,13 @@ public class WeatherClient{
     }
 
     public void run() {
-        // Generate GPS, Humidity, Temperature and other data here using random functions.
+        // Generate GPS, Humidity, Temperature and other data here using random
+        // functions.
         System.out.println("Test");
     }
 
     public static void main(String[] args) {
-        
+
         new WeatherClient();
 
     }
