@@ -30,11 +30,10 @@ public class WeatherClient{
     public double GPS() {
 
         double GPSData;
-        double minimum = -90;
-        double maximum = 90;
+        double min = -90;
+        double max = 90;
         double randomDouble = new Random().nextDouble();
-        
-        double result = minimum + (randomDouble * (maximum - minimum));
+        double result = min + (randomDouble * (max - min));
 
         GPSData = result;
 
@@ -45,9 +44,9 @@ public class WeatherClient{
     public int Humidity() {
         int HumidityData;
         Random r = new Random();
-        int low = 1;
-        int high = 100;
-        int result = r.nextInt(high-low) + low;
+        int min = 1;
+        int max = 100;
+        int result = r.nextInt(max-min) + min;
         HumidityData = result;
         return HumidityData;
     }
@@ -56,9 +55,9 @@ public class WeatherClient{
     public int Temperature() {
         int Temperature;
         Random r = new Random();
-        int low = -5;
-        int high = 50;
-        int result = r.nextInt(high-low) + low;
+        int min = -5;
+        int max = 50;
+        int result = r.nextInt(max-min) + min;
         Temperature = result;
         return Temperature;
     }
