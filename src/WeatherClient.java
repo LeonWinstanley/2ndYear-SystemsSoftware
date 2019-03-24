@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class WeatherClient {
 
     PrintWriter OutputToServer;
-    final static int ServerPort = 1234;
+    final static int ServerPort = 50000;
 
     public WeatherClient() {
         try {
@@ -19,7 +19,6 @@ public class WeatherClient {
             Socket s = new Socket(ip, ServerPort);
 
             // obtaining input and out streams
-            DataInputStream dis = new DataInputStream(s.getInputStream());
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
         } catch (Exception e) {
@@ -70,14 +69,24 @@ public class WeatherClient {
 
     public static void main(String[] args) {
 
-        new WeatherClient();
+        WeatherClient Client = new WeatherClient();
 
         while (1) {
 
-        }
+            // generate data here every couple of minutes
 
-        // genreate data here every couple of minutes
-        // send data to server
+            String Data = Client.WeatherData();
+
+            try {
+                // write on the output stream
+                Client.dos.writeUTF(Data);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // send data to server
+
+        }
 
     }
 }
