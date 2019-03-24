@@ -29,19 +29,12 @@ public class WeatherClient {
     }
 
     public double doubleGenerator(int min, int max) {
-        double generatedDouble;
         double randomDouble = new Random().nextDouble();
-        double result = min + (randomDouble * (max - min));
-        generatedDouble = result;
-        return generatedDouble;
+        return min + (randomDouble * (max - min));
     }
 
     public int intGenerator(int min, int max) {
-        int generatedInt;
-        int result = r.nextInt(max - min) + min;
-        generatedInt = result;
-        return generatedInt;
-
+        return r.nextInt(max - min) + min;
     }
 
     public String weatherData() {
