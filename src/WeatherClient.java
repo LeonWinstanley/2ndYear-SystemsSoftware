@@ -44,20 +44,27 @@ public class WeatherClient{
 
     public int Humidity() {
         int HumidityData;
-        HumidityData = 1;
+        Random r = new Random();
+        int low = 1;
+        int high = 100;
+        int result = r.nextInt(high-low) + low;
+        HumidityData = result;
         return HumidityData;
     }
 
     // Uses Degrees Centigrade
     public int Temperature() {
         int Temperature;
-        Temperature = 20;
+        Random r = new Random();
+        int low = -5;
+        int high = 50;
+        int result = r.nextInt(high-low) + low;
+        Temperature = result;
         return Temperature;
     }
 
     public void run() {
         // Generate GPS, Humidity, Temperature and other data here using random functions.
-        System.out.println("Test");
     }
 
     public static void main(String[] args) {
