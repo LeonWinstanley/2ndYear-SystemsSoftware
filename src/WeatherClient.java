@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class WeatherClient {
 
     PrintWriter OutputToServer;
-    final static int ServerPort = 1234;
+    final static int ServerPort = 50000;
 
     public WeatherClient() throws UnknownHostException, IOException {
 
