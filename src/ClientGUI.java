@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 public class ClientGUI extends JFrame {
 
@@ -151,6 +152,19 @@ public class ClientGUI extends JFrame {
                 new ClientGUI().setVisible(true);
             }
         });
+    }
+
+    void PatternDemo() {
+        String REGEX = ",";
+        String INPUT = "hello,dear,guest";
+
+        Pattern pattern = Pattern.compile(REGEX);
+
+        String[] result = pattern.split(INPUT);
+        for (String data : result) {
+            System.out.println(data);
+        }
+
     }
 
     private JButton btnLogOut;
