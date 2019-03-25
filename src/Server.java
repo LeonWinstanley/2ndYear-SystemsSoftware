@@ -45,12 +45,11 @@ public class Server {
         weatherThread.start();
 
         WeatherCounter++;
-
     }
 
     private static void Client() throws IOException {
 
-        socket = weatherSocket.accept();
+        socket = clientSocket.accept();
 
         System.out.println("New client request received : " + socket);
 
@@ -75,7 +74,6 @@ public class Server {
         clientThread.start();
 
         ClientCounter++;
-
     }
 
     public static void main(String[] args) throws IOException {

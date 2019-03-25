@@ -12,6 +12,8 @@ import java.util.logging.Level;
 public class ClientGUI extends JFrame {
 
     final static int ServerPort = 50001;
+    DataInputStream dis; // = new DataInputStream(s.getInputStream());
+    DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
 
     public ClientGUI() {
         initComponents();
@@ -33,8 +35,12 @@ public class ClientGUI extends JFrame {
         Socket s = new Socket(ip, ServerPort);
 
         // obtaining input and out streams
-        DataInputStream dis = new DataInputStream(s.getInputStream());
-        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(s.getOutputStream());
+
+        // String received = dis.readUTF();
+
+        // System.out.println(received);
 
     }
 
