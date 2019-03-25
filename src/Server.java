@@ -78,7 +78,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        // server is listening on port 1234
+        // server is listening on port 50000 && 50001
 
         weatherSocket = new ServerSocket(50000);
         clientSocket = new ServerSocket(50001);
