@@ -184,7 +184,8 @@ public class Login extends JFrame {
             if (isErrorU == false) {
                 ClientGUI Cli = new ClientGUI();
                 Cli.setVisible(true);
-                new Login().setVisible(false);
+                dispose();
+
             }
             br.close();
         } catch (Exception e) {
