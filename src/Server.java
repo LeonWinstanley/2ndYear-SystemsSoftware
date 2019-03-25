@@ -53,7 +53,6 @@ public class Server {
         socket = weatherSocket.accept();
 
         System.out.println("New client request received : " + socket);
-
         // obtain input and output streams
         DataInputStream dis = new DataInputStream(socket.getInputStream());
         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
@@ -116,6 +115,7 @@ class ClientHandler implements Runnable {
         String received;
         while (true) {
             try {
+
                 // receive the string
                 received = dis.readUTF();
 
@@ -143,8 +143,7 @@ class ClientHandler implements Runnable {
                     }
                 }
             } catch (IOException e) {
-
-                e.printStackTrace();
+                break;
             }
 
         }
@@ -210,7 +209,7 @@ class WeatherHandler implements Runnable {
                 }
             } catch (IOException e) {
 
-                e.printStackTrace();
+                break;
             }
 
         }
