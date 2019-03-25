@@ -52,7 +52,6 @@ public class Server {
         socket = clientSocket.accept();
 
         System.out.println("New client request received : " + socket);
-
         // obtain input and output streams
         DataInputStream dis = new DataInputStream(socket.getInputStream());
         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
@@ -77,7 +76,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        // server is listening on port 1234
+        // server is listening on port 50000 && 50001
 
         weatherSocket = new ServerSocket(50000);
         clientSocket = new ServerSocket(50001);
@@ -114,6 +113,7 @@ class ClientHandler implements Runnable {
         String received;
         while (true) {
             try {
+
                 // receive the string
                 received = dis.readUTF();
 
@@ -141,8 +141,7 @@ class ClientHandler implements Runnable {
                     }
                 }
             } catch (IOException e) {
-
-                e.printStackTrace();
+                break;
             }
 
         }
@@ -208,7 +207,7 @@ class WeatherHandler implements Runnable {
                 }
             } catch (IOException e) {
 
-                e.printStackTrace();
+                break;
             }
 
         }
