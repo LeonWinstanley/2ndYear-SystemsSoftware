@@ -6,25 +6,40 @@ import java.util.Scanner;
 public class WeatherClient {
 
     PrintWriter OutputToServer;
-    final static int ServerPort = 50000;
-    DataOutputStream dos;
+    final static int ServerPort = 1234;
 
-    public WeatherClient() {
-        try {
-            Scanner scn = new Scanner(System.in);
+    public WeatherClient() throws UnknownHostException, IOException {
 
-            // getting localhost ip
-            InetAddress ip = InetAddress.getByName("localhost");
+        Scanner scn = new Scanner(System.in);
 
-            // establish the connection
-            Socket s = new Socket(ip, ServerPort);
+        // getting localhost ip
+        InetAddress ip = InetAddress.getByName("localhost");
 
-            // obtaining input and out streams
-            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        // establish the connection
+        Socket s = new Socket(ip, ServerPort);
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        // obtaining input and out streams
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        Thread sendMessage = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+
+                    // read the message to deliver.
+                    String msg = weatherData();
+                    try {
+                        // write on the output stream
+                        dos.writeUTF(msg);
+                        Thread.sleep(3000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        sendMessage.start();
 
     }
 
@@ -64,33 +79,14 @@ public class WeatherClient {
         // add all the data into a single string
         String generatedWeatherData;
         generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + ","
-                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex;
+                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex + "#Client0";
 
         return generatedWeatherData;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         WeatherClient Client = new WeatherClient();
-
-        while (true) {
-
-            // generate data here every couple of minutes
-
-            String Data = Client.weatherData();
-
-            try {
-                // write on the output stream
-                Client.dos.writeUTF(Data);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Thread.sleep(30000);
-
-            // send data to server
-
-        }
 
     }
 }
