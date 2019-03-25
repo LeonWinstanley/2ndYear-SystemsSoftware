@@ -1,3 +1,7 @@
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,15 +11,38 @@ import java.util.logging.Level;
 
 public class ClientGUI extends JFrame {
 
+    final static int ServerPort = 50001;
+
     public ClientGUI() {
         initComponents();
+        try {
+            ConnectToServer();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    private void ConnectToServer() throws UnknownHostException, IOException {
+
+        Scanner scn = new Scanner(System.in);
+
+        // getting localhost ip
+        InetAddress ip = InetAddress.getByName("localhost");
+
+        // establish the connection
+        Socket s = new Socket(ip, ServerPort);
+
+        // obtaining input and out streams
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
     }
 
     private void initComponents() {
 
         jPanel1 = new JPanel();
-        jButton1 = new JButton();
-        jButton2 = new JButton();
+        btnLogOut = new JButton();
+        btnSave = new JButton();
         scrollPane1 = new ScrollPane();
         jScrollPane1 = new JScrollPane();
         jTable1 = new JTable();
@@ -24,39 +51,40 @@ public class ClientGUI extends JFrame {
 
         jPanel1.setBackground(new Color(193, 193, 193));
 
-        jButton1.setFont(new Font("URW Gothic L", 0, 16)); // NOI18N
-        jButton1.setText("Log Out");
-        jButton1.addActionListener(new ActionListener() {
+        btnLogOut.setFont(new Font("URW Gothic L", 0, 16)); // NOI18N
+        btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new Font("URW Gothic L", 0, 16)); // NOI18N
-        jButton2.setText("Save To File");
+        btnSave.setFont(new Font("URW Gothic L", 0, 16)); // NOI18N
+        btnSave.setText("Save To File");
 
         jTable1.setBackground(new Color(236, 236, 236));
         jTable1.setFont(new Font("URW Gothic L", 0, 15)); // NOI18N
-        jTable1.setModel(new DefaultTableModel(
-                new Object[][] { null, null, null, null, null, null, null, null, null},
+        jTable1.setModel(new DefaultTableModel(new Object[][] { null, null, null, null, null, null, null, null, null },
                 new String[] { "Latitude", "Long", "Humid", "Temp", "WindSpeed", "WindDirection", "Pressure",
                         "Chance of Rain", "UV Index" }));
         jScrollPane1.setViewportView(jTable1);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup().addGap(10, 10, 10)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+                GroupLayout.Alignment.TRAILING,
+                jPanel1Layout.createSequentialGroup().addGap(10, 10, 10)
                         .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
                                         Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 156,
+                                        .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 156,
                                                 GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(
-                                                jButton1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 156,
+                                                GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap()));
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout
@@ -67,9 +95,9 @@ public class ClientGUI extends JFrame {
                                         Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 79,
+                                        .addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 79,
                                                 GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 79,
+                                        .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 79,
                                                 GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap()));
 
@@ -87,7 +115,7 @@ public class ClientGUI extends JFrame {
         pack();
     }
 
-    private void jButton1ActionPerformed(ActionEvent evt) {
+    private void btnLogOutActionPerformed(ActionEvent evt) {
 
     }
 
@@ -115,8 +143,8 @@ public class ClientGUI extends JFrame {
         });
     }
 
-    private JButton jButton1;
-    private JButton jButton2;
+    private JButton btnLogOut;
+    private JButton btnSave;
     private JPanel jPanel1;
     private JScrollPane jScrollPane1;
     private JTable jTable1;
