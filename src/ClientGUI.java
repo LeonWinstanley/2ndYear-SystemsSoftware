@@ -117,6 +117,10 @@ public class ClientGUI extends JFrame {
 
     private void btnLogOutActionPerformed(ActionEvent evt) {
 
+        Login login = new Login();
+        login.setVisible(true);
+        dispose();
+
     }
 
     public static void RunGUI() {
