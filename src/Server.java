@@ -30,15 +30,13 @@ public class Server {
             threadList.add(new Thread(new Listen()));
 
             threadList.get(0).start();
-            
+
             threadList.get(1).start();
-            
+
             // System.out.println("Client connected with Ip " +
             // socket.getInetAddress().getHostAddress());
             // t1.start();
             // t2.start();
-            
-            
 
         } catch (Exception e) {
         }
@@ -51,7 +49,7 @@ public class Server {
 
     public static void setUserList(Socket input) {
         userList.add(input);
-    }Connected
+    }
 
     public ArrayList getWeatherList() {
 
@@ -66,7 +64,7 @@ public class Server {
         return weatherSocket;
     }
 
-    public void setWeatherSocket(ServerSocket input) {Connected
+    public void setWeatherSocket(ServerSocket input) {
         weatherSocket = input;
     }
 
@@ -99,11 +97,8 @@ class WeatherClientThread implements Runnable {
 
     @Override
     public void run() {
-    
-    
-    System.out.println(" New Server Data");
 
-    
+        System.out.println(" New Server Data");
 
     }
 
@@ -115,11 +110,8 @@ class UserClientThread implements Runnable { // user could call function to pull
 
     @Override
     public void run() {
-    
-    
-    
-    System.out.println(" New Client Connected");
-    
+
+        System.out.println(" New Client Connected");
 
         // do {
         // ClientInput = new BufferedReader(new InputStreamReader(System.in));
@@ -129,8 +121,6 @@ class UserClientThread implements Runnable { // user could call function to pull
         // } while (!in.equals("END"));
 
     }
-    
-    
 
 }
 
@@ -141,8 +131,8 @@ class Listen implements Runnable {
         while (true) {
             ServerSocket weathersocket = Server.weatherSocket;
             try {
-                 Server.setWeatherList(weathersocket.accept());
-                 Server.threadList.add(new Thread(new WeatherClientThread())); //"Weather" +
+                Server.setWeatherList(weathersocket.accept());
+                Server.threadList.add(new Thread(new WeatherClientThread())); // "Weather" +
                 // Integer.toString(Server.weatherList.size()))));
 
             } catch (Exception e) {
@@ -151,8 +141,8 @@ class Listen implements Runnable {
 
             ServerSocket usersocket = Server.userSocket;
             try {
-                 Server.setUserList(usersocket.accept());
-                 Server.threadList.add(new Thread(new UserClientThread()));
+                Server.setUserList(usersocket.accept());
+                Server.threadList.add(new Thread(new UserClientThread()));
 
             } catch (Exception e) {
                 // TODO: handle exception
