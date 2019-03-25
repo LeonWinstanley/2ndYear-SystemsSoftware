@@ -38,9 +38,9 @@ public class ClientGUI extends JFrame {
         jTable1.setBackground(new Color(236, 236, 236));
         jTable1.setFont(new Font("URW Gothic L", 0, 15)); // NOI18N
         jTable1.setModel(new DefaultTableModel(
-                new Object[][] { { null, null, null, null, null, null, null, null, null},
+                new Object[][] { null, null, null, null, null, null, null, null, null},
                 new String[] { "Latitude", "Long", "Humid", "Temp", "WindSpeed", "WindDirection", "Pressure",
-                        "Chance of Rain", "UV Index" })));
+                        "Chance of Rain", "UV Index" }));
         jScrollPane1.setViewportView(jTable1);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
