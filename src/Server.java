@@ -13,12 +13,14 @@ public class Server {
     static int ClientCounter = 0;
     static int WeatherCounter = 0;
 
-    static ServerSocket weatherSocket;
-    static ServerSocket clientSocket;
+    public static ServerSocket weatherSocket;
+    public static ServerSocket clientSocket;
 
     static Socket socket;
 
     private static void Weather() throws IOException {
+
+        socket.setSoTimeout(10000);
 
         socket = weatherSocket.accept();
 
@@ -48,6 +50,8 @@ public class Server {
     }
 
     private static void Client() throws IOException {
+        
+        socket.setSoTimeout(10000);
 
         socket = clientSocket.accept();
 
@@ -77,17 +81,36 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         // server is listening on port 50000 && 50001
-
         weatherSocket = new ServerSocket(50000);
         clientSocket = new ServerSocket(50001);
 
-        while (true) {
+        weatherSocket.setSoTimeout(10000);
+        clientSocket.setSoTimeout(10000);
+        
+        // Timer timer = new Timer();
+        // MyTimerTask task = new MyTimerTask();
 
+        // timer.scheduleAtFixedRate(task, 10000, 10000);
+        
+        while (true) {
             Weather();
+            System.out.println("Weather Freed");
             Client();
+            System.out.println("Client Freed");
         }
     }
 }
+
+// class MyTimerTask extends TimerTask {
+//     public void run() {
+//         try {
+//             Server.weatherSocket.close();
+//             Server.clientSocket.close();
+//         } catch (Exception e) {
+//             //TODO: handle exception
+//         }
+//     }
+//   }
 
 // ClientHandler class
 class ClientHandler implements Runnable {

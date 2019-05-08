@@ -7,6 +7,7 @@ public class WeatherClient {
 
     PrintWriter OutputToServer;
     final static int ServerPort = 50000;
+    String ID = intGenerator(0,9);
 
     public WeatherClient() throws UnknownHostException, IOException {
 
@@ -79,7 +80,7 @@ public class WeatherClient {
         // add all the data into a single string
         String generatedWeatherData;
         generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + ","
-                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex + "#Client0";
+                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex + "#Client" + ID;
 
         return generatedWeatherData;
     }
@@ -87,6 +88,5 @@ public class WeatherClient {
     public static void main(String[] args) throws IOException {
 
         WeatherClient Client = new WeatherClient();
-
     }
 }
