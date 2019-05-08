@@ -45,6 +45,14 @@ public class ClientGUI extends JFrame {
         // String received = dis.readUTF();
 
         // System.out.println(received);
+        while (true) {
+            String received = dis.readUTF();
+
+            splitDISData(received);
+
+        }
+
+    // }
 
     }
 
@@ -507,7 +515,7 @@ public class ClientGUI extends JFrame {
     //                  setRowText()                     //
     // Moves labels down one by one using temp variables //
     ///////////////////////////////////////////////////////
-    void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
+    public void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
             String WindDirection, String ChanceOfRain, String UVIndex) {
 
         String temp = "";
@@ -683,25 +691,16 @@ public class ClientGUI extends JFrame {
     // Splits data that is received through the data stream //
     //////////////////////////////////////////////////////////
 
-    void splitDISData(String DISInput)
+    public void splitDISData(String DISInput)
     {
         
-        List<String> weatherList = Arrays.asList(DISInput.split(","));
-        setRowText(weatherList(0), weatherList(1), weatherList(2), weatherList(3), weatherList(4), weatherList(5), weatherList(6), weatherList(7));
+        String[] weatherList = DISInput.split("\\s*,\\s*");
+        setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5], weatherList[6], weatherList[7]);
 
     }
 
 
-    while (true)
-    {
-        String received = dis.readUTF();
 
-        splitDISData(received);
-
-        
-
-
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel ChanceOfRain01;
     private javax.swing.JLabel ChanceOfRain02;
