@@ -21,7 +21,7 @@ public class ClientGUI extends JFrame {
         try {
             ConnectToServer();
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println("ClientGUI.java :: ClientGUI()" + e);
         }
     }
 
@@ -152,368 +152,325 @@ public class ClientGUI extends JFrame {
         });
 
         Latitude01.setText("0");
-
         Latitude02.setText("0");
-
         Latitude03.setText("0");
-
-        Longitude01.setText("0");
-
-        Longitude02.setText("0");
-
         Latitude04.setText("0");
-
-        Longitude03.setText("0");
-
-        Longitude04.setText("0");
-
-        Longitude05.setText("0");
-
-        Longitude06.setText("0");
-
+        Latitude05.setText("0");
         Latitude06.setText("0");
-
         Latitude07.setText("0");
 
-        Humidity03.setText("0");
-
-        Humidity05.setText("0");
-
-        Humidity04.setText("0");
-
-        Humidity06.setText("0");
-
+        Longitude01.setText("0");
+        Longitude02.setText("0");
+        Longitude03.setText("0");
+        Longitude04.setText("0");
+        Longitude05.setText("0");
+        Longitude06.setText("0");
         Longitude07.setText("0");
 
         Humidity01.setText("0");
-
         Humidity02.setText("0");
-
+        Humidity03.setText("0");
+        Humidity05.setText("0");
+        Humidity04.setText("0");
+        Humidity06.setText("0");
         Humidity07.setText("0");
 
-        Temperature02.setText("0");
-
         Temperature01.setText("0");
-
-        Latitude05.setText("0");
-
+        Temperature02.setText("0");
         Temperature03.setText("0");
-
         Temperature04.setText("0");
-
         Temperature05.setText("0");
-
-        WindSpeed01.setText("0");
-
         Temperature06.setText("0");
-
         Temperature07.setText("0");
 
+        WindSpeed01.setText("0");
         WindSpeed02.setText("0");
-
         WindSpeed03.setText("0");
-
         WindSpeed04.setText("0");
-
         WindSpeed05.setText("0");
-
-        WindDirection05.setText("0");
-
         WindSpeed06.setText("0");
-
-        WindDirection04.setText("0");
-
         WindSpeed07.setText("0");
 
         WindDirection01.setText("0");
-
-        WindDirection03.setText("0");
-
-        WindDirection06.setText("0");
-
         WindDirection02.setText("0");
-
+        WindDirection03.setText("0");
+        WindDirection04.setText("0");
+        WindDirection05.setText("0");
+        WindDirection06.setText("0");
         WindDirection07.setText("0");
 
-        UVIndex01.setText("0");
-
-        ChanceOfRain03.setText("0");
-
         ChanceOfRain01.setText("0");
-
         ChanceOfRain02.setText("0");
-
+        ChanceOfRain03.setText("0");
         ChanceOfRain04.setText("0");
-
-        ChanceOfRain06.setText("0");
-
         ChanceOfRain05.setText("0");
-
+        ChanceOfRain06.setText("0");
         ChanceOfRain07.setText("0");
 
+        UVIndex01.setText("0");
         UVIndex02.setText("0");
-
         UVIndex03.setText("0");
-
         UVIndex04.setText("0");
-
         UVIndex05.setText("0");
-
         UVIndex06.setText("0");
-
         UVIndex07.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(Longitude01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Latitude07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Longitude07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Humidity01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Humidity07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Temperature01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Temperature07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(WindSpeed01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindSpeed07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(WindDirection01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WindDirection07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChanceOfRain06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChanceOfRain01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UVIndex02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex07, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex05, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UVIndex06, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude01)
-                    .addComponent(Longitude01)
-                    .addComponent(Humidity01)
-                    .addComponent(Temperature01)
-                    .addComponent(WindSpeed01)
-                    .addComponent(WindDirection01)
-                    .addComponent(ChanceOfRain01)
-                    .addComponent(UVIndex01))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude02)
-                    .addComponent(Longitude02)
-                    .addComponent(Humidity02)
-                    .addComponent(Temperature02)
-                    .addComponent(WindSpeed02)
-                    .addComponent(WindDirection02)
-                    .addComponent(ChanceOfRain02)
-                    .addComponent(UVIndex02))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude03)
-                    .addComponent(Longitude03)
-                    .addComponent(Humidity03)
-                    .addComponent(Temperature03)
-                    .addComponent(WindSpeed03)
-                    .addComponent(WindDirection03)
-                    .addComponent(ChanceOfRain03)
-                    .addComponent(UVIndex03))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude04)
-                    .addComponent(Longitude04)
-                    .addComponent(Humidity04)
-                    .addComponent(Temperature04)
-                    .addComponent(WindSpeed04)
-                    .addComponent(WindDirection04)
-                    .addComponent(ChanceOfRain04)
-                    .addComponent(UVIndex04))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude05)
-                    .addComponent(Longitude05)
-                    .addComponent(Humidity05)
-                    .addComponent(Temperature05)
-                    .addComponent(WindSpeed05)
-                    .addComponent(WindDirection05)
-                    .addComponent(ChanceOfRain05)
-                    .addComponent(UVIndex05))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude06)
-                    .addComponent(Longitude06)
-                    .addComponent(Humidity06)
-                    .addComponent(Temperature06)
-                    .addComponent(WindSpeed06)
-                    .addComponent(WindDirection06)
-                    .addComponent(ChanceOfRain06)
-                    .addComponent(UVIndex06))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Latitude07)
-                    .addComponent(Longitude07)
-                    .addComponent(Humidity07)
-                    .addComponent(Temperature07)
-                    .addComponent(WindSpeed07)
-                    .addComponent(WindDirection07)
-                    .addComponent(ChanceOfRain07)
-                    .addComponent(UVIndex07))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34).addComponent(Longitude01,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Latitude07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Longitude07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Humidity01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Humidity07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Temperature01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Temperature07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(WindSpeed01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindSpeed07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(WindDirection01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WindDirection07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ChanceOfRain06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ChanceOfRain01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(76, 76, 76)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(UVIndex02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UVIndex06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude01).addComponent(Longitude01).addComponent(Humidity01)
+                                .addComponent(Temperature01).addComponent(WindSpeed01).addComponent(WindDirection01)
+                                .addComponent(ChanceOfRain01).addComponent(UVIndex01))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude02).addComponent(Longitude02).addComponent(Humidity02)
+                                .addComponent(Temperature02).addComponent(WindSpeed02).addComponent(WindDirection02)
+                                .addComponent(ChanceOfRain02).addComponent(UVIndex02))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude03).addComponent(Longitude03).addComponent(Humidity03)
+                                .addComponent(Temperature03).addComponent(WindSpeed03).addComponent(WindDirection03)
+                                .addComponent(ChanceOfRain03).addComponent(UVIndex03))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude04).addComponent(Longitude04).addComponent(Humidity04)
+                                .addComponent(Temperature04).addComponent(WindSpeed04).addComponent(WindDirection04)
+                                .addComponent(ChanceOfRain04).addComponent(UVIndex04))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude05).addComponent(Longitude05).addComponent(Humidity05)
+                                .addComponent(Temperature05).addComponent(WindSpeed05).addComponent(WindDirection05)
+                                .addComponent(ChanceOfRain05).addComponent(UVIndex05))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude06).addComponent(Longitude06).addComponent(Humidity06)
+                                .addComponent(Temperature06).addComponent(WindSpeed06).addComponent(WindDirection06)
+                                .addComponent(ChanceOfRain06).addComponent(UVIndex06))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Latitude07).addComponent(Longitude07).addComponent(Humidity07)
+                                .addComponent(Temperature07).addComponent(WindSpeed07).addComponent(WindDirection07)
+                                .addComponent(ChanceOfRain07).addComponent(UVIndex07))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(120, 120, 120)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SaveToFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel5)
-                .addGap(44, 44, 44)
-                .addComponent(jLabel3)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel4)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel7)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel6)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SaveToFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169))))
-        );
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 24, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1))
+                        .addGap(120, 120, 120)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SaveToFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(117, 117, 117))
+                .addGroup(jPanel1Layout.createSequentialGroup().addGap(35, 35, 35).addComponent(jLabel1)
+                        .addGap(39, 39, 39).addComponent(jLabel2).addGap(46, 46, 46).addComponent(jLabel5)
+                        .addGap(44, 44, 44).addComponent(jLabel3).addGap(40, 40, 40).addComponent(jLabel4)
+                        .addGap(39, 39, 39).addComponent(jLabel7).addGap(39, 39, 39).addComponent(jLabel6)
+                        .addGap(40, 40, 40).addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup().addGap(76, 76, 76)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1).addComponent(jLabel2).addComponent(jLabel5).addComponent(jLabel3)
+                                .addComponent(jLabel4).addComponent(jLabel7).addComponent(jLabel6)
+                                .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SaveToFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(72, 72, 72))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup()
+                                                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(169, 169, 169)))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }
 
-    private void SaveToFileButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void SaveToFileButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                                
 
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    }
+
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Login login = new Login();
         login.setVisible(true);
         dispose();
-    } 
+    }
 
     public static void RunGUI() {
         try {
@@ -532,12 +489,12 @@ public class ClientGUI extends JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new ClientGUI().setVisible(true);
-                    }
-                });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ClientGUI().setVisible(true);
+            }
+        });
     }
 
     void PatternDemo() {
@@ -553,7 +510,178 @@ public class ClientGUI extends JFrame {
 
     }
 
-    // Variables declaration - do not modify                     
+    void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
+            String WindDirection, String ChanceOfRain, String UVIndex) {
+
+        String temp = "";
+        String temp2 = "";
+
+        temp = Latitude01.getText();
+        Latitude01.setText(Latitude);
+        temp2 = temp;
+        temp = Latitude02.getText();
+        Latitude02.setText(temp2);
+        temp2 = temp;
+        temp = Latitude03.getText();
+        Latitude03.setText(temp2);
+        temp2 = temp;
+        temp = Latitude04.getText();
+        Latitude04.setText(temp2);
+        temp2 = temp;
+        temp = Latitude05.getText();
+        Latitude05.setText(temp2);
+        temp2 = temp;
+        temp = Latitude06.getText();
+        Latitude06.setText(temp2);
+        temp2 = temp;
+        Latitude07.setText(temp2);
+
+
+        temp = Longitude01.getText();
+        temp2 = temp;
+        Longitude01.setText(Longitude);
+        temp2 = temp;
+        temp = Longitude02.getText();
+        Longitude02.setText(temp2);
+        temp2 = temp;
+        temp = Longitude03.getText();
+        Longitude03.setText(temp2);
+        temp2 = temp;
+        temp = Longitude04.getText();
+        Longitude04.setText(temp2);
+        temp2 = temp;
+        temp = Longitude05.getText();
+        Longitude05.setText(temp2);
+        temp2 = temp;
+        temp = Longitude06.getText();
+        Longitude06.setText(temp2);
+        temp2 = temp;
+        Longitude07.setText(temp2);
+
+
+        temp = Humidity01.getText();
+        Humidity01.setText(Humidity);
+        temp2 = temp;
+        temp = Humidity02.getText();
+        Humidity02.setText(temp);
+        temp2 = temp;
+        temp = Humidity03.getText();
+        Humidity03.setText(temp);
+        temp2 = temp;
+        temp = Humidity04.getText();
+        Humidity04.setText(temp);
+        temp = Humidity05.getText();
+        Humidity05.setText(temp);
+        temp2 = temp;
+        temp = Humidity06.getText();
+        Humidity06.setText(temp);
+        temp2 = temp;
+        Humidity07.setText(temp);
+
+
+        temp = Temperature01.getText();
+        Temperature01.setText(Temperature);
+        temp2 = temp;
+        temp = Temperature02.getText();
+        Temperature02.setText(temp2);
+        temp2 = temp;
+        temp = Temperature03.getText();
+        Temperature03.setText(temp2);
+        temp2 = temp;
+        temp = Temperature04.getText();
+        Temperature04.setText(temp2);
+        temp2 = temp;
+        temp = Temperature05.getText();
+        Temperature05.setText(temp2);
+        temp2 = temp;
+        temp = Temperature06.getText();
+        Temperature06.setText(temp2);
+        temp2 = temp;
+        Temperature07.setText(temp2);
+
+
+        temp = WindSpeed01.getText();
+        WindSpeed01.setText(WindSpeed);
+        temp2 = temp;
+        temp = WindSpeed02.getText();
+        WindSpeed02.setText(temp2);
+        temp2 = temp;
+        temp = WindSpeed03.getText();
+        WindSpeed03.setText(temp2);
+        temp2 = temp;
+        temp = WindSpeed04.getText();
+        WindSpeed04.setText(temp2);
+        temp2 = temp;
+        temp = WindSpeed05.getText();
+        WindSpeed05.setText(temp2);
+        temp2 = temp;
+        temp = WindSpeed06.getText();
+        WindSpeed06.setText(temp2);
+        temp2 = temp;
+        WindSpeed07.setText(temp2);
+
+        temp = WindDirection01.getText();
+        WindDirection01.setText(WindDirection);
+        temp2 = temp;
+        temp = WindDirection02.getText();
+        WindDirection02.setText(temp2);
+        temp2 = temp;
+        temp = WindDirection03.getText();
+        WindDirection03.setText(temp2);
+        temp2 = temp;
+        temp = WindDirection04.getText();
+        WindDirection04.setText(temp2);
+        temp2 = temp;
+        temp = WindDirection05.getText();
+        WindDirection05.setText(temp2);
+        temp2 = temp;
+        temp = WindDirection06.getText();
+        WindDirection06.setText(temp2);
+        temp2 = temp;
+        WindDirection07.setText(temp2);
+
+        temp = ChanceOfRain01.getText();
+        ChanceOfRain01.setText(ChanceOfRain);
+        temp2 = temp;
+        temp = ChanceOfRain02.getText();
+        ChanceOfRain02.setText(temp2);
+        temp2 = temp;
+        temp = ChanceOfRain03.getText();
+        ChanceOfRain03.setText(temp2);
+        temp2 = temp;
+        temp = ChanceOfRain04.getText();
+        ChanceOfRain04.setText(temp2);
+        temp2 = temp;
+        temp = ChanceOfRain05.getText();
+        ChanceOfRain05.setText(temp2);
+        temp2 = temp;
+        temp = ChanceOfRain06.getText();
+        ChanceOfRain06.setText(temp2);
+        temp2 = temp;
+        ChanceOfRain07.setText(temp2);
+
+        temp = UVIndex01.getText();
+        UVIndex01.setText(UVIndex);
+        temp2 = temp;
+        temp = UVIndex02.getText();
+        UVIndex02.setText(temp2);
+        temp2 = temp;
+        temp = UVIndex03.getText();
+        UVIndex03.setText(temp2);
+        temp2 = temp;
+        temp = UVIndex04.getText();
+        UVIndex04.setText(temp2);
+        temp2 = temp;
+        temp = UVIndex05.getText();
+        UVIndex05.setText(temp2);
+        temp2 = temp;
+        temp = UVIndex06.getText();
+        UVIndex06.setText(temp2);
+        temp2 = temp;
+        UVIndex07.setText(temp2);
+    }
+
+    // Variables declaration - do not modify
     private javax.swing.JLabel ChanceOfRain01;
     private javax.swing.JLabel ChanceOfRain02;
     private javax.swing.JLabel ChanceOfRain03;
@@ -575,7 +703,6 @@ public class ClientGUI extends JFrame {
     private javax.swing.JLabel Latitude05;
     private javax.swing.JLabel Latitude06;
     private javax.swing.JLabel Latitude07;
-    private javax.swing.JButton LogOutButton;
     private javax.swing.JLabel Longitude01;
     private javax.swing.JLabel Longitude02;
     private javax.swing.JLabel Longitude03;
@@ -583,7 +710,6 @@ public class ClientGUI extends JFrame {
     private javax.swing.JLabel Longitude05;
     private javax.swing.JLabel Longitude06;
     private javax.swing.JLabel Longitude07;
-    private javax.swing.JButton SaveToFileButton;
     private javax.swing.JLabel Temperature01;
     private javax.swing.JLabel Temperature02;
     private javax.swing.JLabel Temperature03;
@@ -623,6 +749,8 @@ public class ClientGUI extends JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration                 
+    private javax.swing.JButton SaveToFileButton;
+    private javax.swing.JButton LogOutButton;
+    // End of variables declaration
 
 }
