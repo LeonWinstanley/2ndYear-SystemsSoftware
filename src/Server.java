@@ -113,24 +113,20 @@ public class Server {
         server.weatherSocket = new ServerSocket(50000);
         server.clientSocket = new ServerSocket(50001);
 
-        server.weatherSocket.setSoTimeout(10000);
-        server.clientSocket.setSoTimeout(10000);
+        server.weatherSocket.setSoTimeout(1000);
+        server.clientSocket.setSoTimeout(1000);
         
         while (true) {
             server.Weather();
             server.Client();
 
-            WeatherList.forEach((n) -> ClientList.forEach((m -> m.SendData(n.GetData()))));
-
-        //     Iterator iter = ClientList.iterator(); 
-  
-        // // Displaying the values after iterating 
-        // // through the list 
-
-        // while (iter.hasNext()) 
-        // { 
-        //     System.out.print(iter.next() + " "); 
-        // } 
+            for (WeatherHandler weather : WeatherList)
+            {
+                for (ClientHandler client : ClientList)
+                {
+                    client.SendData(weather.GetData());
+                }
+            }
         }
     }
 }
@@ -217,6 +213,7 @@ class WeatherHandler implements Runnable {
     final DataInputStream dis;
     Socket socket;
     boolean isloggedin;
+    String received;
     
 
     // constructor
@@ -229,20 +226,12 @@ class WeatherHandler implements Runnable {
 
     public String GetData()
     {
-        try
-        {
-            String output = dis.readUTF();
-            return output;
-        }
-        catch (Exception e) {
-            //TODO: handle exception
-        }
-        return "";
+        return received;
     }
 
     @Override
     public void run() {
-        String received;
+
         while (true) {
             try {
                 // receive the string
