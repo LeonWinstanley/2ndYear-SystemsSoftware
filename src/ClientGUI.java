@@ -12,35 +12,42 @@ import java.util.regex.Pattern;
 
 class listenToServer implements Runnable {
 
-    public listenToServer(DataInputStream dis, DataOutputStream dos)
-    {
-    
+    DataInputStream dis;
+    ClientGUI client;
+
+    public listenToServer(DataInputStream dis, ClientGUI client) {
+        this.dis = dis;
+        this.client = client;
     }
 
     @Override
     public void run(){
-        
-            String received = dis.readUTF();
-
-            splitDISData(received);
+        try {
+                String received = dis.readUTF();
+                client.splitDISData(received);                
+        } catch (Exception e) {
+                //TODO: handle exception
+        }
         
     }
 }
+
 public class ClientGUI extends JFrame {
 
     final static int ServerPort = 50001;
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
-    
 
     public ClientGUI() {
         initComponents();
+        this.setVisible(true);
         try {
             ConnectToServer();
 
         } catch (Exception e) {
             System.out.println("ClientGUI.java :: ClientGUI() " + e);
         }
+
     }
 
     private void ConnectToServer() throws UnknownHostException, IOException {
@@ -53,13 +60,10 @@ public class ClientGUI extends JFrame {
         // establish the connection
         Socket s = new Socket(ip, ServerPort);
 
+        dis = new DataInputStream(s.getInputStream());
 
-        DataStreamInput dis = new DataInputStream(s.getInputStream());
-
-        
-
-    // }
-
+        listenToServer lis = new listenToServer(dis, this);
+        lis.run();
     }
 
     private void initComponents() {
@@ -514,11 +518,8 @@ public class ClientGUI extends JFrame {
         });
     }
 
-
-
-
     ///////////////////////////////////////////////////////
-    //                  setRowText()                     //
+    // setRowText() //
     // Moves labels down one by one using temp variables //
     ///////////////////////////////////////////////////////
     public void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
@@ -547,7 +548,6 @@ public class ClientGUI extends JFrame {
         temp2 = temp;
         Latitude07.setText(temp2);
 
-
         temp = Longitude01.getText();
         temp2 = temp;
         Longitude01.setText(Longitude);
@@ -569,7 +569,6 @@ public class ClientGUI extends JFrame {
         temp2 = temp;
         Longitude07.setText(temp2);
 
-
         temp = Humidity01.getText();
         Humidity01.setText(Humidity);
         temp2 = temp;
@@ -588,7 +587,6 @@ public class ClientGUI extends JFrame {
         Humidity06.setText(temp);
         temp2 = temp;
         Humidity07.setText(temp);
-
 
         temp = Temperature01.getText();
         Temperature01.setText(Temperature);
@@ -609,7 +607,6 @@ public class ClientGUI extends JFrame {
         Temperature06.setText(temp2);
         temp2 = temp;
         Temperature07.setText(temp2);
-
 
         temp = WindSpeed01.getText();
         WindSpeed01.setText(WindSpeed);
@@ -693,19 +690,17 @@ public class ClientGUI extends JFrame {
     }
 
     //////////////////////////////////////////////////////////
-    //                   splitDISData()                     //
+    // splitDISData() //
     // Splits data that is received through the data stream //
     //////////////////////////////////////////////////////////
 
-    public void splitDISData(String DISInput)
-    {
-        
+    public void splitDISData(String DISInput) {
+
         String[] weatherList = DISInput.split("\\s*,\\s*");
-        setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5], weatherList[6], weatherList[7]);
+        setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5],
+                weatherList[6], weatherList[7]);
 
     }
-
-
 
     // Variables declaration - do not modify
     private javax.swing.JLabel ChanceOfRain01;

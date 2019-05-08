@@ -41,7 +41,7 @@ public class Server {
                 System.out.println("Creating a new handler for this weather client...");
 
                 // Create a new handler object for handling this request.
-                WeatherHandler wHandler = new WeatherHandler(socket, "client " + WeatherCounter, dis);
+                WeatherHandler wHandler = new WeatherHandler(socket, "weather client " + WeatherCounter, dis);
 
                 // Create a new Thread with this object.
                 Thread weatherThread = new Thread(wHandler);
@@ -76,21 +76,21 @@ public class Server {
 
             try {
                 if (socket.isConnected()) {
-                    System.out.println("New client request received : " + socket);
+                    System.out.println("New user client request received : " + socket);
 
                     // obtain input and output streams
                     DataInputStream dis = new DataInputStream(socket.getInputStream());
                     DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-                    System.out.println("Creating a new handler for this client...");
+                    System.out.println("Creating a new handler for this user client...");
 
                     // Create a new handler object for handling this request.
-                    ClientHandler cHandler = new ClientHandler(socket, "client " + ClientCounter, dis, dos);
+                    ClientHandler cHandler = new ClientHandler(socket, "user client " + ClientCounter, dis, dos);
 
                     // Create a new Thread with this object.
                     Thread clientThread = new Thread(cHandler);
 
-                    System.out.println("Adding this client to active client list");
+                    System.out.println("Adding this client to active user client list");
 
                     // add this client to active clients list
                     ClientList.add(cHandler);
