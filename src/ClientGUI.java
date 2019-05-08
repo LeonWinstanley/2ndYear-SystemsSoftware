@@ -10,6 +10,22 @@ import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
 
+class listenToServer implements Runnable {
+
+    public listenToServer(DataInputStream dis, DataOutputStream dos)
+    {
+    
+    }
+
+    @Override
+    public void run(){
+        
+            String received = dis.readUTF();
+
+            splitDISData(received);
+        
+    }
+}
 public class ClientGUI extends JFrame {
 
     final static int ServerPort = 50001;
@@ -21,6 +37,7 @@ public class ClientGUI extends JFrame {
         initComponents();
         try {
             ConnectToServer();
+
         } catch (Exception e) {
             System.out.println("ClientGUI.java :: ClientGUI() " + e);
         }
@@ -36,21 +53,10 @@ public class ClientGUI extends JFrame {
         // establish the connection
         Socket s = new Socket(ip, ServerPort);
 
-        // obtaining input and out streams
-        dis = new DataInputStream(s.getInputStream());
-        dos = new DataOutputStream(s.getOutputStream());
+
+        DataStreamInput dis = new DataInputStream(s.getInputStream());
 
         
-
-        // String received = dis.readUTF();
-
-        // System.out.println(received);
-        while (true) {
-            String received = dis.readUTF();
-
-            splitDISData(received);
-
-        }
 
     // }
 
