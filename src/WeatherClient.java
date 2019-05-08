@@ -51,8 +51,8 @@ public class WeatherClient {
     }
 
     public String intGenerator(int min, int max) {
-        int randomInt = new Random().nextInt();
-        int result = min + (randomInt * (max - min));
+        int randomInt = new Random().nextInt(max);
+        int result = randomInt;
         return Integer.toString(result);
 
     }
