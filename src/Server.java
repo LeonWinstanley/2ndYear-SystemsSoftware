@@ -16,101 +16,120 @@ public class Server {
     public static ServerSocket weatherSocket;
     public static ServerSocket clientSocket;
 
-    static Socket socket;
+    
+    
 
-    private static void Weather() throws IOException {
+    private static void Weather() throws Exception {
 
-        socket.setSoTimeout(10000);
+        Socket socket = new Socket();
+        try
+        {
+            socket = weatherSocket.accept();
+        }
+        catch (SocketTimeoutException e)
+        {
+            System.out.println("Socket timed out");
+        }
 
-        socket = weatherSocket.accept();
+        try
+        {
+            if (socket.isConnected())
+            {
+                System.out.println("New weather client request received : " + socket);
 
-        System.out.println("New client request received : " + socket);
+                // obtain input and output streams
+                DataInputStream dis = new DataInputStream(socket.getInputStream());
+                DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-        // obtain input and output streams
-        DataInputStream dis = new DataInputStream(socket.getInputStream());
-        DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+                System.out.println("Creating a new handler for this weather client...");
 
-        System.out.println("Creating a new handler for this client...");
+                // Create a new handler object for handling this request.
+                WeatherHandler wHandler = new WeatherHandler(socket, "client " + WeatherCounter, dis, dos);
 
-        // Create a new handler object for handling this request.
-        WeatherHandler wHandler = new WeatherHandler(socket, "client " + WeatherCounter, dis, dos);
+                // Create a new Thread with this object.
+                Thread weatherThread = new Thread(wHandler);
 
-        // Create a new Thread with this object.
-        Thread weatherThread = new Thread(wHandler);
+                System.out.println("Adding this weather client to active weather client list");
 
-        System.out.println("Adding this client to active client list");
+                // add this client to active clients list
+                WeatherList.add(wHandler);
 
-        // add this client to active clients list
-        WeatherList.add(wHandler);
+                // start the thread.
+                weatherThread.start();
 
-        // start the thread.
-        weatherThread.start();
+                WeatherCounter++;
+            }
+        }
+        catch (NullPointerException e)
+        {
+            System.out.println("Socket not connected");
+        }
 
-        WeatherCounter++;
     }
 
-    private static void Client() throws IOException {
+    private static void Client() throws Exception {
         
-        socket.setSoTimeout(10000);
+            Socket socket = new Socket();
+            try
+            {
+                socket = clientSocket.accept();
+            }
+            catch (SocketTimeoutException e)
+            {
+                System.out.println("Socket timed out");
+                e.printStackTrace();
+            }
 
-        socket = clientSocket.accept();
+            try {
+                if (socket.isConnected()) {
+                    System.out.println("New client request received : " + socket);
 
-        System.out.println("New client request received : " + socket);
-        // obtain input and output streams
-        DataInputStream dis = new DataInputStream(socket.getInputStream());
-        DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+                    // obtain input and output streams
+                    DataInputStream dis = new DataInputStream(socket.getInputStream());
+                    DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-        System.out.println("Creating a new handler for this client...");
+                    System.out.println("Creating a new handler for this client...");
 
-        // Create a new handler object for handling this request.
-        ClientHandler cHandler = new ClientHandler(socket, "client " + ClientCounter, dis, dos);
+                    // Create a new handler object for handling this request.
+                    ClientHandler cHandler = new ClientHandler(socket, "client " + ClientCounter, dis, dos);
 
-        // Create a new Thread with this object.
-        Thread clientThread = new Thread(cHandler);
+                    // Create a new Thread with this object.
+                    Thread clientThread = new Thread(cHandler);
 
-        System.out.println("Adding this client to active client list");
+                    System.out.println("Adding this client to active client list");
 
-        // add this client to active clients list
-        ClientList.add(cHandler);
+                    // add this client to active clients list
+                    ClientList.add(cHandler);
 
-        // start the thread.
-        clientThread.start();
+                    // start the thread.
+                    clientThread.start();
 
-        ClientCounter++;
+                    ClientCounter++;
+                }
+            }
+            catch (NullPointerException e)
+            {
+                System.out.println("Socket timed out");
+                //e.printStackTrace();
+            }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
+
+        Server server = new Server();
         // server is listening on port 50000 && 50001
-        weatherSocket = new ServerSocket(50000);
-        clientSocket = new ServerSocket(50001);
+        server.weatherSocket = new ServerSocket(50000);
+        server.clientSocket = new ServerSocket(50001);
 
-        weatherSocket.setSoTimeout(10000);
-        clientSocket.setSoTimeout(10000);
-        
-        // Timer timer = new Timer();
-        // MyTimerTask task = new MyTimerTask();
-
-        // timer.scheduleAtFixedRate(task, 10000, 10000);
+        server.weatherSocket.setSoTimeout(10000);
+        server.clientSocket.setSoTimeout(10000);
         
         while (true) {
-            Weather();
-            System.out.println("Weather Freed");
-            Client();
-            System.out.println("Client Freed");
+            server.Weather();
+            server.Client();
         }
     }
 }
-
-// class MyTimerTask extends TimerTask {
-//     public void run() {
-//         try {
-//             Server.weatherSocket.close();
-//             Server.clientSocket.close();
-//         } catch (Exception e) {
-//             //TODO: handle exception
-//         }
-//     }
-//   }
 
 // ClientHandler class
 class ClientHandler implements Runnable {
