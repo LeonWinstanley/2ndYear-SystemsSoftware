@@ -15,13 +15,14 @@ public class ClientGUI extends JFrame {
     final static int ServerPort = 50001;
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
+    
 
     public ClientGUI() {
         initComponents();
         try {
             ConnectToServer();
         } catch (Exception e) {
-            System.out.println("ClientGUI.java :: ClientGUI()" + e);
+            System.out.println("ClientGUI.java :: ClientGUI() " + e);
         }
     }
 
@@ -38,6 +39,8 @@ public class ClientGUI extends JFrame {
         // obtaining input and out streams
         dis = new DataInputStream(s.getInputStream());
         dos = new DataOutputStream(s.getOutputStream());
+
+        
 
         // String received = dis.readUTF();
 
@@ -497,18 +500,7 @@ public class ClientGUI extends JFrame {
         });
     }
 
-    void PatternDemo() {
-        String REGEX = ",";
-        String INPUT = "hello,dear,guest";
 
-        Pattern pattern = Pattern.compile(REGEX);
-
-        String[] result = pattern.split(INPUT);
-        for (String data : result) {
-            System.out.println(data);
-        }
-
-    }
 
 
     ///////////////////////////////////////////////////////
@@ -686,6 +678,30 @@ public class ClientGUI extends JFrame {
         UVIndex07.setText(temp2);
     }
 
+    //////////////////////////////////////////////////////////
+    //                   splitDISData()                     //
+    // Splits data that is received through the data stream //
+    //////////////////////////////////////////////////////////
+
+    void splitDISData(String DISInput)
+    {
+        
+        List<String> weatherList = Arrays.asList(DISInput.split(","));
+        setRowText(weatherList(0), weatherList(1), weatherList(2), weatherList(3), weatherList(4), weatherList(5), weatherList(6), weatherList(7));
+
+    }
+
+
+    while (true)
+    {
+        String received = dis.readUTF();
+
+        splitDISData(received);
+
+        
+
+
+    }
     // Variables declaration - do not modify
     private javax.swing.JLabel ChanceOfRain01;
     private javax.swing.JLabel ChanceOfRain02;
