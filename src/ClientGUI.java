@@ -510,6 +510,11 @@ public class ClientGUI extends JFrame {
 
     }
 
+
+    ///////////////////////////////////////////////////////
+    //                  setRowText()                     //
+    // Moves labels down one by one using temp variables //
+    ///////////////////////////////////////////////////////
     void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
             String WindDirection, String ChanceOfRain, String UVIndex) {
 
