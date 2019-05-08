@@ -16,8 +16,7 @@ public class Server {
     public static ServerSocket weatherSocket;
     public static ServerSocket clientSocket;
 
-    
-    
+    public String WeatherData;
 
     private static void Weather() throws Exception {
 
@@ -28,7 +27,6 @@ public class Server {
         }
         catch (SocketTimeoutException e)
         {
-            System.out.println("Socket timed out");
         }
 
         try
@@ -39,12 +37,11 @@ public class Server {
 
                 // obtain input and output streams
                 DataInputStream dis = new DataInputStream(socket.getInputStream());
-                DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
                 System.out.println("Creating a new handler for this weather client...");
 
                 // Create a new handler object for handling this request.
-                WeatherHandler wHandler = new WeatherHandler(socket, "client " + WeatherCounter, dis, dos);
+                WeatherHandler wHandler = new WeatherHandler(socket, "client " + WeatherCounter, dis);
 
                 // Create a new Thread with this object.
                 Thread weatherThread = new Thread(wHandler);
@@ -62,7 +59,6 @@ public class Server {
         }
         catch (NullPointerException e)
         {
-            System.out.println("Socket not connected");
         }
 
     }
@@ -76,8 +72,6 @@ public class Server {
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println("Socket timed out");
-                e.printStackTrace();
             }
 
             try {
@@ -109,8 +103,6 @@ public class Server {
             }
             catch (NullPointerException e)
             {
-                System.out.println("Socket timed out");
-                //e.printStackTrace();
             }
     }
 
@@ -127,6 +119,18 @@ public class Server {
         while (true) {
             server.Weather();
             server.Client();
+
+            WeatherList.forEach((n) -> ClientList.forEach((m -> m.SendData(n.GetData()))));
+
+        //     Iterator iter = ClientList.iterator(); 
+  
+        // // Displaying the values after iterating 
+        // // through the list 
+
+        // while (iter.hasNext()) 
+        // { 
+        //     System.out.print(iter.next() + " "); 
+        // } 
         }
     }
 }
@@ -135,8 +139,8 @@ public class Server {
 class ClientHandler implements Runnable {
     Scanner scn = new Scanner(System.in);
     private String name;
-    final DataInputStream dis;
-    final DataOutputStream dos;
+    public DataInputStream dis;
+    public DataOutputStream dos;
     Socket socket;
     boolean isloggedin;
 
@@ -147,6 +151,15 @@ class ClientHandler implements Runnable {
         this.name = name;
         this.socket = socket;
         this.isloggedin = true;
+    }
+
+    public void SendData(String dataToSend)
+    {
+        try {
+            dos.writeUTF(dataToSend);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     }
 
     @Override
@@ -202,51 +215,62 @@ class WeatherHandler implements Runnable {
     Scanner scn = new Scanner(System.in);
     private String name;
     final DataInputStream dis;
-    final DataOutputStream dos;
     Socket socket;
     boolean isloggedin;
+    
 
     // constructor
-    public WeatherHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos) {
+    public WeatherHandler(Socket socket, String name, DataInputStream dis) {
         this.dis = dis;
-        this.dos = dos;
         this.name = name;
         this.socket = socket;
         this.isloggedin = true;
     }
 
+    public String GetData()
+    {
+        try
+        {
+            String output = dis.readUTF();
+            return output;
+        }
+        catch (Exception e) {
+            //TODO: handle exception
+        }
+        return "";
+    }
+
     @Override
     public void run() {
-
         String received;
         while (true) {
             try {
                 // receive the string
                 received = dis.readUTF();
-
+            
                 System.out.println(received);
 
-                if (received.equals("logout")) {
-                    this.isloggedin = false;
-                    this.socket.close();
-                    break;
-                }
+                // if (received.equals("logout")) {
+                //     this.isloggedin = false;
+                //     this.socket.close();
+                //     break;
+                // }
 
                 // break the string into message and recipient part
-                StringTokenizer st = new StringTokenizer(received, "#");
-                String MsgToSend = st.nextToken();
-                String recipient = st.nextToken();
+                // StringTokenizer st = new StringTokenizer(received, "#");
+                // String MsgToSend = st.nextToken();
+                // String recipient = st.nextToken();
 
                 // search for the recipient in the connected devices list.
                 // ClientList is the vector storing client of active users
-                for (WeatherHandler mc : Server.WeatherList) {
-                    // if the recipient is found, write on its
-                    // output stream
-                    if (mc.name.equals(recipient) && mc.isloggedin == true) {
-                        mc.dos.writeUTF(this.name + " : " + MsgToSend);
-                        break;
-                    }
-                }
+                // for (WeatherHandler mc : Server.WeatherList) {
+                //     // if the recipient is found, write on its
+                //     // output stream
+                //     // if (mc.name.equals(recipient) && mc.isloggedin == true) {
+                //     //     mc.dos.writeUTF(this.name + " : " + MsgToSend);
+                //     //     break;
+                //     // }
+                // }
             } catch (IOException e) {
 
                 break;
@@ -256,7 +280,6 @@ class WeatherHandler implements Runnable {
         try {
             // closing resources
             this.dis.close();
-            this.dos.close();
 
         } catch (IOException e) {
             e.printStackTrace();
