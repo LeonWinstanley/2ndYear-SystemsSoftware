@@ -22,13 +22,15 @@ class listenToServer implements Runnable {
 
     @Override
     public void run(){
+        while(true)
+        {
         try {
                 String received = dis.readUTF();
                 client.splitDISData(received);                
         } catch (Exception e) {
                 //TODO: handle exception
         }
-        
+        }       
     }
 }
 
@@ -63,7 +65,8 @@ public class ClientGUI extends JFrame {
         dis = new DataInputStream(s.getInputStream());
 
         listenToServer lis = new listenToServer(dis, this);
-        lis.run();
+        Thread listenThread = new Thread(lis);
+        listenThread.start();
     }
 
     private void initComponents() {
@@ -520,173 +523,173 @@ public class ClientGUI extends JFrame {
 
     ///////////////////////////////////////////////////////
     // setRowText() //
-    // Moves labels down one by one using temp variables //
+    // Moves labels down one by one using previousData variables //
     ///////////////////////////////////////////////////////
     public void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
             String WindDirection, String ChanceOfRain, String UVIndex) {
 
-        String temp = "";
-        String temp2 = "";
+        String previousData = "";
+        String nextData = "";
 
-        temp = Latitude01.getText();
+        previousData = Latitude01.getText();
         Latitude01.setText(Latitude);
-        temp2 = temp;
-        temp = Latitude02.getText();
-        Latitude02.setText(temp2);
-        temp2 = temp;
-        temp = Latitude03.getText();
-        Latitude03.setText(temp2);
-        temp2 = temp;
-        temp = Latitude04.getText();
-        Latitude04.setText(temp2);
-        temp2 = temp;
-        temp = Latitude05.getText();
-        Latitude05.setText(temp2);
-        temp2 = temp;
-        temp = Latitude06.getText();
-        Latitude06.setText(temp2);
-        temp2 = temp;
-        Latitude07.setText(temp2);
+        nextData = previousData;
+        previousData = Latitude02.getText();
+        Latitude02.setText(nextData);
+        nextData = previousData;
+        previousData = Latitude03.getText();
+        Latitude03.setText(nextData);
+        nextData = previousData;
+        previousData = Latitude04.getText();
+        Latitude04.setText(nextData);
+        nextData = previousData;
+        previousData = Latitude05.getText();
+        Latitude05.setText(nextData);
+        nextData = previousData;
+        previousData = Latitude06.getText();
+        Latitude06.setText(nextData);
+        nextData = previousData;
+        Latitude07.setText(nextData);
 
-        temp = Longitude01.getText();
-        temp2 = temp;
+        previousData = Longitude01.getText();
+        nextData = previousData;
         Longitude01.setText(Longitude);
-        temp2 = temp;
-        temp = Longitude02.getText();
-        Longitude02.setText(temp2);
-        temp2 = temp;
-        temp = Longitude03.getText();
-        Longitude03.setText(temp2);
-        temp2 = temp;
-        temp = Longitude04.getText();
-        Longitude04.setText(temp2);
-        temp2 = temp;
-        temp = Longitude05.getText();
-        Longitude05.setText(temp2);
-        temp2 = temp;
-        temp = Longitude06.getText();
-        Longitude06.setText(temp2);
-        temp2 = temp;
-        Longitude07.setText(temp2);
+        nextData = previousData;
+        previousData = Longitude02.getText();
+        Longitude02.setText(nextData);
+        nextData = previousData;
+        previousData = Longitude03.getText();
+        Longitude03.setText(nextData);
+        nextData = previousData;
+        previousData = Longitude04.getText();
+        Longitude04.setText(nextData);
+        nextData = previousData;
+        previousData = Longitude05.getText();
+        Longitude05.setText(nextData);
+        nextData = previousData;
+        previousData = Longitude06.getText();
+        Longitude06.setText(nextData);
+        nextData = previousData;
+        Longitude07.setText(nextData);
 
-        temp = Humidity01.getText();
+        previousData = Humidity01.getText();
         Humidity01.setText(Humidity);
-        temp2 = temp;
-        temp = Humidity02.getText();
-        Humidity02.setText(temp);
-        temp2 = temp;
-        temp = Humidity03.getText();
-        Humidity03.setText(temp);
-        temp2 = temp;
-        temp = Humidity04.getText();
-        Humidity04.setText(temp);
-        temp = Humidity05.getText();
-        Humidity05.setText(temp);
-        temp2 = temp;
-        temp = Humidity06.getText();
-        Humidity06.setText(temp);
-        temp2 = temp;
-        Humidity07.setText(temp);
+        nextData = previousData;
+        previousData = Humidity02.getText();
+        Humidity02.setText(nextData);
+        nextData = previousData;
+        previousData = Humidity03.getText();
+        Humidity03.setText(nextData);
+        nextData = previousData;
+        previousData = Humidity04.getText();
+        Humidity04.setText(nextData);
+        previousData = Humidity05.getText();
+        Humidity05.setText(nextData);
+        nextData = previousData;
+        previousData = Humidity06.getText();
+        Humidity06.setText(nextData);
+        nextData = previousData;
+        Humidity07.setText(nextData);
 
-        temp = Temperature01.getText();
+        previousData = Temperature01.getText();
         Temperature01.setText(Temperature);
-        temp2 = temp;
-        temp = Temperature02.getText();
-        Temperature02.setText(temp2);
-        temp2 = temp;
-        temp = Temperature03.getText();
-        Temperature03.setText(temp2);
-        temp2 = temp;
-        temp = Temperature04.getText();
-        Temperature04.setText(temp2);
-        temp2 = temp;
-        temp = Temperature05.getText();
-        Temperature05.setText(temp2);
-        temp2 = temp;
-        temp = Temperature06.getText();
-        Temperature06.setText(temp2);
-        temp2 = temp;
-        Temperature07.setText(temp2);
+        nextData = previousData;
+        previousData = Temperature02.getText();
+        Temperature02.setText(nextData);
+        nextData = previousData;
+        previousData = Temperature03.getText();
+        Temperature03.setText(nextData);
+        nextData = previousData;
+        previousData = Temperature04.getText();
+        Temperature04.setText(nextData);
+        nextData = previousData;
+        previousData = Temperature05.getText();
+        Temperature05.setText(nextData);
+        nextData = previousData;
+        previousData = Temperature06.getText();
+        Temperature06.setText(nextData);
+        nextData = previousData;
+        Temperature07.setText(nextData);
 
-        temp = WindSpeed01.getText();
+        previousData = WindSpeed01.getText();
         WindSpeed01.setText(WindSpeed);
-        temp2 = temp;
-        temp = WindSpeed02.getText();
-        WindSpeed02.setText(temp2);
-        temp2 = temp;
-        temp = WindSpeed03.getText();
-        WindSpeed03.setText(temp2);
-        temp2 = temp;
-        temp = WindSpeed04.getText();
-        WindSpeed04.setText(temp2);
-        temp2 = temp;
-        temp = WindSpeed05.getText();
-        WindSpeed05.setText(temp2);
-        temp2 = temp;
-        temp = WindSpeed06.getText();
-        WindSpeed06.setText(temp2);
-        temp2 = temp;
-        WindSpeed07.setText(temp2);
+        nextData = previousData;
+        previousData = WindSpeed02.getText();
+        WindSpeed02.setText(nextData);
+        nextData = previousData;
+        previousData = WindSpeed03.getText();
+        WindSpeed03.setText(nextData);
+        nextData = previousData;
+        previousData = WindSpeed04.getText();
+        WindSpeed04.setText(nextData);
+        nextData = previousData;
+        previousData = WindSpeed05.getText();
+        WindSpeed05.setText(nextData);
+        nextData = previousData;
+        previousData = WindSpeed06.getText();
+        WindSpeed06.setText(nextData);
+        nextData = previousData;
+        WindSpeed07.setText(nextData);
 
-        temp = WindDirection01.getText();
+        previousData = WindDirection01.getText();
         WindDirection01.setText(WindDirection);
-        temp2 = temp;
-        temp = WindDirection02.getText();
-        WindDirection02.setText(temp2);
-        temp2 = temp;
-        temp = WindDirection03.getText();
-        WindDirection03.setText(temp2);
-        temp2 = temp;
-        temp = WindDirection04.getText();
-        WindDirection04.setText(temp2);
-        temp2 = temp;
-        temp = WindDirection05.getText();
-        WindDirection05.setText(temp2);
-        temp2 = temp;
-        temp = WindDirection06.getText();
-        WindDirection06.setText(temp2);
-        temp2 = temp;
-        WindDirection07.setText(temp2);
+        nextData = previousData;
+        previousData = WindDirection02.getText();
+        WindDirection02.setText(nextData);
+        nextData = previousData;
+        previousData = WindDirection03.getText();
+        WindDirection03.setText(nextData);
+        nextData = previousData;
+        previousData = WindDirection04.getText();
+        WindDirection04.setText(nextData);
+        nextData = previousData;
+        previousData = WindDirection05.getText();
+        WindDirection05.setText(nextData);
+        nextData = previousData;
+        previousData = WindDirection06.getText();
+        WindDirection06.setText(nextData);
+        nextData = previousData;
+        WindDirection07.setText(nextData);
 
-        temp = ChanceOfRain01.getText();
+        previousData = ChanceOfRain01.getText();
         ChanceOfRain01.setText(ChanceOfRain);
-        temp2 = temp;
-        temp = ChanceOfRain02.getText();
-        ChanceOfRain02.setText(temp2);
-        temp2 = temp;
-        temp = ChanceOfRain03.getText();
-        ChanceOfRain03.setText(temp2);
-        temp2 = temp;
-        temp = ChanceOfRain04.getText();
-        ChanceOfRain04.setText(temp2);
-        temp2 = temp;
-        temp = ChanceOfRain05.getText();
-        ChanceOfRain05.setText(temp2);
-        temp2 = temp;
-        temp = ChanceOfRain06.getText();
-        ChanceOfRain06.setText(temp2);
-        temp2 = temp;
-        ChanceOfRain07.setText(temp2);
+        nextData = previousData;
+        previousData = ChanceOfRain02.getText();
+        ChanceOfRain02.setText(nextData);
+        nextData = previousData;
+        previousData = ChanceOfRain03.getText();
+        ChanceOfRain03.setText(nextData);
+        nextData = previousData;
+        previousData = ChanceOfRain04.getText();
+        ChanceOfRain04.setText(nextData);
+        nextData = previousData;
+        previousData = ChanceOfRain05.getText();
+        ChanceOfRain05.setText(nextData);
+        nextData = previousData;
+        previousData = ChanceOfRain06.getText();
+        ChanceOfRain06.setText(nextData);
+        nextData = previousData;
+        ChanceOfRain07.setText(nextData);
 
-        temp = UVIndex01.getText();
+        previousData = UVIndex01.getText();
         UVIndex01.setText(UVIndex);
-        temp2 = temp;
-        temp = UVIndex02.getText();
-        UVIndex02.setText(temp2);
-        temp2 = temp;
-        temp = UVIndex03.getText();
-        UVIndex03.setText(temp2);
-        temp2 = temp;
-        temp = UVIndex04.getText();
-        UVIndex04.setText(temp2);
-        temp2 = temp;
-        temp = UVIndex05.getText();
-        UVIndex05.setText(temp2);
-        temp2 = temp;
-        temp = UVIndex06.getText();
-        UVIndex06.setText(temp2);
-        temp2 = temp;
-        UVIndex07.setText(temp2);
+        nextData = previousData;
+        previousData = UVIndex02.getText();
+        UVIndex02.setText(nextData);
+        nextData = previousData;
+        previousData = UVIndex03.getText();
+        UVIndex03.setText(nextData);
+        nextData = previousData;
+        previousData = UVIndex04.getText();
+        UVIndex04.setText(nextData);
+        nextData = previousData;
+        previousData = UVIndex05.getText();
+        UVIndex05.setText(nextData);
+        nextData = previousData;
+        previousData = UVIndex06.getText();
+        UVIndex06.setText(nextData);
+        nextData = previousData;
+        UVIndex07.setText(nextData);
     }
 
     //////////////////////////////////////////////////////////
