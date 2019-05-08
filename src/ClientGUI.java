@@ -26,7 +26,7 @@ class listenToServer implements Runnable {
                 String received = dis.readUTF();
                 client.splitDISData(received);                
         } catch (Exception e) {
-                //TODO: handle exception
+                System.out.println(e);
         }
         
     }
