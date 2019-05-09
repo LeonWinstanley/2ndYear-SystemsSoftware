@@ -196,69 +196,69 @@ public class ClientGUI extends JFrame {
             }
         });
 
-        Latitude01.setText("0");
-        Latitude02.setText("0");
-        Latitude03.setText("0");
-        Latitude04.setText("0");
-        Latitude05.setText("0");
-        Latitude06.setText("0");
-        Latitude07.setText("0");
+        Latitude01.setText("");
+        Latitude02.setText("");
+        Latitude03.setText("");
+        Latitude04.setText("");
+        Latitude05.setText("");
+        Latitude06.setText("");
+        Latitude07.setText("");
 
-        Longitude01.setText("0");
-        Longitude02.setText("0");
-        Longitude03.setText("0");
-        Longitude04.setText("0");
-        Longitude05.setText("0");
-        Longitude06.setText("0");
-        Longitude07.setText("0");
+        Longitude01.setText("");
+        Longitude02.setText("");
+        Longitude03.setText("");
+        Longitude04.setText("");
+        Longitude05.setText("");
+        Longitude06.setText("");
+        Longitude07.setText("");
 
-        Humidity01.setText("0");
-        Humidity02.setText("0");
-        Humidity03.setText("0");
-        Humidity05.setText("0");
-        Humidity04.setText("0");
-        Humidity06.setText("0");
-        Humidity07.setText("0");
+        Humidity01.setText("");
+        Humidity02.setText("");
+        Humidity03.setText("");
+        Humidity05.setText("");
+        Humidity04.setText("");
+        Humidity06.setText("");
+        Humidity07.setText("");
 
-        Temperature01.setText("0");
-        Temperature02.setText("0");
-        Temperature03.setText("0");
-        Temperature04.setText("0");
-        Temperature05.setText("0");
-        Temperature06.setText("0");
-        Temperature07.setText("0");
+        Temperature01.setText("");
+        Temperature02.setText("");
+        Temperature03.setText("");
+        Temperature04.setText("");
+        Temperature05.setText("");
+        Temperature06.setText("");
+        Temperature07.setText("");
 
-        WindSpeed01.setText("0");
-        WindSpeed02.setText("0");
-        WindSpeed03.setText("0");
-        WindSpeed04.setText("0");
-        WindSpeed05.setText("0");
-        WindSpeed06.setText("0");
-        WindSpeed07.setText("0");
+        WindSpeed01.setText("");
+        WindSpeed02.setText("");
+        WindSpeed03.setText("");
+        WindSpeed04.setText("");
+        WindSpeed05.setText("");
+        WindSpeed06.setText("");
+        WindSpeed07.setText("");
 
-        WindDirection01.setText("0");
-        WindDirection02.setText("0");
-        WindDirection03.setText("0");
-        WindDirection04.setText("0");
-        WindDirection05.setText("0");
-        WindDirection06.setText("0");
-        WindDirection07.setText("0");
+        WindDirection01.setText("");
+        WindDirection02.setText("");
+        WindDirection03.setText("");
+        WindDirection04.setText("");
+        WindDirection05.setText("");
+        WindDirection06.setText("");
+        WindDirection07.setText("");
 
-        ChanceOfRain01.setText("0");
-        ChanceOfRain02.setText("0");
-        ChanceOfRain03.setText("0");
-        ChanceOfRain04.setText("0");
-        ChanceOfRain05.setText("0");
-        ChanceOfRain06.setText("0");
-        ChanceOfRain07.setText("0");
+        ChanceOfRain01.setText("");
+        ChanceOfRain02.setText("");
+        ChanceOfRain03.setText("");
+        ChanceOfRain04.setText("");
+        ChanceOfRain05.setText("");
+        ChanceOfRain06.setText("");
+        ChanceOfRain07.setText("");
 
-        UVIndex01.setText("0");
-        UVIndex02.setText("0");
-        UVIndex03.setText("0");
-        UVIndex04.setText("0");
-        UVIndex05.setText("0");
-        UVIndex06.setText("0");
-        UVIndex07.setText("0");
+        UVIndex01.setText("");
+        UVIndex02.setText("");
+        UVIndex03.setText("");
+        UVIndex04.setText("");
+        UVIndex05.setText("");
+        UVIndex06.setText("");
+        UVIndex07.setText("");
         
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
