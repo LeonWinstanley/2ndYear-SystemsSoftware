@@ -523,9 +523,50 @@ public class ClientGUI extends JFrame {
     }
 
     private void SaveToFileButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        
         final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-        
+        LocalDateTime now = LocalDateTime.now();
+
+        var current_time = "";
+        String Weather_Data = "";
+
+        current_time = dtf.format(now);
+        Weather_Data = current_time + Current_Weather_Data();
+        boolean bool = false;
+
+        try {
+
+                File data_File = new File("save.txt");
+
+                bool = data_File.exists();
+
+                if (bool != true) {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter("save.txt"));
+                        System.out.println("New File");
+                        writer.close();
+                }
+
+                if (bool == true) {
+
+                        BufferedWriter writer = new BufferedWriter(new FileWriter("save.txt", true));
+                        writer.newLine();
+                        System.out.println("New Data");
+                        writer.write(Weather_Data);
+                        writer.close();
+
+                }
+
+        }catch (IOException e) {
+                e.printStackTrace();
+        }
+
+    }
+
+    private String Current_Weather_Data() {
+            String new_data = "............Latitude - " + Latitude01.getText() + " Longitude - " + Longitude01.getText() + " Humidity - " + Humidity01.getText() + " Temperature - " + Temperature01.getText() + " Wind Speed - " + WindSpeed01.getText() + " Wind Direction - " + WindDirection01.getText() + " Chance of Rain - " + ChanceOfRain01.getText() + " UVIndex - " + UVIndex01.getText();
+
+            return new_data;  
 
     }
 
