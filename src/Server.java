@@ -18,7 +18,7 @@ public class Server {
 
     private static String strWeatherList = "@";
 
-    private static void Weather() throws Exception {
+    private void Weather() throws Exception {
 
         Socket socket = new Socket();
         try { socket = weatherSocket.accept(); }
@@ -36,7 +36,7 @@ public class Server {
                 System.out.println("Creating a new handler for this weather client...");
 
                 // Create a new handler object for handling this request.
-                WeatherHandler wHandler = new WeatherHandler(socket, "weather client " + WeatherCounter, dis);
+                WeatherHandler wHandler = new WeatherHandler(socket, "weather client " + WeatherCounter, dis, this);
 
                 // Create a new Thread with this object.
                 Thread weatherThread = new Thread(wHandler);
@@ -63,7 +63,7 @@ public class Server {
         catch (NullPointerException e) {}
     }
 
-    private static void Client() throws Exception {
+    private void Client() throws Exception {
         
             Socket socket = new Socket();
             try { socket = clientSocket.accept(); }
@@ -80,7 +80,7 @@ public class Server {
                     System.out.println("Creating a new handler for this user client...");
 
                     // Create a new handler object for handling this request.
-                    ClientHandler cHandler = new ClientHandler(socket, "user client " + ClientCounter, dis, dos, strWeatherList);
+                    ClientHandler cHandler = new ClientHandler(socket, "user client " + ClientCounter, dis, dos, strWeatherList, this);
 
                     // Create a new Thread with this object.
                     Thread clientThread = new Thread(cHandler);
@@ -131,7 +131,7 @@ public class Server {
 
         server.weatherSocket.setSoTimeout(1000);
         server.clientSocket.setSoTimeout(1000);
-        
+
         while (true) 
         {
             server.Weather();
@@ -143,7 +143,7 @@ public class Server {
             for (ClientHandler client : ClientList)
             {
                 try { client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID()) - 1).GetData()); } 
-                catch (Exception e) {}               
+                catch (Exception e) {}  
             }
         }
     }
@@ -158,14 +158,16 @@ class ClientHandler implements Runnable {
     Socket socket;
     boolean isloggedin;
     String received;
+    Server server;
+    private volatile boolean running = true;
 
     // constructor
-    public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList) {
+    public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList, Server server) {
         this.dis = dis;
         this.dos = dos;
         this.name = name;
         this.socket = socket;
-        this.isloggedin = true;
+        this.server = server;
         SendData(WeatherList);
     }
 
@@ -177,20 +179,23 @@ class ClientHandler implements Runnable {
 
     public String GetStationID() { return received; }
 
+    public void close()
+    {
+        running = false;
+        server.ClientCounter--;
+        try { this.socket.close(); } 
+        catch (Exception e) {}  
+    }
+
     @Override
     public void run() {
 
-        while (this.isloggedin) {
+        while (running) {
             try {
                 // receive the string
                 received = dis.readUTF();
-                //System.out.println(received);
+                if (received.equals("logout")) { close(); }
 
-                if (received.equals("logout")) {
-                    this.isloggedin = false;
-                    this.socket.close();
-                    break;
-                }
             } catch (IOException e) { break; }
         }
         try {
@@ -208,25 +213,37 @@ class WeatherHandler implements Runnable {
     Socket socket;
     boolean isloggedin;
     String received;
-    
+    private volatile boolean running = true;
+    Server server;
+    private static Queue<String> dataQueue = new LinkedList<>();
     // constructor
-    public WeatherHandler(Socket socket, String name, DataInputStream dis) {
+    public WeatherHandler(Socket socket, String name, DataInputStream dis, Server server) {
         this.dis = dis;
         this.name = name;
         this.socket = socket;
         this.isloggedin = true;
+        this.server = server;
     }
 
+    public void close()
+    {
+        running = false;
+        server.WeatherCounter--;
+    }
 
-    public String GetData() { return received; }
+    public String GetData() { return dataQueue.remove(); }
 
     @Override
     public void run() {
 
-        while (true) 
+        while (running) 
         { 
-            try { received = dis.readUTF(); } 
-            catch (IOException e) { break; }
+            try 
+            { 
+                received = dis.readUTF(); 
+                dataQueue.add(received);
+            } 
+            catch (IOException e) { close(); }
         }
         try { this.dis.close(); } 
         catch (IOException e) {}

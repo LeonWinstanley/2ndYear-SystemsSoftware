@@ -188,9 +188,7 @@ public class Login extends JFrame {
 
             }
             br.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        } catch (Exception e) {}
     }
 
     private void btnSignUpActionPerformed(ActionEvent evt) {
@@ -218,10 +216,7 @@ public class Login extends JFrame {
             br.close();
             fr.close();
 
-        } catch (Exception e) {
-            System.out.println("jButtion3ActionPerformed() :" + e);
-        }
-
+        } catch (Exception e) {}
     }
 
     public static void main(String args[]) {
