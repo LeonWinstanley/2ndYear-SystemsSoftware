@@ -31,11 +31,17 @@ class listenToServer implements Runnable {
             
             if (charAtZero == "#")
             {
+                StringBuilder sb = new StringBuilder(received);
+                sb.deleteCharAt(0);
+                received = sb.toString();
                 client.splitDISData(received);  
             }
             else if (charAtZero == "@")
             {
-                
+                StringBuilder sb = new StringBuilder(received);
+                sb.deleteCharAt(0);
+                received = sb.toString();
+                // function to handle the string here
             }
                               
         } catch (Exception e) {
