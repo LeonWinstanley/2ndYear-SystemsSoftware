@@ -16,7 +16,6 @@ public class Server {
     public static ServerSocket weatherSocket;
     public static ServerSocket clientSocket;
 
-    public String WeatherData;
     private static String strWeatherList = "@";
 
     private static void Weather() throws Exception {
@@ -148,7 +147,7 @@ class ClientHandler implements Runnable {
     public void SendData(String dataToSend)
     {
         try { dos.writeUTF(dataToSend); } 
-        catch (Exception e) {}
+        catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
@@ -173,7 +172,7 @@ class ClientHandler implements Runnable {
             // closing resources
             this.dis.close();
             this.dos.close();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {}
     }
 }
 
@@ -201,7 +200,7 @@ class WeatherHandler implements Runnable {
         while (true) 
         { 
             try { received = dis.readUTF(); } 
-            catch (IOException e) { break; } 
+            catch (IOException e) { break; }
         }
         try { this.dis.close(); } 
         catch (IOException e) {}
