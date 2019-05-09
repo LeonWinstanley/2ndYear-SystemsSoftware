@@ -271,6 +271,7 @@ public class ClientGUI extends JFrame {
 
         jComboBoxWeather.setFont(new java.awt.Font("Dialog", 0, 30));
         jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
+        jComboBoxWeather.insertItemAt("", 0);
 
         //jComboBoxWeather.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
@@ -527,12 +528,12 @@ public class ClientGUI extends JFrame {
                                         jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jComboBoxWeather, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(40, 40, 40))
+                                                .addGap(100, 100, 100))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         jPanel1Layout.createSequentialGroup()
                                                 .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(40, 40, 40)))));
+                                                .addGap(100, 100, 100)))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -667,7 +668,6 @@ public class ClientGUI extends JFrame {
         Latitude07.setText(nextData);
 
         previousData = Longitude01.getText();
-        nextData = previousData;
         Longitude01.setText(Longitude);
         nextData = previousData;
         previousData = Longitude02.getText();
@@ -698,6 +698,7 @@ public class ClientGUI extends JFrame {
         nextData = previousData;
         previousData = Humidity04.getText();
         Humidity04.setText(nextData);
+        nextData = previousData;
         previousData = Humidity05.getText();
         Humidity05.setText(nextData);
         nextData = previousData;
