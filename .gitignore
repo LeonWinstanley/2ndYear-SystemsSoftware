@@ -1,3 +1,6 @@
 *.class
 .vscode/
 data/users.txt
+bin/
+.idea/
+*.form
