@@ -7,11 +7,14 @@ public class WeatherClient {
 
     PrintWriter OutputToServer;
     final static int ServerPort = 50000;
+    DataOutputStream dos;
 
     // latitude between -90 and 90
     String wLat = doubleGenerator(-90, 90);
     // long between -180 and 180
     String wLong = doubleGenerator(-180,180);
+
+    public Socket socket;
 
     public WeatherClient() throws UnknownHostException, IOException {
 
@@ -21,28 +24,33 @@ public class WeatherClient {
         InetAddress ip = InetAddress.getByName("localhost");
 
         // establish the connection
-        Socket s = new Socket(ip, ServerPort);
+        socket = new Socket(ip, ServerPort);
 
         // obtaining input and out streams
-        DataInputStream dis = new DataInputStream(s.getInputStream());
-        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-
-        Thread sendMessage = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    // read the message to deliver.
-                    String msg = weatherData();
-                    try {
-                        // write on the output stream
-                        dos.writeUTF(msg);
-                        Thread.sleep(3000);
-                    } catch (Exception e) { e.printStackTrace(); }
-                }
-            }
-        });
-        sendMessage.start();
+        //DataInputStream dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(socket.getOutputStream());
     }
+
+    Thread sendMessage = new Thread(new Runnable() {
+        private volatile boolean running = true;
+        @Override
+        public void run() {
+            while (running) {
+                // read the message to deliver.
+                String msg = weatherData();
+                try {
+                    // write on the output stream
+                    dos.writeUTF(msg);
+                    Thread.sleep(3000);
+                } catch (Exception e) { stop(); }
+            }
+        }
+
+        public void stop()
+        {
+            running = false;
+        }
+    });
 
     public String doubleGenerator(int min, int max) {
         double randomDouble = new Random().nextDouble();
@@ -82,5 +90,6 @@ public class WeatherClient {
 
     public static void main(String[] args) throws IOException {
         WeatherClient Client = new WeatherClient();
+        Client.sendMessage.start();
     }
 }

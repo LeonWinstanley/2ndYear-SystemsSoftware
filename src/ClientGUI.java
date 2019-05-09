@@ -25,20 +25,26 @@ class listenToServer implements Runnable {
 
     DataInputStream dis;
     ClientGUI client;
+    private volatile boolean running = true;
+    String received;
 
-    public listenToServer(DataInputStream dis, ClientGUI client) {
+    public listenToServer(DataInputStream dis, ClientGUI client) 
+    {
         this.dis = dis;
         this.client = client;
     }
 
     @Override
-    public void run(){
-        while(true)
+    public void run()
+    {
+        while(running)
         {
-        try {
-            String received = dis.readUTF();
+            try { received = dis.readUTF(); }
+            catch (Exception e) { e.printStackTrace(); }
+
             String charAtZero = String.valueOf(received.charAt(0));
-            
+            System.out.println(received);
+        
             if (charAtZero.equals("#"))
             {
                 StringBuilder sb = new StringBuilder(received);
@@ -51,16 +57,12 @@ class listenToServer implements Runnable {
                 StringBuilder sb = new StringBuilder(received);
                 sb.deleteCharAt(0);
                 received = sb.toString();
-                // function to handle the string here
-                client.splitDISDataWeatherClients(received);
-                
-            }
-                              
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+                client.splitDISDataWeatherClients(received);   
+            }  
         }       
     }
+    
+    public void terminate() { running = false; }
 }
 
 public class ClientGUI extends JFrame {
@@ -69,16 +71,16 @@ public class ClientGUI extends JFrame {
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
     String[] weatherClients = {};
+    Socket socket;
+    listenToServer lis;
+    Thread listenThread;
 
     public ClientGUI() {
         initComponents();
         this.setVisible(true);
-        try {
-            ConnectToServer();
 
-        } catch (Exception e) {
-            System.out.println("ClientGUI.java :: ClientGUI() " + e);
-        }
+        try { ConnectToServer(); } 
+        catch (Exception e) { System.out.println("ClientGUI.java :: ClientGUI() " + e); }
     }
 
     private void ConnectToServer() throws UnknownHostException, IOException {
@@ -89,14 +91,25 @@ public class ClientGUI extends JFrame {
         InetAddress ip = InetAddress.getByName("localhost");
 
         // establish the connection
-        Socket s = new Socket(ip, ServerPort);
+        socket = new Socket(ip, ServerPort);
 
-        dis = new DataInputStream(s.getInputStream());
-        dos = new DataOutputStream(s.getOutputStream());
+        dis = new DataInputStream(socket.getInputStream());
+        dos = new DataOutputStream(socket.getOutputStream());
 
-        listenToServer lis = new listenToServer(dis, this);
-        Thread listenThread = new Thread(lis);
+        lis = new listenToServer(dis, this);
+        listenThread = new Thread(lis);
+
         listenThread.start();
+    }
+
+    private void DisconnectFromServer() throws UnknownHostException, IOException
+    {
+        String logout = "logout";
+        dos.writeUTF(logout);
+        dis.close();
+        dos.close();
+        socket.close();
+        lis.terminate();
     }
 
     private void initComponents() {
@@ -209,6 +222,7 @@ public class ClientGUI extends JFrame {
             }
         });
 
+<<<<<<< HEAD
         jComboBoxWeather.addActionListener(new java.awt.event.ActionListener()
         {
                 public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -217,6 +231,8 @@ public class ClientGUI extends JFrame {
                 }
         });
 
+=======
+>>>>>>> 0d1e0b1cbb2d55a839dafdeb2c808847aa1086a1
         Latitude01.setText("");
         Latitude02.setText("");
         Latitude03.setText("");
@@ -582,13 +598,10 @@ public class ClientGUI extends JFrame {
         // TODO add your handling code here:
         Login login = new Login();
         login.setVisible(true);
-        try 
-        {
-            String logout = "logout";
-            dos.writeUTF(logout);
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+
+        try { DisconnectFromServer(); } 
+        catch (Exception e) {}
+        
         dispose();
     }
 

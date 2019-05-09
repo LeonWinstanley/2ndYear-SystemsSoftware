@@ -16,7 +16,6 @@ public class Server {
     public static ServerSocket weatherSocket;
     public static ServerSocket clientSocket;
 
-    public String WeatherData;
     private static String strWeatherList = "@";
 
     private static void Weather() throws Exception {
@@ -102,6 +101,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
 
+        ServerPanel gui = new ServerPanel();
+        gui.setVisible(true);
+
         Server server = new Server();
         // server is listening on port 50000 && 50001
         server.weatherSocket = new ServerSocket(50000);
@@ -110,16 +112,14 @@ public class Server {
         server.weatherSocket.setSoTimeout(1000);
         server.clientSocket.setSoTimeout(1000);
         
-        while (true) {
+        while (true) 
+        {
             server.Weather();
             server.Client();
 
-            for (WeatherHandler weather : WeatherList)
+            for (ClientHandler client : ClientList)
             {
-                for (ClientHandler client : ClientList)
-                {
-                    client.SendData("#" + weather.GetData());
-                }
+                client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID())).GetData());
             }
         }
     }
@@ -134,6 +134,7 @@ class ClientHandler implements Runnable {
     Socket socket;
     boolean isloggedin;
     int CurrentStationID;
+    String received;
 
     // constructor
     public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList) {
@@ -148,13 +149,14 @@ class ClientHandler implements Runnable {
     public void SendData(String dataToSend)
     {
         try { dos.writeUTF(dataToSend); } 
-        catch (Exception e) {}
+        catch (Exception e) { e.printStackTrace(); }
     }
+
+    public String GetStationID() { return received; }
 
     @Override
     public void run() {
 
-        String received;
         while (this.isloggedin) {
             try {
                 // receive the string
@@ -167,13 +169,12 @@ class ClientHandler implements Runnable {
                     break;
                 }
             } catch (IOException e) { break; }
-
         }
         try {
             // closing resources
             this.dis.close();
             this.dos.close();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {}
     }
 }
 
@@ -201,7 +202,7 @@ class WeatherHandler implements Runnable {
         while (true) 
         { 
             try { received = dis.readUTF(); } 
-            catch (IOException e) { break; } 
+            catch (IOException e) { break; }
         }
         try { this.dis.close(); } 
         catch (IOException e) {}
