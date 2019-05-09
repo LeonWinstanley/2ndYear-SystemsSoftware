@@ -109,16 +109,14 @@ public class Server {
         server.weatherSocket.setSoTimeout(1000);
         server.clientSocket.setSoTimeout(1000);
         
-        while (true) {
+        while (true) 
+        {
             server.Weather();
             server.Client();
 
-            for (WeatherHandler weather : WeatherList)
+            for (ClientHandler client : ClientList)
             {
-                for (ClientHandler client : ClientList)
-                {
-                    client.SendData("#" + weather.GetData());
-                }
+                client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID())).GetData());
             }
         }
     }
@@ -133,6 +131,7 @@ class ClientHandler implements Runnable {
     Socket socket;
     boolean isloggedin;
     int CurrentStationID;
+    String received;
 
     // constructor
     public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList) {
@@ -150,10 +149,11 @@ class ClientHandler implements Runnable {
         catch (Exception e) { e.printStackTrace(); }
     }
 
+    public String GetStationID() { return received; }
+
     @Override
     public void run() {
 
-        String received;
         while (this.isloggedin) {
             try {
                 // receive the string
@@ -166,7 +166,6 @@ class ClientHandler implements Runnable {
                     break;
                 }
             } catch (IOException e) { break; }
-
         }
         try {
             // closing resources
