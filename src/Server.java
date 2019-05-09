@@ -52,7 +52,8 @@ public class Server {
 
                 WeatherCounter++;
 
-                strWeatherList = strWeatherList.concat(Integer.toString(WeatherCounter) + ",");
+                if (strWeatherList.equals("@")) { strWeatherList = strWeatherList.concat(Integer.toString(WeatherCounter)); }
+                else { strWeatherList = strWeatherList.concat("," + Integer.toString(WeatherCounter) ); }
 
                 for (ClientHandler client : ClientList)
                 {
