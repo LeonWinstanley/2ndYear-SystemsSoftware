@@ -26,21 +26,17 @@ public class WeatherClient {
             @Override
             public void run() {
                 while (true) {
-
                     // read the message to deliver.
                     String msg = weatherData();
                     try {
                         // write on the output stream
                         dos.writeUTF(msg);
                         Thread.sleep(3000);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    } catch (Exception e) { e.printStackTrace(); }
                 }
             }
         });
         sendMessage.start();
-
     }
 
     public String doubleGenerator(int min, int max) {
@@ -84,7 +80,6 @@ public class WeatherClient {
     }
 
     public static void main(String[] args) throws IOException {
-
         WeatherClient Client = new WeatherClient();
     }
 }

@@ -78,6 +78,7 @@ public class ClientGUI extends JFrame {
         Socket s = new Socket(ip, ServerPort);
 
         dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(s.getOutputStream());
 
         listenToServer lis = new listenToServer(dis, this);
         Thread listenThread = new Thread(lis);
@@ -510,9 +511,10 @@ public class ClientGUI extends JFrame {
         login.setVisible(true);
         try 
         {
-                this.dos.writeUTF("logout");
+            String logout = "logout";
+            dos.writeUTF(logout);
         } catch (Exception e) {
-                //TODO: handle exception
+            //TODO: handle exception
         }
         dispose();
     }

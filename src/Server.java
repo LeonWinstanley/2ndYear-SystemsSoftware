@@ -22,13 +22,8 @@ public class Server {
     private static void Weather() throws Exception {
 
         Socket socket = new Socket();
-        try
-        {
-            socket = weatherSocket.accept();
-        }
-        catch (SocketTimeoutException e)
-        {
-        }
+        try { socket = weatherSocket.accept(); }
+        catch (SocketTimeoutException e) {}
 
         try
         {
@@ -65,22 +60,14 @@ public class Server {
                 }
             }
         }
-        catch (NullPointerException e)
-        {
-        }
-
+        catch (NullPointerException e) {}
     }
 
     private static void Client() throws Exception {
         
             Socket socket = new Socket();
-            try
-            {
-                socket = clientSocket.accept();
-            }
-            catch (SocketTimeoutException e)
-            {
-            }
+            try { socket = clientSocket.accept(); }
+            catch (SocketTimeoutException e) {}
 
             try {
                 if (socket.isConnected()) {
@@ -109,9 +96,7 @@ public class Server {
                     ClientCounter++;
                 }
             }
-            catch (NullPointerException e)
-            {
-            }
+            catch (NullPointerException e) {}
     }
 
     public static void main(String[] args) throws Exception {
@@ -161,11 +146,8 @@ class ClientHandler implements Runnable {
 
     public void SendData(String dataToSend)
     {
-        try {
-            dos.writeUTF(dataToSend);
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        try { dos.writeUTF(dataToSend); } 
+        catch (Exception e) {}
     }
 
     @Override
@@ -174,47 +156,23 @@ class ClientHandler implements Runnable {
         String received;
         while (this.isloggedin) {
             try {
-
                 // receive the string
                 received = dis.readUTF();
-
                 System.out.println(received);
 
                 if (received.equals("logout")) {
                     this.isloggedin = false;
-                    System.out.println("Logged out");
                     this.socket.close();
                     break;
                 }
-
-                // // break the string into message and recipient part
-                // StringTokenizer st = new StringTokenizer(received, "#");
-                // String MsgToSend = st.nextToken();
-                // String recipient = st.nextToken();
-
-                // // search for the recipient in the connected devices list.
-                // // ClientList is the vector storing client of active users
-                // for (ClientHandler mc : Server.ClientList) {
-                //     // if the recipient is found, write on its
-                //     // output stream
-                //     if (mc.name.equals(recipient) && mc.isloggedin == true) {
-                //         mc.dos.writeUTF(this.name + " : " + MsgToSend);
-                //         break;
-                //     }
-                // }
-            } catch (IOException e) {
-                break;
-            }
+            } catch (IOException e) { break; }
 
         }
         try {
             // closing resources
             this.dis.close();
             this.dos.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 }
 
@@ -226,7 +184,6 @@ class WeatherHandler implements Runnable {
     boolean isloggedin;
     String received;
     
-
     // constructor
     public WeatherHandler(Socket socket, String name, DataInputStream dis) {
         this.dis = dis;
@@ -235,37 +192,17 @@ class WeatherHandler implements Runnable {
         this.isloggedin = true;
     }
 
-    public String GetData()
-    {
-        return received;
-    }
+    public String GetData() { return received; }
 
     @Override
     public void run() {
 
-        while (true) {
-            try {
-                // receive the string
-                received = dis.readUTF();
-            
-                System.out.println(received);
-
-                // if (received.equals("logout")) {
-                //     this.isloggedin = false;
-                //     this.socket.close();
-                //     break;
-                // }
-            } catch (IOException e) 
-            {
-                break;
-            }
+        while (true) 
+        { 
+            try { received = dis.readUTF(); } 
+            catch (IOException e) { break; } 
         }
-        try {
-            // closing resources
-            this.dis.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { this.dis.close(); } 
+        catch (IOException e) {}
     }
 }
