@@ -102,6 +102,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
 
+        ServerPanel gui = new ServerPanel();
+        gui.setVisible(true);
+
         Server server = new Server();
         // server is listening on port 50000 && 50001
         server.weatherSocket = new ServerSocket(50000);
@@ -109,7 +112,7 @@ public class Server {
 
         server.weatherSocket.setSoTimeout(1000);
         server.clientSocket.setSoTimeout(1000);
-        
+
         while (true) {
             server.Weather();
             server.Client();
