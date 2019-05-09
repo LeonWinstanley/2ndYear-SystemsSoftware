@@ -10,6 +10,17 @@ import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 class listenToServer implements Runnable {
 
     DataInputStream dis;
@@ -41,6 +52,8 @@ class listenToServer implements Runnable {
                 sb.deleteCharAt(0);
                 received = sb.toString();
                 // function to handle the string here
+                client.splitDISDataWeatherClients(received);
+                
             }
                               
         } catch (Exception e) {
@@ -55,7 +68,7 @@ public class ClientGUI extends JFrame {
     final static int ServerPort = 50001;
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
-    String[] weatherClients = {"sd"};
+    String[] weatherClients = {};
 
     public ClientGUI() {
         initComponents();
@@ -177,7 +190,7 @@ public class ClientGUI extends JFrame {
 
         jLabel8.setText("UV Index");
 
-        jComboBoxWeather.setFont(new java.awt.Font("Dialog", 1, 30));
+        jComboBoxWeather.setFont(new java.awt.Font("Dialog", 0, 30));
         jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
 
         //jComboBoxWeather.setBorder(javax.swing.BorderFactory.createLineBorder(null));
@@ -458,7 +471,7 @@ public class ClientGUI extends JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxWeather,javax.swing.GroupLayout.PREFERRED_SIZE, 300,
+                                .addComponent(jComboBoxWeather,javax.swing.GroupLayout.PREFERRED_SIZE, 350,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(170, 170, 170)
                         
@@ -510,7 +523,50 @@ public class ClientGUI extends JFrame {
     }
 
     private void SaveToFileButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+        LocalDateTime now = LocalDateTime.now();
+
+        var current_time = "";
+        String Weather_Data = "";
+
+        current_time = dtf.format(now);
+        Weather_Data = current_time + Current_Weather_Data();
+        boolean bool = false;
+
+        try {
+
+                File data_File = new File("save.txt");
+
+                bool = data_File.exists();
+
+                if (bool != true) {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter("save.txt"));
+                        System.out.println("New File");
+                        writer.close();
+                }
+
+                if (bool == true) {
+
+                        BufferedWriter writer = new BufferedWriter(new FileWriter("save.txt", true));
+                        writer.newLine();
+                        System.out.println("New Data");
+                        writer.write(Weather_Data);
+                        writer.close();
+
+                }
+
+        }catch (IOException e) {
+                e.printStackTrace();
+        }
+
+    }
+
+    private String Current_Weather_Data() {
+            String new_data = "............Latitude - " + Latitude01.getText() + " Longitude - " + Longitude01.getText() + " Humidity - " + Humidity01.getText() + " Temperature - " + Temperature01.getText() + " Wind Speed - " + WindSpeed01.getText() + " Wind Direction - " + WindDirection01.getText() + " Chance of Rain - " + ChanceOfRain01.getText() + " UVIndex - " + UVIndex01.getText();
+
+            return new_data;  
 
     }
 
@@ -740,6 +796,13 @@ public class ClientGUI extends JFrame {
         setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5],
                 weatherList[6], weatherList[7]);
 
+    }
+
+    public void splitDISDataWeatherClients(String DISInput)
+    {
+            System.out.println(DISInput);
+            weatherClients = DISInput.split("\\s*,\\s*");
+            jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
     }
 
     // Variables declaration - do not modify
