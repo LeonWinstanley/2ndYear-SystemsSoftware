@@ -112,6 +112,73 @@ public class ClientGUI extends JFrame {
         lis.terminate();
     }
 
+    private void resetComponents()
+    {
+        Latitude01.setText("");
+        Latitude02.setText("");
+        Latitude03.setText("");
+        Latitude04.setText("");
+        Latitude05.setText("");
+        Latitude06.setText("");
+        Latitude07.setText("");
+
+        Longitude01.setText("");
+        Longitude02.setText("");
+        Longitude03.setText("");
+        Longitude04.setText("");
+        Longitude05.setText("");
+        Longitude06.setText("");
+        Longitude07.setText("");
+
+        Humidity01.setText("");
+        Humidity02.setText("");
+        Humidity03.setText("");
+        Humidity05.setText("");
+        Humidity04.setText("");
+        Humidity06.setText("");
+        Humidity07.setText("");
+
+        Temperature01.setText("");
+        Temperature02.setText("");
+        Temperature03.setText("");
+        Temperature04.setText("");
+        Temperature05.setText("");
+        Temperature06.setText("");
+        Temperature07.setText("");
+
+        WindSpeed01.setText("");
+        WindSpeed02.setText("");
+        WindSpeed03.setText("");
+        WindSpeed04.setText("");
+        WindSpeed05.setText("");
+        WindSpeed06.setText("");
+        WindSpeed07.setText("");
+
+        WindDirection01.setText("");
+        WindDirection02.setText("");
+        WindDirection03.setText("");
+        WindDirection04.setText("");
+        WindDirection05.setText("");
+        WindDirection06.setText("");
+        WindDirection07.setText("");
+
+        ChanceOfRain01.setText("");
+        ChanceOfRain02.setText("");
+        ChanceOfRain03.setText("");
+        ChanceOfRain04.setText("");
+        ChanceOfRain05.setText("");
+        ChanceOfRain06.setText("");
+        ChanceOfRain07.setText("");
+
+        UVIndex01.setText("");
+        UVIndex02.setText("");
+        UVIndex03.setText("");
+        UVIndex04.setText("");
+        UVIndex05.setText("");
+        UVIndex06.setText("");
+        UVIndex07.setText("");
+    }
+
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -123,7 +190,6 @@ public class ClientGUI extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        //jScrollPane1 = new javax.swing.JScrollPane();
         jComboBoxWeather = new javax.swing.JComboBox<>();
         LogOutButton = new javax.swing.JButton();
         SaveToFileButton = new javax.swing.JButton();
@@ -222,81 +288,13 @@ public class ClientGUI extends JFrame {
             }
         });
 
-<<<<<<< HEAD
         jComboBoxWeather.addActionListener(new java.awt.event.ActionListener()
         {
                 public void actionPerformed(java.awt.event.ActionEvent evt)
                 {
                         jComboBoxWeatherActionPerformed(evt);
                 }
-        });
-
-=======
->>>>>>> 0d1e0b1cbb2d55a839dafdeb2c808847aa1086a1
-        Latitude01.setText("");
-        Latitude02.setText("");
-        Latitude03.setText("");
-        Latitude04.setText("");
-        Latitude05.setText("");
-        Latitude06.setText("");
-        Latitude07.setText("");
-
-        Longitude01.setText("");
-        Longitude02.setText("");
-        Longitude03.setText("");
-        Longitude04.setText("");
-        Longitude05.setText("");
-        Longitude06.setText("");
-        Longitude07.setText("");
-
-        Humidity01.setText("");
-        Humidity02.setText("");
-        Humidity03.setText("");
-        Humidity05.setText("");
-        Humidity04.setText("");
-        Humidity06.setText("");
-        Humidity07.setText("");
-
-        Temperature01.setText("");
-        Temperature02.setText("");
-        Temperature03.setText("");
-        Temperature04.setText("");
-        Temperature05.setText("");
-        Temperature06.setText("");
-        Temperature07.setText("");
-
-        WindSpeed01.setText("");
-        WindSpeed02.setText("");
-        WindSpeed03.setText("");
-        WindSpeed04.setText("");
-        WindSpeed05.setText("");
-        WindSpeed06.setText("");
-        WindSpeed07.setText("");
-
-        WindDirection01.setText("");
-        WindDirection02.setText("");
-        WindDirection03.setText("");
-        WindDirection04.setText("");
-        WindDirection05.setText("");
-        WindDirection06.setText("");
-        WindDirection07.setText("");
-
-        ChanceOfRain01.setText("");
-        ChanceOfRain02.setText("");
-        ChanceOfRain03.setText("");
-        ChanceOfRain04.setText("");
-        ChanceOfRain05.setText("");
-        ChanceOfRain06.setText("");
-        ChanceOfRain07.setText("");
-
-        UVIndex01.setText("");
-        UVIndex02.setText("");
-        UVIndex03.setText("");
-        UVIndex04.setText("");
-        UVIndex05.setText("");
-        UVIndex06.setText("");
-        UVIndex07.setText("");
-        
+        });   
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -607,14 +605,10 @@ public class ClientGUI extends JFrame {
 
     private void jComboBoxWeatherActionPerformed(java.awt.event.ActionEvent evt)
     {
-        System.out.println(evt);
         String selection = (String) jComboBoxWeather.getSelectedItem();
         String selectionID = selection.substring(15,selection.length());
-
-        System.out.println(selectionID);
-
-        
-        
+        sendDataToServer(selectionID);       
+        resetComponents();
     }
 
     public static void RunGUI() {
@@ -823,7 +817,6 @@ public class ClientGUI extends JFrame {
         String[] weatherList = DISInput.split("\\s*,\\s*");
         setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5],
                 weatherList[6], weatherList[7]);
-
     }
 
     public void splitDISDataWeatherClients(String DISInput)

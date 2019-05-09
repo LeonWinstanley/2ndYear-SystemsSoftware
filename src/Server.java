@@ -119,7 +119,8 @@ public class Server {
 
             for (ClientHandler client : ClientList)
             {
-                client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID())).GetData());
+                try { client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID()) - 1).GetData()); } 
+                catch (Exception e) {}               
             }
         }
     }
@@ -133,7 +134,6 @@ class ClientHandler implements Runnable {
     public DataOutputStream dos;
     Socket socket;
     boolean isloggedin;
-    int CurrentStationID;
     String received;
 
     // constructor
@@ -149,7 +149,7 @@ class ClientHandler implements Runnable {
     public void SendData(String dataToSend)
     {
         try { dos.writeUTF(dataToSend); } 
-        catch (Exception e) { e.printStackTrace(); }
+        catch (Exception e) {}
     }
 
     public String GetStationID() { return received; }
@@ -161,7 +161,7 @@ class ClientHandler implements Runnable {
             try {
                 // receive the string
                 received = dis.readUTF();
-                System.out.println(received);
+                //System.out.println(received);
 
                 if (received.equals("logout")) {
                     this.isloggedin = false;
@@ -193,6 +193,7 @@ class WeatherHandler implements Runnable {
         this.socket = socket;
         this.isloggedin = true;
     }
+
 
     public String GetData() { return received; }
 
