@@ -25,18 +25,17 @@ class listenToServer implements Runnable {
         while(true)
         {
         try {
-
             String received = dis.readUTF();
             String charAtZero = String.valueOf(received.charAt(0));
             
-            if (charAtZero == "#")
+            if (charAtZero.equals("#"))
             {
                 StringBuilder sb = new StringBuilder(received);
                 sb.deleteCharAt(0);
                 received = sb.toString();
                 client.splitDISData(received);  
             }
-            else if (charAtZero == "@")
+            else if (charAtZero.equals("@"))
             {
                 StringBuilder sb = new StringBuilder(received);
                 sb.deleteCharAt(0);
@@ -66,7 +65,6 @@ public class ClientGUI extends JFrame {
         } catch (Exception e) {
             System.out.println("ClientGUI.java :: ClientGUI() " + e);
         }
-
     }
 
     private void ConnectToServer() throws UnknownHostException, IOException {
