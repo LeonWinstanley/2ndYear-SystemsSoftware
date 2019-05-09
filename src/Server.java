@@ -17,6 +17,7 @@ public class Server {
     public static ServerSocket clientSocket;
 
     public String WeatherData;
+    private static String strWeatherList = "@";
 
     private static void Weather() throws Exception {
 
@@ -55,6 +56,8 @@ public class Server {
                 weatherThread.start();
 
                 WeatherCounter++;
+
+                strWeatherList = strWeatherList.concat(Integer.toString(WeatherCounter) + ",");
             }
         }
         catch (NullPointerException e)
@@ -85,7 +88,7 @@ public class Server {
                     System.out.println("Creating a new handler for this user client...");
 
                     // Create a new handler object for handling this request.
-                    ClientHandler cHandler = new ClientHandler(socket, "user client " + ClientCounter, dis, dos);
+                    ClientHandler cHandler = new ClientHandler(socket, "user client " + ClientCounter, dis, dos, strWeatherList);
 
                     // Create a new Thread with this object.
                     Thread clientThread = new Thread(cHandler);
@@ -124,7 +127,7 @@ public class Server {
             {
                 for (ClientHandler client : ClientList)
                 {
-                    client.SendData(weather.GetData());
+                    client.SendData("#"+weather.GetData());
                 }
             }
         }
@@ -139,14 +142,16 @@ class ClientHandler implements Runnable {
     public DataOutputStream dos;
     Socket socket;
     boolean isloggedin;
+    int CurrentStationID;
 
     // constructor
-    public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos) {
+    public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList) {
         this.dis = dis;
         this.dos = dos;
         this.name = name;
         this.socket = socket;
         this.isloggedin = true;
+        SendData(WeatherList);
     }
 
     public void SendData(String dataToSend)
@@ -172,25 +177,26 @@ class ClientHandler implements Runnable {
 
                 if (received.equals("logout")) {
                     this.isloggedin = false;
+                    System.out.println("Logged out");
                     this.socket.close();
                     break;
                 }
 
-                // break the string into message and recipient part
-                StringTokenizer st = new StringTokenizer(received, "#");
-                String MsgToSend = st.nextToken();
-                String recipient = st.nextToken();
+                // // break the string into message and recipient part
+                // StringTokenizer st = new StringTokenizer(received, "#");
+                // String MsgToSend = st.nextToken();
+                // String recipient = st.nextToken();
 
-                // search for the recipient in the connected devices list.
-                // ClientList is the vector storing client of active users
-                for (ClientHandler mc : Server.ClientList) {
-                    // if the recipient is found, write on its
-                    // output stream
-                    if (mc.name.equals(recipient) && mc.isloggedin == true) {
-                        mc.dos.writeUTF(this.name + " : " + MsgToSend);
-                        break;
-                    }
-                }
+                // // search for the recipient in the connected devices list.
+                // // ClientList is the vector storing client of active users
+                // for (ClientHandler mc : Server.ClientList) {
+                //     // if the recipient is found, write on its
+                //     // output stream
+                //     if (mc.name.equals(recipient) && mc.isloggedin == true) {
+                //         mc.dos.writeUTF(this.name + " : " + MsgToSend);
+                //         break;
+                //     }
+                // }
             } catch (IOException e) {
                 break;
             }
