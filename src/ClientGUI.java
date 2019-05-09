@@ -55,6 +55,7 @@ public class ClientGUI extends JFrame {
     final static int ServerPort = 50001;
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
+    String[] weatherClients = {"sd"};
 
     public ClientGUI() {
         initComponents();
@@ -96,7 +97,8 @@ public class ClientGUI extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        //jScrollPane1 = new javax.swing.JScrollPane();
+        jComboBoxWeather = new javax.swing.JComboBox<>();
         LogOutButton = new javax.swing.JButton();
         SaveToFileButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -175,7 +177,10 @@ public class ClientGUI extends JFrame {
 
         jLabel8.setText("UV Index");
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jComboBoxWeather.setFont(new java.awt.Font("Dialog", 1, 30));
+        jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
+
+        //jComboBoxWeather.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         LogOutButton.setText("Log Out");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +259,7 @@ public class ClientGUI extends JFrame {
         UVIndex05.setText("0");
         UVIndex06.setText("0");
         UVIndex07.setText("0");
+        
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -445,14 +451,17 @@ public class ClientGUI extends JFrame {
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
+        
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 24, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1))
-                        .addGap(120, 120, 120)
+                                .addComponent(jComboBoxWeather,javax.swing.GroupLayout.PREFERRED_SIZE, 300,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(170, 170, 170)
+                        
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,14 +490,14 @@ public class ClientGUI extends JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397,
+                                                .addComponent(jComboBoxWeather, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(72, 72, 72))
+                                                .addGap(40, 40, 40))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         jPanel1Layout.createSequentialGroup()
                                                 .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(169, 169, 169)))));
+                                                .addGap(40, 40, 40)))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -517,6 +526,11 @@ public class ClientGUI extends JFrame {
             //TODO: handle exception
         }
         dispose();
+    }
+
+    private void jComboBoxWeatherActionPerformed(java.awt.event.ActionEvent evt)
+    {
+
     }
 
     public static void RunGUI() {
@@ -795,7 +809,8 @@ public class ClientGUI extends JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+   // private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jComboBoxWeather;
     private javax.swing.JButton SaveToFileButton;
     private javax.swing.JButton LogOutButton;
     // End of variables declaration
