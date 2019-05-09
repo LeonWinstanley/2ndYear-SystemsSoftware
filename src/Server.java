@@ -101,6 +101,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
 
+        ServerPanel gui = new ServerPanel();
+        gui.setVisible(true);
+
         Server server = new Server();
         // server is listening on port 50000 && 50001
         server.weatherSocket = new ServerSocket(50000);
