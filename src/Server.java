@@ -99,6 +99,26 @@ public class Server {
             catch (NullPointerException e) {}
     }
 
+    public static String[] getWeatherArr(){
+        ArrayList<String> weatherList = new ArrayList<String>();
+            for(int i = 0; i < WeatherCounter; i++){
+                weatherList.add("Weather Client " + i);
+            }
+
+            String[] weatherArr = new String[weatherList.size()];
+            return weatherArr = weatherList.toArray(weatherArr);
+    }
+
+    public static String[] getClientArr(){
+        ArrayList<String> clientList = new ArrayList<String>();
+        for(int i = 0; i < ClientCounter; i++){
+            clientList.add("Client " + i);
+        }
+        
+        String[] clientArr = new String[clientList.size()];
+        return clientArr = clientList.toArray(clientArr);
+    }
+
     public static void main(String[] args) throws Exception {
 
         ServerPanel gui = new ServerPanel();
@@ -116,6 +136,9 @@ public class Server {
         {
             server.Weather();
             server.Client();
+
+            gui.setWeather(getWeatherArr());
+            gui.setClients(getClientArr());
 
             for (ClientHandler client : ClientList)
             {
