@@ -8,6 +8,11 @@ public class WeatherClient {
     PrintWriter OutputToServer;
     final static int ServerPort = 50000;
 
+    // latitude between -90 and 90
+    String wLat = doubleGenerator(-90, 90);
+    // long between -180 and 180
+    String wLong = doubleGenerator(-180,180);
+
     public WeatherClient() throws UnknownHostException, IOException {
 
         Scanner scn = new Scanner(System.in);
@@ -52,10 +57,6 @@ public class WeatherClient {
     }
     
     public String weatherData() {
-        // latitude between -90 and 90
-        String latitude = doubleGenerator(-90, 90);
-        // long between -180 and 180
-        String longitude = doubleGenerator(-180, 180);
         // humidity percentage
         String humidity = intGenerator(0, 100);
         // temp in degrees centigrade
@@ -73,7 +74,7 @@ public class WeatherClient {
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = latitude + "," + longitude + "," + humidity + "," + temperature + "," + windSpeed + ","
+        generatedWeatherData = wLat + "," + wLong + "," + humidity + "," + temperature + "," + windSpeed + ","
                 + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex;
 
         return generatedWeatherData;
