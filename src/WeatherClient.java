@@ -53,9 +53,8 @@ public class WeatherClient {
         int randomInt = new Random().nextInt(max);
         int result = randomInt;
         return Integer.toString(result);
-
     }
-
+    
     public String weatherData() {
         // latitude between -90 and 90
         String latitude = doubleGenerator(-90, 90);

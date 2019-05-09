@@ -132,7 +132,7 @@ public class Server {
             {
                 for (ClientHandler client : ClientList)
                 {
-                    client.SendData("#"+weather.GetData());
+                    client.SendData("#" + weather.GetData());
                 }
             }
         }
@@ -172,7 +172,7 @@ class ClientHandler implements Runnable {
     public void run() {
 
         String received;
-        while (true) {
+        while (this.isloggedin) {
             try {
 
                 // receive the string
@@ -255,27 +255,10 @@ class WeatherHandler implements Runnable {
                 //     this.socket.close();
                 //     break;
                 // }
-
-                // break the string into message and recipient part
-                // StringTokenizer st = new StringTokenizer(received, "#");
-                // String MsgToSend = st.nextToken();
-                // String recipient = st.nextToken();
-
-                // search for the recipient in the connected devices list.
-                // ClientList is the vector storing client of active users
-                // for (WeatherHandler mc : Server.WeatherList) {
-                //     // if the recipient is found, write on its
-                //     // output stream
-                //     // if (mc.name.equals(recipient) && mc.isloggedin == true) {
-                //     //     mc.dos.writeUTF(this.name + " : " + MsgToSend);
-                //     //     break;
-                //     // }
-                // }
-            } catch (IOException e) {
-
+            } catch (IOException e) 
+            {
                 break;
             }
-
         }
         try {
             // closing resources
