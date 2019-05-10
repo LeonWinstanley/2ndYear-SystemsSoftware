@@ -71,7 +71,9 @@ public class ClientGUI extends JFrame {
     final static int ServerPort = 50001;
     DataInputStream dis; // = new DataInputStream(s.getInputStream());
     DataOutputStream dos; // = new DataOutputStream(s.getOutputStream());
-    String[] weatherClients = {};
+    String[] weatherClients = {"API New York   1"
+                ,  "API London     2"
+             ,    "API Nottingham 3"};
     Socket socket;
     listenToServer lis;
     Thread listenThread;
@@ -82,17 +84,22 @@ public class ClientGUI extends JFrame {
         
 
     public ClientGUI() {
+        
         initComponents();
         this.setVisible(true);
         map.setVisible(true);
-
+        
         try { ConnectToServer(); } 
         catch (Exception e) { System.out.println("ClientGUI.java :: ClientGUI() " + e); }
+
     }
 
     private void ConnectToServer() throws UnknownHostException, IOException {
 
         // getting localhost ip
+
+        
+
         InetAddress ip = InetAddress.getByName("localhost");
 
         // establish the connection
@@ -185,6 +192,9 @@ public class ClientGUI extends JFrame {
     }
 
     private void initComponents() {
+  
+            
+            
 
         
 
@@ -198,6 +208,7 @@ public class ClientGUI extends JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBoxWeather = new javax.swing.JComboBox<>();
+        
         LogOutButton = new javax.swing.JButton();
         SaveToFileButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -296,6 +307,9 @@ public class ClientGUI extends JFrame {
                 SaveToFileButtonActionPerformed(evt);
             }
         });
+
+        
+       
 
         jComboBoxWeather.addActionListener(new java.awt.event.ActionListener()
         {
@@ -832,11 +846,19 @@ public class ClientGUI extends JFrame {
     }
 
     public void splitDISDataWeatherClients(String DISInput)
-    {
-            weatherClients = DISInput.split("\\s*,\\s*");
-            for (int i = 0; i < weatherClients.length; i++)
+    {       
+
+            String[] temp =  DISInput.split("\\s*,\\s*");
+
+                temp = Arrays.copyOf(temp,temp.length+4);
+
+
+
+
+            
+            for (int i = 0; i < temp.length; i++)
             {
-                    weatherClients[i] = "Weather Client " + weatherClients[i];
+                    weatherClients[i+2] = "Weather Client " + temp[i];
             }
             jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
     }
