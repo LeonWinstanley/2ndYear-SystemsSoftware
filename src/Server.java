@@ -142,7 +142,8 @@ public class Server {
 
             for (ClientHandler client : ClientList)
             {
-                client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());
+                try {client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());}
+                catch (ArrayIndexOutOfBoundsException e){}
                 try { client.SendData(client.GetDataFromQueue()); } 
                 catch (Exception e) {}  
             }
