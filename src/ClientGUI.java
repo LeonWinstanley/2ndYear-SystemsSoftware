@@ -304,10 +304,7 @@ public class ClientGUI extends JFrame {
         {
                 public void actionPerformed(java.awt.event.ActionEvent evt)
                 {
-                    if (SelectedItem)
-                    {
                         jComboBoxWeatherActionPerformed(evt);
-                    }
                 }
         });   
 
@@ -621,7 +618,8 @@ public class ClientGUI extends JFrame {
     {
         String selection = (String) jComboBoxWeather.getSelectedItem();
         String selectionID = selection.substring(15,selection.length());
-        sendDataToServer(selectionID);       
+        sendDataToServer(selectionID);
+        System.out.println(selectionID);      
         resetComponents();
     }
 
