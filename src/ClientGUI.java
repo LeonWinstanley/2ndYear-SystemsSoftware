@@ -846,17 +846,13 @@ public class ClientGUI extends JFrame {
     public void splitDISDataWeatherClients(String DISInput)
     {       
 
-            String[] temp =  DISInput.split("\\s*,\\s*");
+            String[] weatherStationList =  DISInput.split("\\s*,\\s*");
 
-                temp = Arrays.copyOf(temp,temp.length+4);
+            weatherClients = Arrays.copyOf(weatherClients,weatherStationList.length + 3);
 
-
-
-
-            
-            for (int i = 0; i < temp.length; i++)
+            for (int i = 0; i < weatherStationList.length; i++)
             {
-                    weatherClients[i+2] = "Weather Client " + temp[i];
+                    weatherClients[i  + 3] = "Weather Client " + weatherStationList[i];
             }
             jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
     }
