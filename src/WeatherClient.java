@@ -37,7 +37,7 @@ public class WeatherClient {
                 try {
                     // write on the output stream
                     dos.writeUTF(msg);
-                    Thread.sleep(3000);
+                    Thread.sleep(500);
                 } catch (Exception e) { stop(); }
             }
         }
