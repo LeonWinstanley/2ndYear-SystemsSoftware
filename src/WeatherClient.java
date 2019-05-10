@@ -1,7 +1,6 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.Scanner;
 
 public class WeatherClient {
 
@@ -17,9 +16,6 @@ public class WeatherClient {
     public Socket socket;
 
     public WeatherClient() throws UnknownHostException, IOException {
-
-        Scanner scn = new Scanner(System.in);
-
         // getting localhost ip
         InetAddress ip = InetAddress.getByName("localhost");
 
