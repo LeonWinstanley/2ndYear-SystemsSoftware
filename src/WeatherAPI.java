@@ -11,13 +11,23 @@ public class WeatherAPI {
         OWM owm = new OWM("31d338e6e7a5b58498c959460b97614a");
 
         // getting current weather data for the "London" city
-        CurrentWeather cwd = owm.currentWeatherByCityName("London");
+        CurrentWeather cwd = owm.currentWeatherByCityName("New York");
 
-        //printing city name from the retrieved data
-        System.out.println("City: " + cwd.getCityName());
+        // checking data retrieval was successful or not
+        if (cwd.hasRespCode() && cwd.getRespCode() == 200) {
 
-        // printing the max./min. temperature
-        System.out.println("Temperature: " + cwd.getMainData().getTempMax()
-                            + "/" + cwd.getMainData().getTempMin() + "\'K");
+            // checking if city name is available
+            if (cwd.hasCityName()) {
+                //printing city name from the retrieved data
+                System.out.println("City: " + cwd.getCityName());
+            }
+
+            // checking if max. temp. and min. temp. is available
+            if (cwd.hasMainData() && cwd.getMainData().hasTempMax() && cwd.getMainData().hasTempMin()) {
+                // printing the max./min. temperature
+                System.out.println("Temperature: " + cwd.getMainData().getTempMax()
+                        + "/" + cwd.getMainData().getTempMin() + "\'K");
+            }
+        }
     }
 }
