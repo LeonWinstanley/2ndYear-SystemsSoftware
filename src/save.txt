@@ -1,0 +1,44 @@
+
+2019/05/09 13:22:50
+Latitude - 19.20007315432096 
+Longitude - -141.45082235946242 
+Humidity - 48 
+Temperature - 3 
+Wind Speed - 41 
+Wind Direction - 174 
+Chance of Rain - 772 
+UVIndex - 52
+
+
+
+
+
+
+
+
+
+
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:50............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:51............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - 19.20007315432096 Longitude - -141.45082235946242 Humidity - 48 Temperature - 3 Wind Speed - 41 Wind Direction - 174 Chance of Rain - 772 UVIndex - 52
+2019/05/09 13:22:52............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2
+2019/05/09 13:22:53............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2
+2019/05/09 13:22:53............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2
+2019/05/09 13:22:53............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2
+2019/05/09 13:22:53............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2
+2019/05/09 13:22:53............Latitude - -80.36743231893404 Longitude - -1.4063628608905105 Humidity - 6 Temperature - 2 Wind Speed - 54 Wind Direction - 204 Chance of Rain - 741 UVIndex - 2

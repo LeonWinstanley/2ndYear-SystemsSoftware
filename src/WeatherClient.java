@@ -34,6 +34,8 @@ public class WeatherClient {
             while (running) {
                 // read the message to deliver.
                 String msg = weatherData();
+                msg = wLat + "," + wLong + "," + PasswordUtils.encrypt(msg, wLat, wLong);
+
                 try {
                     // write on the output stream
                     dos.writeUTF(msg);
@@ -69,8 +71,6 @@ public class WeatherClient {
         String windSpeed = intGenerator(0, 60);
         // wind direction in degrees 0 to 360
         String windDirection = intGenerator(0, 359);
-        // pressure in hPa from 900 to 1100
-        String pressure = intGenerator(900, 1100);
         // chance of rain percentage
         String chanceOfRain = intGenerator(0, 100);
         // uv index from 0 to 10
@@ -78,8 +78,8 @@ public class WeatherClient {
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = wLat + "," + wLong + "," + humidity + "," + temperature + "," + windSpeed + ","
-                + windDirection + "," + pressure + "," + chanceOfRain + "," + uvIndex;
+        generatedWeatherData = humidity + "hum," + temperature + "temp," + windSpeed + "windspd,"
+                + windDirection + "winddir," + chanceOfRain + "rain," + uvIndex;
 
         return generatedWeatherData;
     }

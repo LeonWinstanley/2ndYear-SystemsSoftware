@@ -78,6 +78,7 @@ public class ClientGUI extends JFrame {
     String selectionID = "";
     boolean SelectedItem = false;
     MapView map = new MapView();
+    PasswordUtils passwordUtils = new PasswordUtils();
         
 
     public ClientGUI() {
@@ -619,7 +620,6 @@ public class ClientGUI extends JFrame {
         String selection = (String) jComboBoxWeather.getSelectedItem();
         String selectionID = selection.substring(15,selection.length());
         sendDataToServer(selectionID);
-        System.out.println(selectionID);      
         resetComponents();
     }
 
@@ -827,10 +827,12 @@ public class ClientGUI extends JFrame {
     //////////////////////////////////////////////////////////
 
     public void splitDISData(String DISInput) {
-
-        String[] weatherList = DISInput.split("\\s*,\\s*");
-        setRowText(weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5],
-                weatherList[6], weatherList[7]);
+        String[] encryptedWeatherList = DISInput.split("\\s*,\\s*");
+        String decryptedString = PasswordUtils.decrypt(encryptedWeatherList[2], encryptedWeatherList[0], encryptedWeatherList[1]);
+        decryptedString += "," + encryptedWeatherList[0] + "," + encryptedWeatherList[1]; 
+        
+        String[] weatherList = decryptedString.split("\\s*,\\s*");
+        setRowText(weatherList[7], weatherList[6], weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5]);
     }
 
     public void splitDISDataWeatherClients(String DISInput)

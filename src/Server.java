@@ -203,7 +203,6 @@ class ClientHandler implements Runnable {
             try {
                 // receive the string
                 received = dis.readUTF();
-                System.out.println(received);
                 if (received.equals("-1")) { close(); }
                 else if ((Integer.parseInt(received) - 1) != currentWeatherStationID) 
                 { 
