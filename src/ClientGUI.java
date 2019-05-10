@@ -38,6 +38,7 @@ class listenToServer implements Runnable {
     @Override
     public void run()
     {
+
         while(running)
         {
             try { received = dis.readUTF(); }
@@ -76,10 +77,13 @@ public class ClientGUI extends JFrame {
     Thread listenThread;
     String selectionID = "";
     boolean SelectedItem = false;
+    MapView map = new MapView();
+        
 
     public ClientGUI() {
         initComponents();
         this.setVisible(true);
+        map.setVisible(true);
 
         try { ConnectToServer(); } 
         catch (Exception e) { System.out.println("ClientGUI.java :: ClientGUI() " + e); }
@@ -180,6 +184,8 @@ public class ClientGUI extends JFrame {
     }
 
     private void initComponents() {
+
+        
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -653,6 +659,8 @@ public class ClientGUI extends JFrame {
 
         String previousData = "";
         String nextData = "";
+
+        map.setPos(Latitude, Longitude);
 
         previousData = Latitude01.getText();
         Latitude01.setText(Latitude);
