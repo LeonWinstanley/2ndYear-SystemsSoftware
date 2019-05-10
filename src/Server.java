@@ -9,6 +9,8 @@ public class Server {
     static Vector<ClientHandler> ClientList = new Vector<>();
     static Vector<WeatherHandler> WeatherList = new Vector<>();
 
+    static WeatherAPI api = new WeatherAPI();
+
     // counter for clients
     static int ClientCounter = 0;
     static int WeatherCounter = 0;
@@ -140,10 +142,33 @@ public class Server {
             gui.setWeather(getWeatherArr());
             gui.setClients(getClientArr());
 
+            api.SetLocation(52.0,1.0);
+            System.out.println(api.GetData());
+
             for (ClientHandler client : ClientList)
             {
-                try {client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());}
-                catch (ArrayIndexOutOfBoundsException e){}
+                if (client.currentWeatherStationID > 3)
+                {
+                    try {client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());}
+                    catch (ArrayIndexOutOfBoundsException e){}
+                }
+                else
+                {
+                    switch (client.currentWeatherStationID) {
+                        case 0:
+                            api.SetLocation(40.712776, -74.005974);
+                            break;
+                        case 1:
+                            api.SetLocation(51.507351, -0.127758);
+                            break;
+                        case 2:
+                            api.SetLocation(52.954784, -1.158109);
+                            break;
+                    }
+                    
+                    try {client.AddWeatherData("#" + api.GetData());}
+                    catch (ArrayIndexOutOfBoundsException e){}
+                }
                 try { client.SendData(client.GetDataFromQueue()); } 
                 catch (Exception e) {}  
             }

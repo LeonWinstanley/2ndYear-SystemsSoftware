@@ -186,8 +186,6 @@ public class ClientGUI extends JFrame {
 
     private void initComponents() {
 
-        
-
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -197,7 +195,7 @@ public class ClientGUI extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxWeather = new javax.swing.JComboBox<>();
+        jComboBoxCity = new javax.swing.JComboBox<>();
         LogOutButton = new javax.swing.JButton();
         SaveToFileButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -276,16 +274,16 @@ public class ClientGUI extends JFrame {
 
         jLabel8.setText("UV Index");
 
-        jComboBoxWeather.setFont(new java.awt.Font("Dialog", 0, 30));
-        jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
+        jComboBoxCity.setFont(new java.awt.Font("Dialog", 0, 30));
+        jComboBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
         // {
         //     @Override
         //     public void setSelectedItem(Object anObject) {}
         // }
 
-        jComboBoxWeather.insertItemAt("", 0);
+        jComboBoxCity.insertItemAt("", 0);
 
-        //jComboBoxWeather.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        //jComboBoxCity.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         LogOutButton.setText("Log Out");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -301,11 +299,11 @@ public class ClientGUI extends JFrame {
             }
         });
 
-        jComboBoxWeather.addActionListener(new java.awt.event.ActionListener()
+        jComboBoxCity.addActionListener(new java.awt.event.ActionListener()
         {
                 public void actionPerformed(java.awt.event.ActionEvent evt)
                 {
-                        jComboBoxWeatherActionPerformed(evt);
+                        jComboBoxCityActionPerformed(evt);
                 }
         });   
 
@@ -506,7 +504,7 @@ public class ClientGUI extends JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxWeather,javax.swing.GroupLayout.PREFERRED_SIZE, 350,
+                                .addComponent(jComboBoxCity,javax.swing.GroupLayout.PREFERRED_SIZE, 350,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(170, 170, 170)
                         
@@ -538,7 +536,7 @@ public class ClientGUI extends JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jComboBoxWeather, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
+                                                .addComponent(jComboBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(100, 100, 100))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
@@ -615,9 +613,9 @@ public class ClientGUI extends JFrame {
         dispose();
     }
 
-    private void jComboBoxWeatherActionPerformed(java.awt.event.ActionEvent evt)
+    private void jComboBoxCityActionPerformed(java.awt.event.ActionEvent evt)
     {
-        String selection = (String) jComboBoxWeather.getSelectedItem();
+        String selection = (String) jComboBoxCity.getSelectedItem();
         String selectionID = selection.substring(15,selection.length());
         sendDataToServer(selectionID);
         resetComponents();
@@ -842,7 +840,7 @@ public class ClientGUI extends JFrame {
             {
                     weatherClients[i] = "Weather Client " + weatherClients[i];
             }
-            jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
+            jComboBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
     }
 
     public void sendDataToServer(String dataToSend)
@@ -919,7 +917,7 @@ public class ClientGUI extends JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
    // private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jComboBoxWeather;
+    private javax.swing.JComboBox<String> jComboBoxCity;
     private javax.swing.JButton SaveToFileButton;
     private javax.swing.JButton LogOutButton;
     // End of variables declaration

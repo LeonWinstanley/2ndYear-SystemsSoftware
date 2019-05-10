@@ -7,7 +7,7 @@ public class WeatherClient {
     PrintWriter OutputToServer;
     final static int ServerPort = 50000;
     DataOutputStream dos;
-
+    
     // latitude between -90 and 90
     String wLat = doubleGenerator(-90, 90);
     // long between -180 and 180
@@ -44,10 +44,7 @@ public class WeatherClient {
             }
         }
 
-        public void stop()
-        {
-            running = false;
-        }
+        public void stop() { running = false; }
     });
 
     public String doubleGenerator(int min, int max) {
@@ -72,14 +69,14 @@ public class WeatherClient {
         // wind direction in degrees 0 to 360
         String windDirection = intGenerator(0, 359);
         // chance of rain percentage
-        String chanceOfRain = intGenerator(0, 100);
+        String rainVolume = intGenerator(0, 100);
         // uv index from 0 to 10
-        String uvIndex = intGenerator(0, 10);
+        String Cloudiness = intGenerator(0, 10);
 
         // add all the data into a single string
         String generatedWeatherData;
-        generatedWeatherData = humidity + "hum," + temperature + "temp," + windSpeed + "windspd,"
-                + windDirection + "winddir," + chanceOfRain + "rain," + uvIndex;
+        generatedWeatherData = humidity + "," + temperature + "," + windSpeed + ","
+                + windDirection + "," + rainVolume + "," + Cloudiness;
 
         return generatedWeatherData;
     }
@@ -87,5 +84,7 @@ public class WeatherClient {
     public static void main(String[] args) throws IOException {
         WeatherClient Client = new WeatherClient();
         Client.sendMessage.start();
+
+        
     }
 }
