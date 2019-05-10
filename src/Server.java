@@ -142,7 +142,8 @@ public class Server {
 
             for (ClientHandler client : ClientList)
             {
-                try { client.SendData("#" + WeatherList.get(Integer.parseInt(client.GetStationID()) - 1).GetData()); } 
+                client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());
+                try { client.SendData(client.GetDataFromQueue()); } 
                 catch (Exception e) {}  
             }
         }
@@ -151,15 +152,15 @@ public class Server {
 
 // ClientHandler class
 class ClientHandler implements Runnable {
-    Scanner scn = new Scanner(System.in);
     private String name;
     public DataInputStream dis;
     public DataOutputStream dos;
     Socket socket;
-    boolean isloggedin;
     String received;
     Server server;
     private volatile boolean running = true;
+    private static Queue<String> clientDataQueue = new LinkedList<>();
+    int currentWeatherStationID;
 
     // constructor
     public ClientHandler(Socket socket, String name, DataInputStream dis, DataOutputStream dos, String WeatherList, Server server) {
@@ -169,6 +170,7 @@ class ClientHandler implements Runnable {
         this.socket = socket;
         this.server = server;
         SendData(WeatherList);
+        int currentWeatherStationID = 0;
     }
 
     public void SendData(String dataToSend)
@@ -177,7 +179,13 @@ class ClientHandler implements Runnable {
         catch (Exception e) {}
     }
 
-    public String GetStationID() { return received; }
+    public void AddWeatherData(String dataToSend) { clientDataQueue.add(dataToSend); }
+
+    public void GetStationID() { currentWeatherStationID = Integer.parseInt(received) - 1; }
+
+    public String GetDataFromQueue() { return clientDataQueue.remove(); }
+
+    void ClearQueue() { while(clientDataQueue.peek() != null) { clientDataQueue.remove(); } }
 
     public void close()
     {
@@ -194,7 +202,13 @@ class ClientHandler implements Runnable {
             try {
                 // receive the string
                 received = dis.readUTF();
-                if (received.equals("logout")) { close(); }
+                System.out.println(received);
+                if (received.equals("-1")) { close(); }
+                else if ((Integer.parseInt(received) - 1) != currentWeatherStationID) 
+                { 
+                    ClearQueue();
+                    GetStationID(); 
+                }
 
             } catch (IOException e) { break; }
         }
@@ -207,7 +221,6 @@ class ClientHandler implements Runnable {
 }
 
 class WeatherHandler implements Runnable {
-    Scanner scn = new Scanner(System.in);
     private String name;
     final DataInputStream dis;
     Socket socket;
@@ -215,7 +228,7 @@ class WeatherHandler implements Runnable {
     String received;
     private volatile boolean running = true;
     Server server;
-    private static Queue<String> dataQueue = new LinkedList<>();
+  
     // constructor
     public WeatherHandler(Socket socket, String name, DataInputStream dis, Server server) {
         this.dis = dis;
@@ -231,18 +244,14 @@ class WeatherHandler implements Runnable {
         server.WeatherCounter--;
     }
 
-    public String GetData() { return dataQueue.remove(); }
+    public String GetData() { return received; }
 
     @Override
     public void run() {
 
         while (running) 
         { 
-            try 
-            { 
-                received = dis.readUTF(); 
-                dataQueue.add(received);
-            } 
+            try { received = dis.readUTF(); } 
             catch (IOException e) { close(); }
         }
         try { this.dis.close(); } 

@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +44,6 @@ class listenToServer implements Runnable {
             catch (Exception e) { e.printStackTrace(); }
 
             String charAtZero = String.valueOf(received.charAt(0));
-            System.out.println(received);
         
             if (charAtZero.equals("#"))
             {
@@ -74,6 +74,8 @@ public class ClientGUI extends JFrame {
     Socket socket;
     listenToServer lis;
     Thread listenThread;
+    String selectionID = "";
+    boolean SelectedItem = false;
 
     public ClientGUI() {
         initComponents();
@@ -84,8 +86,6 @@ public class ClientGUI extends JFrame {
     }
 
     private void ConnectToServer() throws UnknownHostException, IOException {
-
-        Scanner scn = new Scanner(System.in);
 
         // getting localhost ip
         InetAddress ip = InetAddress.getByName("localhost");
@@ -104,7 +104,7 @@ public class ClientGUI extends JFrame {
 
     private void DisconnectFromServer() throws UnknownHostException, IOException
     {
-        String logout = "logout";
+        String logout = "-1";
         dos.writeUTF(logout);
         dis.close();
         dos.close();
@@ -271,6 +271,11 @@ public class ClientGUI extends JFrame {
 
         jComboBoxWeather.setFont(new java.awt.Font("Dialog", 0, 30));
         jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
+        // {
+        //     @Override
+        //     public void setSelectedItem(Object anObject) {}
+        // }
+
         jComboBoxWeather.insertItemAt("", 0);
 
         //jComboBoxWeather.setBorder(javax.swing.BorderFactory.createLineBorder(null));
@@ -293,7 +298,10 @@ public class ClientGUI extends JFrame {
         {
                 public void actionPerformed(java.awt.event.ActionEvent evt)
                 {
+                    if (SelectedItem)
+                    {
                         jComboBoxWeatherActionPerformed(evt);
+                    }
                 }
         });   
 
@@ -589,8 +597,7 @@ public class ClientGUI extends JFrame {
     private String Current_Weather_Data() {
             String new_data = "............Latitude - " + Latitude01.getText() + " Longitude - " + Longitude01.getText() + " Humidity - " + Humidity01.getText() + " Temperature - " + Temperature01.getText() + " Wind Speed - " + WindSpeed01.getText() + " Wind Direction - " + WindDirection01.getText() + " Chance of Rain - " + ChanceOfRain01.getText() + " UVIndex - " + UVIndex01.getText();
 
-            return new_data;  
-
+            return new_data;
     }
 
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
