@@ -34,6 +34,21 @@ public class WeatherAPI {
             }
 
             String DataToSend = "";
+            String lat = "";
+            String lon = "";
+            try
+            {
+                DataToSend += cwd.getCoordData().getLatitude();
+                lat += cwd.getCoordData().getLatitude();
+
+            }
+            catch (NullPointerException e) { DataToSend += "null"; }
+            try
+            {
+                DataToSend += cwd.getCoordData().getLongitude();
+                lon += cwd.getCoordData().getLongitude();
+            }
+            catch (NullPointerException e) { DataToSend += "null"; }
             try
             {
                 DataToSend += cwd.getMainData().getHumidity();
@@ -69,6 +84,8 @@ public class WeatherAPI {
                 DataToSend += cwd.getCloudData().getCloud();
             }
             catch (NullPointerException e) { DataToSend += "null"; }
+
+            DataToSend = lat + "," + lon + "," + PasswordUtils.encrypt(DataToSend, lat, lon);
 
             return DataToSend;
         }

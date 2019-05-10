@@ -149,7 +149,7 @@ public class Server {
             {
                 if (client.currentWeatherStationID > 3)
                 {
-                    try {client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID).GetData());}
+                    try {client.AddWeatherData("#" + WeatherList.get(client.currentWeatherStationID - 3).GetData());}
                     catch (ArrayIndexOutOfBoundsException e){}
                 }
                 else
@@ -229,8 +229,8 @@ class ClientHandler implements Runnable {
                 // receive the string
                 received = dis.readUTF();
                 if (received.equals("-1")) { close(); }
-                else if ((Integer.parseInt(received) - 1) != currentWeatherStationID) 
-                { 
+                else if ((Integer.parseInt(received) - 1) != currentWeatherStationID)
+                {
                     ClearQueue();
                     GetStationID(); 
                 }

@@ -627,6 +627,7 @@ public class ClientGUI extends JFrame {
     {
         String selection = (String) jComboBoxWeather.getSelectedItem();
         String selectionID = selection.substring(15,selection.length());
+        System.out.println(selectionID);
         sendDataToServer(selectionID);
         resetComponents();
     }
@@ -840,7 +841,7 @@ public class ClientGUI extends JFrame {
         decryptedString += "," + encryptedWeatherList[0] + "," + encryptedWeatherList[1]; 
         
         String[] weatherList = decryptedString.split("\\s*,\\s*");
-        setRowText(weatherList[7], weatherList[6], weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5]);
+        setRowText(weatherList[6], weatherList[7], weatherList[0], weatherList[1], weatherList[2], weatherList[3], weatherList[4], weatherList[5]);
     }
 
     public void splitDISDataWeatherClients(String DISInput)
@@ -852,7 +853,7 @@ public class ClientGUI extends JFrame {
 
             for (int i = 0; i < weatherStationList.length; i++)
             {
-                    weatherClients[i  + 3] = "Weather Client " + weatherStationList[i];
+                    weatherClients[i  + 3] = "Weather Client " + (Integer.parseInt(weatherStationList[i])+ 3);
             }
             jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
     }
