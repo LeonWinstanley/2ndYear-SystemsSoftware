@@ -167,21 +167,21 @@ public class ClientGUI extends JFrame {
         WindDirection06.setText("");
         WindDirection07.setText("");
 
-        ChanceOfRain01.setText("");
-        ChanceOfRain02.setText("");
-        ChanceOfRain03.setText("");
-        ChanceOfRain04.setText("");
-        ChanceOfRain05.setText("");
-        ChanceOfRain06.setText("");
-        ChanceOfRain07.setText("");
+        rainVol01.setText("");
+        rainVol02.setText("");
+        rainVol03.setText("");
+        rainVol04.setText("");
+        rainVol05.setText("");
+        rainVol06.setText("");
+        rainVol07.setText("");
 
-        UVIndex01.setText("");
-        UVIndex02.setText("");
-        UVIndex03.setText("");
-        UVIndex04.setText("");
-        UVIndex05.setText("");
-        UVIndex06.setText("");
-        UVIndex07.setText("");
+        clouds01.setText("");
+        clouds02.setText("");
+        clouds03.setText("");
+        clouds04.setText("");
+        clouds05.setText("");
+        clouds06.setText("");
+        clouds07.setText("");
     }
 
     private void initComponents() {
@@ -243,20 +243,20 @@ public class ClientGUI extends JFrame {
         WindDirection06 = new javax.swing.JLabel();
         WindDirection02 = new javax.swing.JLabel();
         WindDirection07 = new javax.swing.JLabel();
-        UVIndex01 = new javax.swing.JLabel();
-        ChanceOfRain03 = new javax.swing.JLabel();
-        ChanceOfRain01 = new javax.swing.JLabel();
-        ChanceOfRain02 = new javax.swing.JLabel();
-        ChanceOfRain04 = new javax.swing.JLabel();
-        ChanceOfRain06 = new javax.swing.JLabel();
-        ChanceOfRain05 = new javax.swing.JLabel();
-        ChanceOfRain07 = new javax.swing.JLabel();
-        UVIndex02 = new javax.swing.JLabel();
-        UVIndex03 = new javax.swing.JLabel();
-        UVIndex04 = new javax.swing.JLabel();
-        UVIndex05 = new javax.swing.JLabel();
-        UVIndex06 = new javax.swing.JLabel();
-        UVIndex07 = new javax.swing.JLabel();
+        clouds01 = new javax.swing.JLabel();
+        rainVol03 = new javax.swing.JLabel();
+        rainVol01 = new javax.swing.JLabel();
+        rainVol02 = new javax.swing.JLabel();
+        rainVol04 = new javax.swing.JLabel();
+        rainVol06 = new javax.swing.JLabel();
+        rainVol05 = new javax.swing.JLabel();
+        rainVol07 = new javax.swing.JLabel();
+        clouds02 = new javax.swing.JLabel();
+        clouds03 = new javax.swing.JLabel();
+        clouds04 = new javax.swing.JLabel();
+        clouds05 = new javax.swing.JLabel();
+        clouds06 = new javax.swing.JLabel();
+        clouds07 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -266,22 +266,18 @@ public class ClientGUI extends JFrame {
 
         jLabel3.setText("Temperature");
 
-        jLabel4.setText("WindSpeed");
+        jLabel4.setText("Wind Speed");
 
         jLabel5.setText("Humidity");
 
-        jLabel6.setText("Chance of Rain");
+        jLabel6.setText("Rain Volume");
 
-        jLabel7.setText("WindDirection");
+        jLabel7.setText("Wind Pressure");
 
-        jLabel8.setText("UV Index");
+        jLabel8.setText("Cloudiness");
 
         jComboBoxWeather.setFont(new java.awt.Font("Dialog", 0, 30));
         jComboBoxWeather.setModel(new javax.swing.DefaultComboBoxModel<>(weatherClients));
-        // {
-        //     @Override
-        //     public void setSelectedItem(Object anObject) {}
-        // }
 
         jComboBoxWeather.insertItemAt("", 0);
 
@@ -428,35 +424,35 @@ public class ClientGUI extends JFrame {
                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ChanceOfRain06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChanceOfRain01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(rainVol01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(76, 76, 76)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(UVIndex02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds02, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds01, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds07, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds03, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds04, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds05, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(UVIndex06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
+                                .addComponent(clouds06, javax.swing.GroupLayout.PREFERRED_SIZE, 55,
                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,37 +460,37 @@ public class ClientGUI extends JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude01).addComponent(Longitude01).addComponent(Humidity01)
                                 .addComponent(Temperature01).addComponent(WindSpeed01).addComponent(WindDirection01)
-                                .addComponent(ChanceOfRain01).addComponent(UVIndex01))
+                                .addComponent(rainVol01).addComponent(clouds01))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude02).addComponent(Longitude02).addComponent(Humidity02)
                                 .addComponent(Temperature02).addComponent(WindSpeed02).addComponent(WindDirection02)
-                                .addComponent(ChanceOfRain02).addComponent(UVIndex02))
+                                .addComponent(rainVol02).addComponent(clouds02))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude03).addComponent(Longitude03).addComponent(Humidity03)
                                 .addComponent(Temperature03).addComponent(WindSpeed03).addComponent(WindDirection03)
-                                .addComponent(ChanceOfRain03).addComponent(UVIndex03))
+                                .addComponent(rainVol03).addComponent(clouds03))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude04).addComponent(Longitude04).addComponent(Humidity04)
                                 .addComponent(Temperature04).addComponent(WindSpeed04).addComponent(WindDirection04)
-                                .addComponent(ChanceOfRain04).addComponent(UVIndex04))
+                                .addComponent(rainVol04).addComponent(clouds04))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude05).addComponent(Longitude05).addComponent(Humidity05)
                                 .addComponent(Temperature05).addComponent(WindSpeed05).addComponent(WindDirection05)
-                                .addComponent(ChanceOfRain05).addComponent(UVIndex05))
+                                .addComponent(rainVol05).addComponent(clouds05))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude06).addComponent(Longitude06).addComponent(Humidity06)
                                 .addComponent(Temperature06).addComponent(WindSpeed06).addComponent(WindDirection06)
-                                .addComponent(ChanceOfRain06).addComponent(UVIndex06))
+                                .addComponent(rainVol06).addComponent(clouds06))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Latitude07).addComponent(Longitude07).addComponent(Humidity07)
                                 .addComponent(Temperature07).addComponent(WindSpeed07).addComponent(WindDirection07)
-                                .addComponent(ChanceOfRain07).addComponent(UVIndex07))
+                                .addComponent(rainVol07).addComponent(clouds07))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -599,7 +595,7 @@ public class ClientGUI extends JFrame {
     }
 
     private String Current_Weather_Data() {
-            String new_data = "............Latitude - " + Latitude01.getText() + " Longitude - " + Longitude01.getText() + " Humidity - " + Humidity01.getText() + " Temperature - " + Temperature01.getText() + " Wind Speed - " + WindSpeed01.getText() + " Wind Direction - " + WindDirection01.getText() + " Chance of Rain - " + ChanceOfRain01.getText() + " UVIndex - " + UVIndex01.getText();
+            String new_data = "............Latitude - " + Latitude01.getText() + " Longitude - " + Longitude01.getText() + " Humidity - " + Humidity01.getText() + " Temperature - " + Temperature01.getText() + " Wind Speed - " + WindSpeed01.getText() + " Wind Direction - " + WindDirection01.getText() + " Rain Volume - " + rainVol01.getText() + " Cloudiness - " + clouds01.getText();
 
             return new_data;
     }
@@ -653,7 +649,7 @@ public class ClientGUI extends JFrame {
     // Moves labels down one by one using previousData variables //
     ///////////////////////////////////////////////////////
     public void setRowText(String Latitude, String Longitude, String Humidity, String Temperature, String WindSpeed,
-            String WindDirection, String ChanceOfRain, String UVIndex) {
+            String WindDirection, String rainVol, String clouds) {
 
         String previousData = "";
         String nextData = "";
@@ -780,45 +776,45 @@ public class ClientGUI extends JFrame {
         nextData = previousData;
         WindDirection07.setText(nextData);
 
-        previousData = ChanceOfRain01.getText();
-        ChanceOfRain01.setText(ChanceOfRain);
+        previousData = rainVol01.getText();
+        rainVol01.setText(rainVol);
         nextData = previousData;
-        previousData = ChanceOfRain02.getText();
-        ChanceOfRain02.setText(nextData);
+        previousData = rainVol02.getText();
+        rainVol02.setText(nextData);
         nextData = previousData;
-        previousData = ChanceOfRain03.getText();
-        ChanceOfRain03.setText(nextData);
+        previousData = rainVol03.getText();
+        rainVol03.setText(nextData);
         nextData = previousData;
-        previousData = ChanceOfRain04.getText();
-        ChanceOfRain04.setText(nextData);
+        previousData = rainVol04.getText();
+        rainVol04.setText(nextData);
         nextData = previousData;
-        previousData = ChanceOfRain05.getText();
-        ChanceOfRain05.setText(nextData);
+        previousData = rainVol05.getText();
+        rainVol05.setText(nextData);
         nextData = previousData;
-        previousData = ChanceOfRain06.getText();
-        ChanceOfRain06.setText(nextData);
+        previousData = rainVol06.getText();
+        rainVol06.setText(nextData);
         nextData = previousData;
-        ChanceOfRain07.setText(nextData);
+        rainVol07.setText(nextData);
 
-        previousData = UVIndex01.getText();
-        UVIndex01.setText(UVIndex);
+        previousData = clouds01.getText();
+        clouds01.setText(clouds);
         nextData = previousData;
-        previousData = UVIndex02.getText();
-        UVIndex02.setText(nextData);
+        previousData = clouds02.getText();
+        clouds02.setText(nextData);
         nextData = previousData;
-        previousData = UVIndex03.getText();
-        UVIndex03.setText(nextData);
+        previousData = clouds03.getText();
+        clouds03.setText(nextData);
         nextData = previousData;
-        previousData = UVIndex04.getText();
-        UVIndex04.setText(nextData);
+        previousData = clouds04.getText();
+        clouds04.setText(nextData);
         nextData = previousData;
-        previousData = UVIndex05.getText();
-        UVIndex05.setText(nextData);
+        previousData = clouds05.getText();
+        clouds05.setText(nextData);
         nextData = previousData;
-        previousData = UVIndex06.getText();
-        UVIndex06.setText(nextData);
+        previousData = clouds06.getText();
+        clouds06.setText(nextData);
         nextData = previousData;
-        UVIndex07.setText(nextData);
+        clouds07.setText(nextData);
     }
 
     //////////////////////////////////////////////////////////
@@ -852,13 +848,13 @@ public class ClientGUI extends JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel ChanceOfRain01;
-    private javax.swing.JLabel ChanceOfRain02;
-    private javax.swing.JLabel ChanceOfRain03;
-    private javax.swing.JLabel ChanceOfRain04;
-    private javax.swing.JLabel ChanceOfRain05;
-    private javax.swing.JLabel ChanceOfRain06;
-    private javax.swing.JLabel ChanceOfRain07;
+    private javax.swing.JLabel rainVol01;
+    private javax.swing.JLabel rainVol02;
+    private javax.swing.JLabel rainVol03;
+    private javax.swing.JLabel rainVol04;
+    private javax.swing.JLabel rainVol05;
+    private javax.swing.JLabel rainVol06;
+    private javax.swing.JLabel rainVol07;
     private javax.swing.JLabel Humidity01;
     private javax.swing.JLabel Humidity02;
     private javax.swing.JLabel Humidity03;
@@ -887,13 +883,13 @@ public class ClientGUI extends JFrame {
     private javax.swing.JLabel Temperature05;
     private javax.swing.JLabel Temperature06;
     private javax.swing.JLabel Temperature07;
-    private javax.swing.JLabel UVIndex01;
-    private javax.swing.JLabel UVIndex02;
-    private javax.swing.JLabel UVIndex03;
-    private javax.swing.JLabel UVIndex04;
-    private javax.swing.JLabel UVIndex05;
-    private javax.swing.JLabel UVIndex06;
-    private javax.swing.JLabel UVIndex07;
+    private javax.swing.JLabel clouds01;
+    private javax.swing.JLabel clouds02;
+    private javax.swing.JLabel clouds03;
+    private javax.swing.JLabel clouds04;
+    private javax.swing.JLabel clouds05;
+    private javax.swing.JLabel clouds06;
+    private javax.swing.JLabel clouds07;
     private javax.swing.JLabel WindDirection01;
     private javax.swing.JLabel WindDirection02;
     private javax.swing.JLabel WindDirection03;
